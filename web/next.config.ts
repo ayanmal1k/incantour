@@ -78,6 +78,46 @@ const nextConfig: NextConfig = {
         destination: "/blog/:slug*",
         permanent: true,
       },
+      {
+        source: "/src/crociere.html",
+        destination: "/crociere",
+        permanent: true,
+      },
+      {
+        source: "/crociere.html",
+        destination: "/crociere",
+        permanent: true,
+      },
+      {
+        source: "/src/viaggi-atipici.html",
+        destination: "/viaggi-atipici",
+        permanent: true,
+      },
+      {
+        source: "/viaggi-atipici.html",
+        destination: "/viaggi-atipici",
+        permanent: true,
+      },
+      {
+        source: "/src/viaggi-di-nozze.html",
+        destination: "/viaggi-di-nozze",
+        permanent: true,
+      },
+      {
+        source: "/viaggi-di-nozze.html",
+        destination: "/viaggi-di-nozze",
+        permanent: true,
+      },
+      {
+        source: "/src/percorsi-lingua-italiana.html",
+        destination: "/percorsi-lingua-italiana",
+        permanent: true,
+      },
+      {
+        source: "/percorsi-lingua-italiana.html",
+        destination: "/percorsi-lingua-italiana",
+        permanent: true,
+      },
     ];
   },
 };

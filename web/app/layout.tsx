@@ -30,7 +30,11 @@ export const metadata: Metadata = {
   twitter: { card: "summary_large_image" },
   robots: { index: true, follow: true },
   icons: {
-    icon: "/assets/images/icon.png",
+    icon: [
+      { url: "/assets/images/icon.png", type: "image/png" },
+      { url: "/icon.png", type: "image/png" },
+      { url: "/favicon.ico" },
+    ],
     shortcut: "/assets/images/icon.png",
     apple: "/assets/images/icon.png",
   },
@@ -68,6 +72,9 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
   return (
     <html lang="it" className={poppins.variable}>
       <head>
+        <link rel="icon" type="image/png" href="/assets/images/icon.png" />
+        <link rel="shortcut icon" type="image/png" href="/assets/images/icon.png" />
+        <link rel="apple-touch-icon" href="/assets/images/icon.png" />
         <Script
           id="extension-error-suppressor"
           strategy="beforeInteractive"
