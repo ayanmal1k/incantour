@@ -48,6 +48,36 @@ const nextConfig: NextConfig = {
         destination: "/tours",
         permanent: true,
       },
+      {
+        source: "/src/blog.html",
+        destination: "/blog",
+        permanent: true,
+      },
+      {
+        source: "/blog.html",
+        destination: "/blog",
+        permanent: true,
+      },
+      {
+        source: "/src/blog-post.html",
+        destination: "/blog",
+        permanent: true,
+      },
+      {
+        source: "/blog-post.html",
+        destination: "/blog",
+        permanent: true,
+      },
+      {
+        source: "/blog-post",
+        destination: "/blog",
+        permanent: true,
+      },
+      {
+        source: "/blog-post/:slug*",
+        destination: "/blog/:slug*",
+        permanent: true,
+      },
     ];
   },
 };

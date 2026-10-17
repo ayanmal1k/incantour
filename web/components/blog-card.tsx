@@ -48,7 +48,7 @@ export function BlogCard({
       : "",
   image = post?.featuredImageUrl || "/assets/images/storia e visione.png",
   date = post?.date,
-  href = id ? `/blog/${id}` : "/blog",
+  href = post?.slug ? `/blog/${post.slug}` : id ? `/blog/${id}` : "/blog",
   readMoreLabel = "Leggi di più",
   priority = false,
 }: BlogCardProps) {

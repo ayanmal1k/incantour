@@ -189,6 +189,50 @@ export async function getPostById(id: string | number): Promise<Post> {
   return toPost(post);
 }
 
+export async function getPostBySlug(slug: string): Promise<Post | null> {
+  try {
+    const posts = await restFetch<WordPressEntity[]>(`posts?slug=${encodeURIComponent(slug)}&_embed`);
+    if (posts.length > 0 && posts[0]) {
+      return toPost(posts[0]);
+    }
+    return null;
+  } catch (error) {
+    console.error(`Error fetching post by slug ${slug}:`, error);
+    return null;
+  }
+}
+
+/**
+ * Fetch a post by slug or numeric ID with graceful fallback.
+ * Checks if the identifier is numeric first, then tries slug.
+ */
+export async function getPost(slugOrId: string | number): Promise<Post | null> {
+  const isNumeric = typeof slugOrId === "number" || /^\d+$/.test(String(slugOrId).trim());
+  if (isNumeric) {
+    try {
+      return await getPostById(slugOrId);
+    } catch {
+      // Fallback to checking slug
+    }
+  }
+
+  // Try by slug
+  const postBySlug = await getPostBySlug(String(slugOrId));
+  if (postBySlug) return postBySlug;
+
+  // As a last attempt, try as ID if not already tried
+  if (!isNumeric) {
+    try {
+      return await getPostById(slugOrId);
+    } catch {
+      return null;
+    }
+  }
+
+  return null;
+}
+
+
 export type RelatedPostsResult = {
   posts: Post[];
   hasExactMatch: boolean;

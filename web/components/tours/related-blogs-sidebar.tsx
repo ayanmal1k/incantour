@@ -81,7 +81,7 @@ export function RelatedBlogsSidebar({
               key={post.id}
               className="group flex flex-col overflow-hidden rounded-xl bg-slate-50 transition-all duration-300 hover:shadow-md hover:bg-white border border-slate-100"
             >
-              <Link href={`/blog/${post.id}`} className="block focus:outline-none">
+              <Link href={`/blog/${post.slug || post.id}`} className="block focus:outline-none">
                 <div className="relative h-36 w-full overflow-hidden bg-slate-200">
                   <Image
                     src={image}
