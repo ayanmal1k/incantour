@@ -55,7 +55,7 @@ export default async function ToursPage() {
             </ol>
           </nav>
 
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-white mb-3">
+          <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight text-gradient-hero mb-3">
             I Nostri Tour
           </h1>
           <p className="text-lg md:text-xl text-slate-200 max-w-2xl font-light">

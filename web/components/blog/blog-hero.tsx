@@ -22,7 +22,7 @@ export function BlogHero() {
           Blog &amp; Storie
         </span>
 
-        <h1 className="text-4xl md:text-6xl font-extrabold mb-6 tracking-tight leading-tight drop-shadow-md text-white">
+        <h1 className="text-4xl md:text-6xl font-extrabold mb-6 tracking-tight leading-tight text-gradient-hero">
           Racconti di Viaggio &amp; Approfondimenti
         </h1>
 

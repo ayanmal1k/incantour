@@ -29,6 +29,11 @@ export const metadata: Metadata = {
   },
   twitter: { card: "summary_large_image" },
   robots: { index: true, follow: true },
+  icons: {
+    icon: "/assets/images/icon.png",
+    shortcut: "/assets/images/icon.png",
+    apple: "/assets/images/icon.png",
+  },
 };
 
 const extensionSuppressorCode = `

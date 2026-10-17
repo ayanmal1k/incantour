@@ -79,7 +79,7 @@ export function TourDetailHero({ tour }: TourDetailHeroProps) {
             </span>
           </div>
 
-          <h1 className="mb-6 text-3xl font-bold tracking-tight text-white drop-shadow-md sm:text-4xl lg:text-5xl max-w-4xl leading-tight">
+          <h1 className="mb-6 text-3xl font-extrabold tracking-tight text-gradient-hero sm:text-4xl lg:text-5xl max-w-4xl leading-tight">
             {title}
           </h1>
 
