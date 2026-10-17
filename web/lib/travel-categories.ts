@@ -1,5 +1,3 @@
-import type { Tour } from "@/lib/wordpress/types";
-
 export type CategoryIconType =
   | "ship"
   | "anchor"

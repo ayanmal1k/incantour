@@ -86,7 +86,7 @@ Percorso Tailor-Made:
             <h2 className="text-3xl md:text-4xl font-extrabold text-gray-900 tracking-tight">
               FORM DI PRENOTAZIONE
             </h2>
-            <p className="text-lg font-bold text-[#E6A532] mt-1">
+            <p className="text-lg font-bold text-gradient-dark mt-1">
               Percorsi di Lingua e Cultura Italiana
             </p>
             <p className="text-gray-500 text-sm mt-2 max-w-xl mx-auto">

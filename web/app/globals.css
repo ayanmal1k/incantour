@@ -48,6 +48,12 @@
     -webkit-text-fill-color: transparent;
     background-clip: text;
   }
+  .text-gradient-dark {
+    background-image: linear-gradient(135deg, #D4941A 0%, #B87309 30%, #155758 75%, #0A3334 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
   .text-gradient-hero {
     background-image: linear-gradient(135deg, #FFC94A 0%, #E6A532 30%, #38BDF8 75%, #2DD4BF 100%);
     -webkit-background-clip: text;

@@ -15,23 +15,25 @@ export function CategoryToursBrowser({
 }) {
   const [searchTerm, setSearchTerm] = useState("");
 
-  // Filter category tours from the broader catalogue
-  const matchesCategory = (tour: Tour) => {
-    const cat = String(tour.acf?.category || "").toLowerCase();
-    const title = String(tour.title?.rendered || "").toLowerCase();
-    const keywords = config.toursSection.filterKeywords || [];
-    return keywords.some((kw) => cat.includes(kw) || title.includes(kw));
-  };
+  const keywords = useMemo(() => config.toursSection.filterKeywords || [], [config.toursSection.filterKeywords]);
 
   const categoryTours = useMemo(() => {
-    const matched = allTours.filter(matchesCategory);
+    const matched = allTours.filter((tour) => {
+      const cat = String(tour.acf?.category || "").toLowerCase();
+      const title = String(tour.title?.rendered || "").toLowerCase();
+      return keywords.some((kw) => cat.includes(kw) || title.includes(kw));
+    });
     // If strict filter yielded matches, use them; otherwise, fall back gracefully to all tours
     return matched.length > 0 ? matched : allTours;
-  }, [allTours, config.toursSection.filterKeywords]);
+  }, [allTours, keywords]);
 
   const hasCategorySpecificTours = useMemo(() => {
-    return allTours.some(matchesCategory);
-  }, [allTours, config.toursSection.filterKeywords]);
+    return allTours.some((tour) => {
+      const cat = String(tour.acf?.category || "").toLowerCase();
+      const title = String(tour.title?.rendered || "").toLowerCase();
+      return keywords.some((kw) => cat.includes(kw) || title.includes(kw));
+    });
+  }, [allTours, keywords]);
 
   // Apply search query filter
   const visibleTours = useMemo(() => {
@@ -52,7 +54,7 @@ export function CategoryToursBrowser({
       <section className="relative z-20 -mt-10 px-6 max-w-3xl mx-auto">
         <div className="bg-white rounded-2xl p-6 sm:p-8 shadow-[0_15px_40px_rgba(0,0,0,0.12)] border border-gray-100">
           <div className="text-center mb-5">
-            <h2 className="text-xl sm:text-2xl font-bold text-gray-900 mb-1">
+            <h2 className="text-xl sm:text-2xl font-extrabold text-gradient-dark mb-1">
               {config.search.title}
             </h2>
             <p className="text-xs sm:text-sm text-gray-500">
@@ -84,7 +86,7 @@ export function CategoryToursBrowser({
             <span className="text-[#E6A532] font-bold uppercase tracking-widest text-xs sm:text-sm block mb-2">
               {config.toursSection.badge}
             </span>
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-gray-900 mb-4 tracking-tight">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-gradient-dark mb-4 tracking-tight">
               {config.toursSection.title}
             </h2>
             <p className="text-base sm:text-lg text-gray-600 max-w-2xl mx-auto">

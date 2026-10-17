@@ -17,7 +17,7 @@ export function CategoryDownloads({
         <span className="text-[#E6A532] font-bold uppercase tracking-widest text-xs sm:text-sm block mb-1">
           {downloads.badge}
         </span>
-        <h2 className="text-3xl sm:text-4xl font-extrabold text-gray-900 mb-8 tracking-tight">
+        <h2 className="text-3xl sm:text-4xl font-extrabold text-gradient-dark mb-8 tracking-tight">
           {downloads.title}
         </h2>
 
