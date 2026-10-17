@@ -20,7 +20,7 @@ export function TravelCategoryTemplate({
 }) {
   return (
     <article className="min-h-screen bg-white">
-      {/* 1. Hero Section with dynamic background, floating elements, text gradient, narrative card */}
+      {/* 1. Hero Section with dynamic background, radiant text gradient, narrative card */}
       <CategoryHero config={config} />
 
       {/* 2. Page-specific Downloads Section (if present, e.g. for Percorsi Lingua) */}

@@ -22,18 +22,6 @@ export function CategoryHero({ config }: { config: TravelCategoryConfig }) {
       <div className="absolute inset-0 bg-gradient-to-b from-black/75 via-black/55 to-black/85" />
       <div className="absolute inset-0 bg-gradient-to-tr from-[#0F4142]/45 via-transparent to-[#E6A532]/25 pointer-events-none" />
 
-      {/* Floating Elements (hidden on mobile, animated on desktop) */}
-      {hero.floatingIcons.map((item, idx) => (
-        <div
-          key={idx}
-          className={`absolute ${item.position} hidden md:block z-10`}
-          style={{ animation: "floating 3.5s ease-in-out infinite", animationDelay: item.delay }}
-        >
-          <div className="w-16 h-16 lg:w-20 lg:h-20 bg-white/10 rounded-full flex items-center justify-center backdrop-blur-md border border-white/20 shadow-xl transition-transform hover:scale-110">
-            <CategoryIcon name={item.icon} className={`w-7 h-7 lg:w-8 lg:h-8 ${item.color}`} />
-          </div>
-        </div>
-      ))}
 
       {/* Main Content */}
       <div className="relative z-10 container mx-auto px-6 max-w-4xl text-center">

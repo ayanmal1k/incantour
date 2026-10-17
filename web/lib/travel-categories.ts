@@ -44,12 +44,6 @@ export type TravelCategoryConfig = {
       author: string;
     };
     bgImage: string;
-    floatingIcons: Array<{
-      icon: CategoryIconType;
-      position: string;
-      delay: string;
-      color: string;
-    }>;
     featurePills: Array<{
       label: string;
       icon: CategoryIconType;
@@ -112,10 +106,6 @@ export const travelCategoryConfigs: Record<
         author: "Agatha Christie",
       },
       bgImage: "/assets/images/crociere2.jpg",
-      floatingIcons: [
-        { icon: "ship", position: "top-20 left-10", delay: "0.5s", color: "text-amber-300" },
-        { icon: "anchor", position: "bottom-20 right-10", delay: "1s", color: "text-teal-300" },
-      ],
       featurePills: [
         { label: "Navi di Lusso & Yacht", icon: "ship" },
         { label: "Servizi All-Inclusive", icon: "cocktail" },
@@ -164,10 +154,6 @@ export const travelCategoryConfigs: Record<
       description:
         "Un viaggio atipico non è solo spostarsi, ma trasformarsi. È un'avventura che ti porta a guardare il mondo – e te stesso – con occhi nuovi. Con Incantour immergiti nella cultura viva dei luoghi, tra storie antiche e vibrazioni moderne, per scoprire un mosaico di esperienze autentiche e sorprendenti.",
       bgImage: "/assets/images/viaggi.jpg",
-      floatingIcons: [
-        { icon: "globe", position: "top-20 left-10", delay: "0.5s", color: "text-amber-300" },
-        { icon: "compass", position: "bottom-20 right-10", delay: "1s", color: "text-teal-300" },
-      ],
       featurePills: [
         { label: "Destinazioni Uniche", icon: "map-pin" },
         { label: "Avventure Autentiche", icon: "hiking" },
@@ -216,10 +202,6 @@ export const travelCategoryConfigs: Record<
       description:
         "Gioia, felicità, tenerezza, emozione, entusiasmo: la luna di miele è un momento unico e irripetibile, un capitolo speciale di ogni storia d'amore. Con Incantour il viaggio di nozze si trasforma in un'esperienza vissuta con ritmi dolci, mille attenzioni in luoghi da sogno. Un viaggio pensato per creare ricordi preziosi da custodire per sempre.",
       bgImage: "/assets/images/viaggi di nozze.jpg",
-      floatingIcons: [
-        { icon: "heart", position: "top-20 left-10", delay: "0.5s", color: "text-amber-300" },
-        { icon: "ring", position: "bottom-20 right-10", delay: "1s", color: "text-teal-300" },
-      ],
       featurePills: [
         { label: "Fughe Romantiche", icon: "heart" },
         { label: "Esperienze Luxury", icon: "star" },
@@ -270,10 +252,6 @@ export const travelCategoryConfigs: Record<
       description:
         "Pensati per viaggiatori curiosi – giovani e adulti – che intendono migliorare la conoscenza della lingua e della cultura italiana. Non un semplice corso, ma un vero viaggio itinerante che svela angoli inesplorati, tradizioni vive e segni tangibili e intangibili della nostra civiltà. Con Incantour sarà possibile immergersi nei percorsi di lingua e cultura tra le atmosfere della Campania, attraverso lo Stivale tra terra e mare , in location suggestive e gradevoli: dimore storiche, castelli, barche d'epoca, giardini tra profumi di gelsomini, agrumeti in fiore, tramonti e paesaggi da incanto.",
       bgImage: "/assets/images/percorsi di lingua e cultura.jpg",
-      floatingIcons: [
-        { icon: "book", position: "top-20 left-10", delay: "0.5s", color: "text-amber-300" },
-        { icon: "graduation-cap", position: "bottom-20 right-10", delay: "1s", color: "text-teal-300" },
-      ],
       featurePills: [
         { label: "Dimore Storiche & Castelli", icon: "map-pin" },
         { label: "Laboratori & Seminari", icon: "book" },
