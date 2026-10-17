@@ -20,9 +20,11 @@ export function TerraMareToursBrowser({
   // Strictly filter for Terra Mare tours
   const terraMareTours = useMemo(() => {
     return allTours.filter((tour) => {
-      const cat = String(tour.acf?.category || "").toLowerCase();
-      const title = String(tour.title?.rendered || "").toLowerCase();
-      return cat.includes("terra mare") || cat.includes("terramare") || title.includes("terra mare");
+      const cat = String(tour.acf?.category || "")
+        .trim()
+        .toLowerCase()
+        .replace(/\s+/g, " ");
+      return cat === "terra mare" || cat === "terramare";
     });
   }, [allTours]);
 
@@ -208,7 +210,8 @@ export function TerraMareToursBrowser({
                 <div key={tour.id} className="h-full">
                   <TourCard
                     tour={tour}
-                    type="Terra &amp; Mare"
+                    badge="Terra & Mare"
+                    type={tour.acf?.type || "Incoming"}
                     detailsLabel="Dettagli"
                     bookLabel="Prenota"
                     priority={index < 3}

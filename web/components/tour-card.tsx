@@ -31,6 +31,7 @@ export type TourCardProps = {
   description?: string;
   price?: string | number;
   type?: string;
+  badge?: string;
   detailsHref?: string;
   bookHref?: string;
   detailsLabel?: string;
@@ -50,6 +51,7 @@ export function TourCard({
       : "",
   price = tour?.acf?.Price,
   type = (tour?.acf?.type as string) || "Tour",
+  badge,
   detailsHref = tour?.slug ? `/tours/${tour.slug}` : id ? `/tours/${id}` : "/tours",
   bookHref = id ? `/prenota?tour=${id}` : "/prenota",
   detailsLabel = "View Details",
@@ -57,7 +59,9 @@ export function TourCard({
   priority = false,
 }: TourCardProps) {
   const formattedPrice = formatPrice(price);
-  const isIncoming = (type || "").toLowerCase() === "incoming";
+  const actualType = String(tour?.acf?.type || type || "").toLowerCase();
+  const isIncoming = actualType === "incoming";
+  const displayBadge = badge || type || "Tour";
 
   return (
     <div className="group relative flex h-full flex-col overflow-hidden rounded-2xl bg-white shadow-lg transition-all duration-500 ease-in-out hover:-translate-y-2 hover:shadow-2xl">
@@ -80,7 +84,7 @@ export function TourCard({
             isIncoming ? "bg-gradient-cool" : "bg-gradient-warm"
           }`}
         >
-          {type || "Tour"}
+          {displayBadge}
         </div>
 
         {/* Price badge (top-right): bg-white/90 backdrop-blur-sm */}

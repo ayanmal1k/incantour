@@ -51,9 +51,8 @@ export default async function ViaggiAtipiciPage() {
       "@type": "ItemList",
       itemListElement: tours
         .filter((tour) => {
-          const cat = String(tour.acf?.category || "").toLowerCase();
-          const title = String(tour.title?.rendered || "").toLowerCase();
-          return config.toursSection.filterKeywords.some((kw) => cat.includes(kw) || title.includes(kw));
+          const cat = String(tour.acf?.category || "").trim().toLowerCase();
+          return cat === config.categoryName.trim().toLowerCase();
         })
         .slice(0, 10)
         .map((tour, idx) => ({

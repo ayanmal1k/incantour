@@ -24,22 +24,14 @@ export function DestinationWeddingToursBrowser({
   const [activeCategory, setActiveCategory] = useState<WeddingFilterCategory>(initialCategory);
   const [activeType, setActiveType] = useState<"all" | "incoming" | "outgoing">("all");
 
-  // Filter tours strictly for Destination Wedding / Wedding category first
+  // Filter tours strictly for Destination Wedding category only
   const weddingTours = useMemo(() => {
     return allTours.filter((tour) => {
-      const cat = String(tour.acf?.category || "").toLowerCase();
-      const title = String(tour.title?.rendered || "").toLowerCase();
-      const tags = String(tour.acf?.Tags || "").toLowerCase();
-      return (
-        cat.includes("destination wedding") ||
-        cat.includes("nozze") ||
-        cat.includes("wedding") ||
-        tags.includes("wedding") ||
-        tags.includes("honeymoon") ||
-        title.includes("wedding") ||
-        title.includes("nozze") ||
-        title.includes("luna di miele")
-      );
+      const cat = String(tour.acf?.category || "")
+        .trim()
+        .toLowerCase()
+        .replace(/\s+/g, " ");
+      return cat === "destination wedding";
     });
   }, [allTours]);
 
@@ -255,7 +247,8 @@ export function DestinationWeddingToursBrowser({
                 <div key={tour.id} className="h-full">
                   <TourCard
                     tour={tour}
-                    type="Destination Wedding"
+                    badge="Destination Wedding"
+                    type={tour.acf?.type || "Incoming"}
                     detailsLabel="Dettagli"
                     bookLabel="Prenota"
                     priority={index < 3}

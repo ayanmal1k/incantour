@@ -27,6 +27,7 @@ export type CategoryDownloadItem = {
 export type TravelCategoryConfig = {
   slug: "crociere" | "viaggi-atipici" | "viaggi-di-nozze" | "percorsi-lingua-italiana";
   route: string;
+  categoryName: string;
   seo: {
     title: string;
     description: string;
@@ -88,6 +89,7 @@ export const travelCategoryConfigs: Record<
   crociere: {
     slug: "crociere",
     route: "/crociere",
+    categoryName: "Crociere",
     seo: {
       title: "Crociere - Viaggi Lenti sul Mare | IncanTour",
       description:
@@ -140,6 +142,7 @@ export const travelCategoryConfigs: Record<
   "viaggi-atipici": {
     slug: "viaggi-atipici",
     route: "/viaggi-atipici",
+    categoryName: "Viaggi Atipici",
     seo: {
       title: "Viaggi Atipici - Avventure Fuori dagli Schemi | IncanTour",
       description:
@@ -188,6 +191,7 @@ export const travelCategoryConfigs: Record<
   "viaggi-di-nozze": {
     slug: "viaggi-di-nozze",
     route: "/viaggi-di-nozze",
+    categoryName: "Viaggi di Nozze",
     seo: {
       title: "Viaggi di Nozze & Luna di Miele | Nozze da Incanto - IncanTour",
       description:
@@ -219,7 +223,7 @@ export const travelCategoryConfigs: Record<
       subtitle: "Scegli tra la nostra selezione di itinerari romantici creati per voi",
       emptyMessage: "Nessun pacchetto nozze trovato. Personalizza la tua luna di miele con il nostro modulo dedicato.",
       cardBadge: "Viaggi di Nozze",
-      filterKeywords: ["nozze", "honeymoon", "luna di miele", "wedding"],
+      filterKeywords: ["viaggi di nozze"],
     },
     hasWeddingForm: true,
     relatedPosts: {
@@ -237,6 +241,7 @@ export const travelCategoryConfigs: Record<
   "percorsi-lingua-italiana": {
     slug: "percorsi-lingua-italiana",
     route: "/percorsi-lingua-italiana",
+    categoryName: "Percorsi lingua italiana",
     seo: {
       title: "Percorsi di Lingua e Cultura Italiana | IncanTour",
       description:

@@ -13,18 +13,14 @@ import type { Tour } from "@/lib/wordpress/types";
 export function WeddingPlannerClientContent({ tours }: { tours: Tour[] }) {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  // Filter for Wedding tours to showcase
+  // Filter for Destination Wedding tours to showcase
   const weddingTours = tours
     .filter((tour) => {
-      const cat = String(tour.acf?.category || "").toLowerCase();
-      const title = String(tour.title?.rendered || "").toLowerCase();
-      return (
-        cat.includes("destination wedding") ||
-        cat.includes("nozze") ||
-        cat.includes("wedding") ||
-        title.includes("wedding") ||
-        title.includes("nozze")
-      );
+      const cat = String(tour.acf?.category || "")
+        .trim()
+        .toLowerCase()
+        .replace(/\s+/g, " ");
+      return cat === "destination wedding";
     })
     .slice(0, 3);
 
@@ -120,7 +116,8 @@ export function WeddingPlannerClientContent({ tours }: { tours: Tour[] }) {
                 <div key={tour.id} className="h-full">
                   <TourCard
                     tour={tour}
-                    type="Wedding"
+                    badge="Wedding"
+                    type={tour.acf?.type || "Incoming"}
                     detailsLabel="Dettagli"
                     bookLabel="Prenota"
                     priority={index < 3}
