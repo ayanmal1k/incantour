@@ -5,7 +5,15 @@ import { CalendarIcon, EyeIcon } from "@/components/ui/icons";
 import type { Tour } from "@/lib/wordpress/types";
 
 function stripHtml(html: string): string {
-  return html.replace(/<[^>]*>?/gm, "").trim();
+  return html
+    .replace(/<[^>]*>?/gm, "")
+    .replace(/&#8217;|&apos;/g, "'")
+    .replace(/&#8211;/g, "–")
+    .replace(/&#8212;/g, "—")
+    .replace(/&amp;|&#038;/g, "&")
+    .replace(/&quot;/g, '"')
+    .replace(/&nbsp;/g, " ")
+    .trim();
 }
 
 function formatPrice(price?: string | number): string {
