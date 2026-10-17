@@ -62,7 +62,7 @@ export function FeaturedToursSection({ tours, error }: FeaturedToursSectionProps
             </p>
             <div className="mt-6 flex flex-wrap justify-center gap-4">
               <Link
-                href="/tour"
+                href="/tours"
                 className="inline-flex items-center gap-2 rounded-full bg-gradient-cool px-6 py-3 text-sm font-bold text-white transition hover:brightness-110"
               >
                 Esplora tutti i tour

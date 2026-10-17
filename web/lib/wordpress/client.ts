@@ -111,6 +111,49 @@ export async function getTourById(id: string | number): Promise<Tour> {
   return toTour(tour);
 }
 
+export async function getTourBySlug(slug: string): Promise<Tour | null> {
+  try {
+    const tours = await restFetch<WordPressEntity<TourAcf>[]>(`tour_package?slug=${encodeURIComponent(slug)}&_embed`);
+    if (tours.length > 0 && tours[0]) {
+      return toTour(tours[0]);
+    }
+    return null;
+  } catch (error) {
+    console.error(`Error fetching tour by slug ${slug}:`, error);
+    return null;
+  }
+}
+
+/**
+ * Fetch a tour by slug or numeric ID with graceful fallback.
+ * Checks if the identifier is numeric first, then tries slug.
+ */
+export async function getTour(slugOrId: string | number): Promise<Tour | null> {
+  const isNumeric = typeof slugOrId === "number" || /^\d+$/.test(String(slugOrId).trim());
+  if (isNumeric) {
+    try {
+      return await getTourById(slugOrId);
+    } catch {
+      // Fallback to checking slug in case of unexpected numeric slug
+    }
+  }
+
+  // Try by slug
+  const tourBySlug = await getTourBySlug(String(slugOrId));
+  if (tourBySlug) return tourBySlug;
+
+  // As a last attempt, try as ID if not already tried
+  if (!isNumeric) {
+    try {
+      return await getTourById(slugOrId);
+    } catch {
+      return null;
+    }
+  }
+
+  return null;
+}
+
 export async function getRelatedPackages(limit = 3): Promise<Tour[]> {
   try {
     const packages = await restFetch<WordPressEntity<TourAcf>[]>(`tour_package?per_page=${limit}&_embed`);

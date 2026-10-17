@@ -42,7 +42,7 @@ export function TourCard({
       : "",
   price = tour?.acf?.Price,
   type = (tour?.acf?.type as string) || "Tour",
-  detailsHref = id ? `/tour/${id}` : "/tour",
+  detailsHref = tour?.slug ? `/tours/${tour.slug}` : id ? `/tours/${id}` : "/tours",
   bookHref = id ? `/prenota?tour=${id}` : "/prenota",
   detailsLabel = "View Details",
   bookLabel = "Book Now",
