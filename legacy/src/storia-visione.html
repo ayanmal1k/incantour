@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Storia & Visione - IncanTour</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="icon" type="image/png" href="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/spirale_incantour_highres%20%281%29-7hzjNru1zG0Gbw6WqE4bJuWZ3FzOU2.png">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+        
+        :root {
+            --primary-orange: #E6A532;
+            --primary-orange-dark: #D4941A;
+            --primary-teal: #1B5E5F;
+            --primary-teal-dark: #0F4142;
+            --gradient-primary: linear-gradient(135deg, #E6A532 0%, #D4941A 25%, #1B5E5F 75%, #0F4142 100%);
+            --gradient-warm: linear-gradient(135deg, #E6A532 0%, #D4941A 100%);
+            --gradient-cool: linear-gradient(135deg, #1B5E5F 0%, #0F4142 100%);
+        }
+        
+        * {
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .vision-card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .vision-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        .navbar.scrolled {
+            background: linear-gradient(135deg, rgba(230, 165, 50, 0.98) 0%, rgba(212, 148, 26, 0.98) 25%, rgba(27, 94, 95, 0.98) 75%, rgba(15, 65, 66, 0.98) 100%);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 20px rgba(230, 165, 50, 0.2);
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800">
+    <iframe src="navbar.html" onload="this.before((this.contentDocument.body||this.contentDocument).children[0]);this.remove()"></iframe>
+
+    <main>
+        <!-- Hero Section with Image -->
+        <section class="relative h-[70vh] overflow-hidden">
+            <div class="absolute inset-0">
+                <img src="../assets/images/storia e visione.png" alt="Storia e Visione" class="w-full h-full object-cover">
+                <div class="absolute inset-0" style="background: linear-gradient(135deg, rgba(230, 165, 50, 0.8), rgba(27, 94, 95, 0.8));"></div>
+            </div>
+            <div class="relative z-10 h-full flex items-center justify-center text-white">
+                <div class="text-center px-6 max-w-4xl">
+                    <span class="text-xs font-bold uppercase tracking-widest text-amber-200 bg-white/20 px-4 py-1.5 rounded-full inline-block mb-3 backdrop-blur-sm">Chi Siamo</span>
+                    <h1 class="text-5xl md:text-6xl font-extrabold mb-4 drop-shadow-md">Storia & Visione</h1>
+                    <p class="text-xl md:text-2xl opacity-90 max-w-3xl mx-auto leading-relaxed">
+                        La nostra storia, la nostra visione del turismo e dell'accoglienza esperienziale in Campania
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Content Section -->
+        <section class="py-20 bg-white">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-16 max-w-4xl mx-auto">
+                    <h2 class="text-4xl md:text-5xl font-extrabold mb-6" style="background: var(--gradient-primary); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;">
+                        La Nostra Storia
+                    </h2>
+                    
+                    <p class="text-xl text-gray-700 leading-relaxed mb-8">
+                        Incantour nasce nel 2009 come agenzia di viaggi & turismo & "tour operator autore" per l'incoming turistico – culturale in Campania: il sogno realizzato di due imprenditori, Francesco ed Emanuela, esperti in marketing territoriale.
+                    </p>
+
+                    <!-- CTA Button Below Intro Text -->
+                    <div>
+                        <a href="../assets/documents/Rassegna_Stampa_TerraMare.pdf" download target="_blank" class="inline-flex items-center space-x-3 bg-gradient-to-r from-amber-500 to-amber-600 text-white font-extrabold px-8 py-4 rounded-full shadow-lg hover:opacity-95 transform hover:scale-105 transition-all">
+                            <i class="fas fa-newspaper text-xl"></i>
+                            <span>Rassegna stampa TerraMare</span>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Vision Cards (Reviewed & Corrected Spelling/Grammar) -->
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+                    <!-- Card 1 -->
+                    <div class="vision-card bg-white rounded-2xl p-8 shadow-lg border border-gray-100 flex flex-col justify-between">
+                        <div>
+                            <div class="h-16 w-16 rounded-2xl mb-6 flex items-center justify-center shadow-md" style="background: var(--gradient-warm);">
+                                <i class="fas fa-compass text-white text-2xl"></i>
+                            </div>
+                            <h3 class="text-2xl font-bold mb-4 text-gray-900">Alla scoperta dell'inconsueto</h3>
+                            <p class="text-gray-600 text-sm leading-relaxed">
+                                Da sempre accompagnati da una profonda consapevolezza: l'offerta di soggiorno contempla un "tempo" prezioso che appartiene unicamente all'ospite. Consci dell'estrema delicatezza di tale tempo, vi accompagniamo nel racconto del territorio alla riscoperta di luoghi ed atmosfere lontani dai tradizionali flussi del turismo di massa.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Card 2 -->
+                    <div class="vision-card bg-white rounded-2xl p-8 shadow-lg border border-gray-100 flex flex-col justify-between">
+                        <div>
+                            <div class="h-16 w-16 rounded-2xl mb-6 flex items-center justify-center shadow-md" style="background: var(--gradient-cool);">
+                                <i class="fas fa-globe text-white text-2xl"></i>
+                            </div>
+                            <h3 class="text-2xl font-bold mb-4 text-gray-900">Incoming e Outgoing</h3>
+                            <p class="text-gray-600 text-sm leading-relaxed">
+                                Nell'incoming come nell'outgoing, ci rivolgiamo agli operatori che considerano il turismo un soddisfacimento della sfera emotiva e rievocativa del viaggiatore. Nel tempo abbiamo selezionato tour operator nazionali ed internazionali che ricercano le soluzioni più rispondenti alla personalizzazione del soggiorno.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Card 3 -->
+                    <div class="vision-card bg-white rounded-2xl p-8 shadow-lg border border-gray-100 flex flex-col justify-between">
+                        <div>
+                            <div class="h-16 w-16 rounded-2xl mb-6 flex items-center justify-center shadow-md" style="background: var(--gradient-primary);">
+                                <i class="fas fa-heart text-white text-2xl"></i>
+                            </div>
+                            <h3 class="text-2xl font-bold mb-4 text-gray-900">Accoglienza e Cura dei Dettagli</h3>
+                            <p class="text-gray-600 text-sm leading-relaxed">
+                                La ricerca costante, l'attenzione ai particolari, la cura autentica dell'ospite e la qualità eccellente dei servizi sono gli ingredienti fondamentali dei nostri percorsi di viaggio, curati con passione dai nostri product manager e dai partner locali sul territorio.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Additional Vision Content -->
+                <div class="mt-16 max-w-4xl mx-auto">
+                    <div class="bg-gradient-to-r from-amber-50/60 to-teal-50/60 rounded-3xl p-8 md:p-12 shadow-lg border border-gray-100">
+                        <h3 class="text-2xl font-extrabold text-teal-900 mb-4">L'Integrazione tra Terra e Mare</h3>
+                        <p class="text-gray-700 text-base leading-relaxed mb-4">
+                            In questi anni abbiamo disegnato offerte di soggiorno integrando i segni della cultura della terra e del mare, le aree interne ancora da svelare e le celebri aree costiere.
+                        </p>
+                        <p class="text-gray-700 text-base leading-relaxed">
+                            Si è così sviluppata la nostra passione di immaginare continui parallelismi tra i vari linguaggi culturali internazionali e le tradizioni autentiche dell'Italia.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <iframe src="footer.html" onload="this.before((this.contentDocument.body||this.contentDocument).children[0]);this.remove()"></iframe>
+
+    <!-- Scripts -->
+    <script src="../assets/js/config.js"></script>
+    <script src="../assets/js/api.js"></script>
+    <script src="../assets/js/main.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const navbar = document.querySelector('.navbar');
+            if (navbar) {
+                window.addEventListener('scroll', () => {
+                    if (window.scrollY > 100) {
+                        navbar.classList.add('scrolled');
+                    } else {
+                        navbar.classList.remove('scrolled');
+                    }
+                });
+            }
+        });
+    </script>
+</body>
+</html>

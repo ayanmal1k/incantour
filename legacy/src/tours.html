@@ -1,0 +1,591 @@
+<!DOCTYPE html>
+<html lang="it">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>I Nostri Tour - IncanTour</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="icon" type="image/png"
+        href="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/spirale_incantour_highres%20%281%29-7hzjNru1zG0Gbw6WqE4bJuWZ3FzOU2.png">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+        :root {
+            --primary-orange: #E6A532;
+            --primary-orange-dark: #D4941A;
+            --primary-teal: #1B5E5F;
+            --primary-teal-dark: #0F4142;
+            --gradient-primary: linear-gradient(135deg, #E6A532 0%, #D4941A 25%, #1B5E5F 75%, #0F4142 100%);
+            --gradient-warm: linear-gradient(135deg, #E6A532 0%, #D4941A 100%);
+            --gradient-cool: linear-gradient(135deg, #1B5E5F 0%, #0F4142 100%);
+        }
+
+        * {
+            font-family: 'Poppins', sans-serif;
+        }
+
+
+
+        .spiral-rotate {
+            animation: spiralRotate 20s linear infinite;
+        }
+
+        @keyframes spiralRotate {
+            from {
+                transform: rotate(0deg);
+            }
+
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        .page-header-bg {
+            background: linear-gradient(135deg, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.4)),
+                url('../assets/images/slides/1240X500_sant_agata_de_goti_destination.webp');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+
+        .fade-in {
+            animation: fadeIn 1s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .slide-in-up {
+            animation: slideInUp 0.8s ease-out;
+        }
+
+        @keyframes slideInUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .scale-on-hover {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .scale-on-hover:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 20px 40px rgba(230, 165, 50, 0.2);
+        }
+
+        .gradient-text {
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .tours-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+
+        .search-container {
+            background: white;
+            border-radius: 20px;
+            padding: 2rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            margin: -50px auto 0;
+            position: relative;
+            z-index: 10;
+            max-width: 800px;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 1rem 1.5rem;
+            border: 2px solid #e5e7eb;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+        }
+
+        .search-input:focus {
+            outline: none;
+            border-color: var(--primary-orange);
+            box-shadow: 0 0 0 3px rgba(230, 165, 50, 0.1);
+        }
+
+        .filter-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-top: 1.5rem;
+            justify-content: center;
+        }
+
+        .filter-btn {
+            padding: 0.75rem 1.5rem;
+            border: 2px solid #e5e7eb;
+            border-radius: 25px;
+            background: white;
+            color: #6b7280;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .filter-btn:hover,
+        .filter-btn.active {
+            background: var(--gradient-warm);
+            border-color: var(--primary-orange);
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        .floating {
+            animation: floating 3s ease-in-out infinite;
+        }
+
+        @keyframes floating {
+
+            0%,
+            100% {
+                transform: translateY(0px);
+            }
+
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
+        .booking-widget {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        .booking-widget:hover {
+            transform: scale(1.1);
+        }
+
+        .pulse-animation {
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+
+            0%,
+            100% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.05);
+            }
+        }
+
+        .breadcrumb {
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 1rem;
+        }
+
+        .breadcrumb a {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .breadcrumb a:hover {
+            color: var(--primary-orange);
+        }
+
+        .loading-spinner {
+            display: none;
+            justify-content: center;
+            align-items: center;
+            padding: 3rem;
+        }
+
+        .spinner {
+            width: 50px;
+            height: 50px;
+            border: 4px solid #f3f4f6;
+            border-top: 4px solid var(--primary-orange);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        .no-results {
+            text-align: center;
+            padding: 3rem;
+            color: #6b7280;
+            display: none;
+        }
+
+        .no-results i {
+            font-size: 4rem;
+            color: #d1d5db;
+            margin-bottom: 1rem;
+        }
+
+        /* Dropdown menu links: readable dark text on white dropdown card */
+        .navbar .nav-links .absolute a,
+        .navbar.scrolled .nav-links .absolute a {
+            color: #1f2937 !important;
+            display: block;
+            background-color: transparent !important;
+            transition: all 0.2s ease;
+        }
+
+        .navbar .nav-links .absolute a:hover,
+        .navbar.scrolled .nav-links .absolute a:hover {
+            color: #E6A532 !important;
+            background-color: #f9fafb !important;
+        }
+    </style>
+    <script type="text/javascript"
+        src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+    <script src="../assets/js/language.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
+</head>
+
+<body class="bg-gray-50">
+    <!-- Navigation -->
+    <style>
+        .navbar {
+            background: linear-gradient(135deg, rgba(230, 165, 50, 0.98) 0%, rgba(212, 148, 26, 0.98) 25%, rgba(27, 94, 95, 0.98) 75%, rgba(15, 65, 66, 0.98) 100%);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 20px rgba(230, 165, 50, 0.2);
+        }
+
+        .navbar.scrolled .nav-links > a,
+        .navbar.scrolled .nav-links > button,
+        .navbar.scrolled .nav-agency-link,
+        .navbar.scrolled a[href*="agencyservices"] {
+            color: #E6A532 !important;
+        }
+
+        .navbar.scrolled .nav-links > a:hover,
+        .navbar.scrolled .nav-links > button:hover,
+        .navbar.scrolled .nav-agency-link:hover,
+        .navbar.scrolled a[href*="agencyservices"]:hover {
+            color: white !important;
+        }
+
+        .navbar.scrolled .nav-links > a.active,
+        .navbar.scrolled .nav-links > button.active,
+        .navbar.scrolled .nav-agency-link.active,
+        .navbar.scrolled a[href*="agencyservices"].active {
+            color: white !important;
+        }
+    </style>
+
+
+    <iframe src="navbar.html"
+        onload="this.before((this.contentDocument.body||this.contentDocument).children[0]);this.remove()"></iframe>
+
+    <main>
+        <!-- Page Header -->
+        <section class="page-header-bg min-h-screen flex items-center justify-center relative overflow-hidden">
+            <div class="absolute inset-0"
+                style="background: linear-gradient(135deg, rgba(230, 165, 50, 0.3), rgba(27, 94, 95, 0.3));"></div>
+
+            <!-- Floating Elements -->
+            <div class="absolute top-20 left-10 floating" style="animation-delay: 0.5s;">
+                <div class="w-20 h-20 bg-white/10 rounded-full flex items-center justify-center backdrop-blur-sm">
+                    <i class="fas fa-globe text-orange-300 text-2xl"></i>
+                </div>
+            </div>
+            <div class="absolute bottom-20 right-10 floating" style="animation-delay: 1s;">
+                <div class="w-16 h-16 bg-white/10 rounded-full flex items-center justify-center backdrop-blur-sm">
+                    <i class="fas fa-compass text-teal-300 text-xl"></i>
+                </div>
+            </div>
+
+            <div class="text-center text-white z-10 px-6 max-w-4xl mx-auto">
+                <div class="breadcrumb fade-in">
+                    <a href="../index.html">Home</a> / <span>Pacchetti Tour</span>
+                </div>
+                <h1 class="text-5xl md:text-7xl font-bold mb-6 fade-in gradient-text">
+                    I Nostri Pacchetti Tour
+                </h1>
+                <p class="text-xl md:text-2xl mb-8 fade-in opacity-90 max-w-2xl mx-auto">
+                    Scopri la nostra collezione di esperienze di viaggio uniche
+                </p>
+                <div class="flex items-center justify-center space-x-4 fade-in">
+                    <div class="flex items-center space-x-2 bg-white/10 backdrop-blur-sm px-4 py-2 rounded-full">
+                        <i class="fas fa-map-marked-alt text-orange-300"></i>
+                        <span class="text-sm">Tour Guidati</span>
+                    </div>
+                    <div class="flex items-center space-x-2 bg-white/10 backdrop-blur-sm px-4 py-2 rounded-full">
+                        <i class="fas fa-heart text-orange-300"></i>
+                        <span class="text-sm">Esperienze Uniche</span>
+                    </div>
+                    <div class="flex items-center space-x-2 bg-white/10 backdrop-blur-sm px-4 py-2 rounded-full">
+                        <i class="fas fa-user-friends text-orange-300"></i>
+                        <span class="text-sm">Guide Esperte</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Search and Filter Section -->
+        <section class="py-20 bg-gray-50">
+            <div class="container mx-auto px-6">
+                <div class="search-container slide-in-up">
+                    <div class="text-center mb-6">
+                        <h2 class="text-2xl font-bold gradient-text mb-2">Trova la Tua Avventura Perfetta</h2>
+                        <p class="text-gray-600">Cerca per destinazione, attività o tipologia di tour</p>
+                    </div>
+
+                    <div class="relative">
+                        <input type="text" id="search-input" class="search-input"
+                            placeholder="Cerca destinazioni, attività o tipologie di tour...">
+                        <div class="absolute right-4 top-1/2 transform -translate-y-1/2">
+                            <i class="fas fa-search text-gray-400 text-xl"></i>
+                        </div>
+                    </div>
+
+
+
+                    <!-- Type filter buttons -->
+                    <div class="filter-buttons mt-4">
+                        <button class="filter-btn active" data-type="all">
+                            <i class="fas fa-globe mr-2"></i>Tutte le Tipologie
+                        </button>
+                        <button class="filter-btn" data-type="incoming">
+                            <i class="fas fa-plane-arrival mr-2"></i>Incoming
+                        </button>
+                        <button class="filter-btn" data-type="outgoing">
+                            <i class="fas fa-plane-departure mr-2"></i>Outgoing
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Tours Section -->
+        <section class="tours-section py-20 bg-white">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-16">
+                    <h2 class="text-4xl md:text-5xl font-bold gradient-text mb-4">Tour Disponibili</h2>
+                    <p class="text-xl text-gray-600 max-w-2xl mx-auto">Scegli tra la nostra vasta collezione di
+                        esperienze di viaggio accuratamente selezionate</p>
+                </div>
+
+                <!-- Loading Spinner -->
+                <div class="loading-spinner" id="loading-spinner">
+                    <div class="spinner"></div>
+                </div>
+
+                <!-- No Results Message -->
+                <div class="no-results" id="no-results">
+                    <i class="fas fa-search"></i>
+                    <h3 class="text-xl font-semibold mb-2">Nessun tour trovato</h3>
+                    <p>Prova a modificare i criteri di ricerca o esplora tutti i tour</p>
+                </div>
+
+                <!-- Tours Container -->
+                <div id="tours-container" class="tours-grid">
+                    <!-- Tours will be dynamically loaded here -->
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Floating Booking Widget -->
+    <div class="booking-widget">
+        <button class="w-16 h-16 rounded-full text-white shadow-2xl flex items-center justify-center pulse-animation"
+            style="background: var(--gradient-warm);">
+            <i class="fas fa-calendar-plus text-xl"></i>
+        </button>
+    </div>
+
+
+    <iframe src="footer.html"
+        onload="this.before((this.contentDocument.body||this.contentDocument).children[0]);this.remove()"></iframe>
+
+
+    <!-- Scripts -->
+    <script src="../assets/js/config.js"></script>
+    <script src="../assets/js/api.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // Navbar scroll effect
+            const navbar = document.querySelector('.navbar');
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 100) {
+                    navbar.classList.add('scrolled');
+                } else {
+                    navbar.classList.remove('scrolled');
+                }
+            });
+
+            // Search and filter functionality
+            const searchInput = document.getElementById('search-input');
+            const filterButtons = document.querySelectorAll('.filter-btn');
+            const toursContainer = document.getElementById('tours-container');
+            const loadingSpinner = document.getElementById('loading-spinner');
+            const noResults = document.getElementById('no-results');
+
+            let allTours = []; // Will store all tours from API
+            let currentFilter = 'all';
+            let currentType = 'all';
+
+            // Fetch tours from WordPress
+            async function fetchTours() {
+                loadingSpinner.style.display = 'flex';
+                toursContainer.style.display = 'none';
+
+                try {
+                    allTours = await TourAPI.getTours();
+                    filterTours();
+                } catch (error) {
+                    console.error('Error:', error);
+                    noResults.style.display = 'block';
+                } finally {
+                    loadingSpinner.style.display = 'none';
+                    toursContainer.style.display = 'grid';
+                }
+            }
+
+            // Filter tours based on current filter and type
+            function filterTours() {
+                let filteredTours = [...allTours];
+
+                // Apply type filter
+                if (currentType !== 'all') {
+                    filteredTours = filteredTours.filter(tour =>
+                        tour.acf?.type?.toLowerCase() === currentType.toLowerCase()
+                    );
+                }
+
+                // Apply search filter if there's a search term
+                const searchTerm = searchInput.value.toLowerCase();
+                if (searchTerm) {
+                    filteredTours = filteredTours.filter(tour =>
+                        tour.title.rendered.toLowerCase().includes(searchTerm) ||
+                        tour.acf?.description?.toLowerCase().includes(searchTerm) ||
+                        tour.acf?.Location?.toLowerCase().includes(searchTerm)
+                    );
+                }
+
+                renderTours(filteredTours);
+            }
+
+            // Render tours to the container
+            function renderTours(tours) {
+                toursContainer.innerHTML = '';
+
+                if (!tours.length) {
+                    noResults.style.display = 'block';
+                    return;
+                }
+
+                noResults.style.display = 'none';
+                tours.forEach(tour => {
+                    const tourCard = createTourCard(tour);
+                    toursContainer.appendChild(tourCard);
+                });
+            }
+
+            // Create a tour card element
+            function createTourCard(tour) {
+                const card = document.createElement('div');
+                card.className = 'bg-white rounded-2xl overflow-hidden shadow-lg transform transition-all duration-500 ease-in-out hover:-translate-y-2 hover:shadow-2xl';
+
+                const price = tour.acf?.Price ? parseFloat(tour.acf.Price) : 0;
+                const formattedPrice = price.toLocaleString('de-DE', {
+                    style: 'currency',
+                    currency: 'EUR'
+                });
+
+                card.innerHTML = `
+                    <div class="relative h-64 w-full overflow-hidden">
+                        <img src="${tour.featured_image_url || '../assets/images/default-tour.jpg'}" 
+                             alt="${tour.title.rendered}" 
+                             class="w-full h-full object-cover transition-transform duration-300 hover:scale-110">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
+                        <div class="absolute top-4 left-4 px-3 py-1 rounded-full text-white text-sm font-semibold" 
+                             style="background: var(--gradient-warm);">
+                            ${tour.acf?.type || 'Tour'}
+                        </div>
+                        <div class="absolute top-4 right-4 bg-white/90 backdrop-blur-sm px-4 py-2 rounded-full">
+                            <span class="text-orange-500 font-bold">${formattedPrice}</span>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-gray-800 mb-4">${tour.title.rendered}</h3>
+                        <p class="text-gray-600 mb-4 line-clamp-2">${tour.acf?.description || ''}</p>
+                        <div class="flex space-x-3">
+                            <a href="tour-detail.html?id=${tour.id}" 
+                               class="flex-1 text-center text-white px-4 py-3 rounded-full font-semibold text-sm transition-all duration-300 transform hover:scale-105 hover:shadow-lg" 
+                               style="background: var(--gradient-cool);">
+                                <i class="fas fa-eye mr-2"></i>View Details
+                            </a>
+                            <a href="booking.html?tour=${tour.id}" 
+                               class="flex-1 text-center text-white px-4 py-3 rounded-full font-semibold text-sm transition-all duration-300 transform hover:scale-105 hover:shadow-lg" 
+                               style="background: var(--gradient-warm);">
+                                <i class="fas fa-calendar-check mr-2"></i>Book Now
+                            </a>
+                        </div>
+                    </div>
+                `;
+
+                return card;
+            }
+
+            // Event listeners
+            searchInput.addEventListener('input', filterTours);
+
+            // Handle type filter buttons
+            document.querySelectorAll('[data-type]').forEach(button => {
+                button.addEventListener('click', (e) => {
+                    // Remove active class from all type buttons
+                    document.querySelectorAll('[data-type]').forEach(btn =>
+                        btn.classList.remove('active')
+                    );
+
+                    // Add active class to clicked button
+                    button.classList.add('active');
+
+                    // Update current type and filter tours
+                    currentType = button.getAttribute('data-type');
+                    filterTours();
+                });
+            });
+
+            // Initial load
+            fetchTours();
+        });
+    </script>
+</body>
+
+</html>

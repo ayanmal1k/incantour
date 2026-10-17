@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Il nostro Team - IncanTour</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="icon" type="image/png" href="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/spirale_incantour_highres%20%281%29-7hzjNru1zG0Gbw6WqE4bJuWZ3FzOU2.png">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+        
+        :root {
+            --primary-orange: #E6A532;
+            --primary-orange-dark: #D4941A;
+            --primary-teal: #1B5E5F;
+            --primary-teal-dark: #0F4142;
+            --gradient-primary: linear-gradient(135deg, #E6A532 0%, #D4941A 25%, #1B5E5F 75%, #0F4142 100%);
+            --gradient-warm: linear-gradient(135deg, #E6A532 0%, #D4941A 100%);
+            --gradient-cool: linear-gradient(135deg, #1B5E5F 0%, #0F4142 100%);
+        }
+        
+        * {
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .button-hover {
+            transition: all 0.3s ease;
+        }
+
+        .button-hover:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(230, 165, 50, 0.2);
+        }
+
+        .navbar.scrolled {
+            background: linear-gradient(135deg, rgba(230, 165, 50, 0.98) 0%, rgba(212, 148, 26, 0.98) 25%, rgba(27, 94, 95, 0.98) 75%, rgba(15, 65, 66, 0.98) 100%);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 20px rgba(230, 165, 50, 0.2);
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800">
+    <iframe src="navbar.html" onload="this.before((this.contentDocument.body||this.contentDocument).children[0]);this.remove()"></iframe>
+
+    <main>
+        <!-- Hero Section with Image -->
+        <section class="relative h-[70vh] overflow-hidden">
+            <div class="absolute inset-0">
+                <img src="../assets/images/IL nostro TEAM.png" alt="Il nostro Team" class="w-full h-full object-cover">
+                <div class="absolute inset-0" style="background: linear-gradient(135deg, rgba(230, 165, 50, 0.8), rgba(27, 94, 95, 0.85));"></div>
+            </div>
+            <div class="relative z-10 h-full flex items-center justify-center text-white">
+                <div class="text-center px-6 max-w-4xl">
+                    <span class="text-xs font-bold uppercase tracking-widest text-amber-200 bg-white/20 px-4 py-1.5 rounded-full inline-block mb-3 backdrop-blur-sm">Chi Siamo</span>
+                    <h1 class="text-5xl md:text-7xl font-extrabold mb-4 drop-shadow-md">IL NOSTRO TEAM</h1>
+                    <p class="text-xl md:text-3xl font-semibold opacity-95 max-w-3xl mx-auto leading-relaxed text-amber-100">
+                        Professionalità, passione e dedizione al servizio dei viaggiatori.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Content Section -->
+        <section class="py-20 bg-white">
+            <div class="container mx-auto px-6 max-w-6xl">
+                <div class="max-w-4xl mx-auto text-center mb-16">
+                    <h2 class="text-3xl md:text-4xl font-extrabold mb-8 gradient-text">
+                        Come possiamo rendere il tuo tempo di viaggio una singolare e seducente esperienza?
+                    </h2>
+                    <div class="text-lg text-gray-700 space-y-4 leading-relaxed font-medium">
+                        <p class="text-xl font-bold text-teal-900">Ascoltiamo i tuoi desideri</p>
+                        <p class="text-xl font-bold text-amber-600">Progettiamo insieme</p>
+                        <p class="text-base text-gray-600 leading-relaxed max-w-2xl mx-auto">
+                            Dai percorsi narrati, ai borghi più autentici, alle mete più insolite: siamo pronti a trasformare le tue attese in un'esperienza ammaliante, che parla di te.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Contact Buttons -->
+                <div class="max-w-4xl mx-auto mb-20">
+                    <h3 class="text-2xl font-bold text-center mb-8 text-gray-900">
+                        Contatta i nostri CONSULENTI DI VIAGGIO & DESTINATION LOCALS EXPERT:
+                    </h3>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                        <!-- Incoming Button -->
+                        <a href="contatti.html" class="button-hover bg-white rounded-2xl p-8 text-center shadow-lg border border-gray-100 block">
+                            <div class="h-16 w-16 rounded-2xl mx-auto mb-4 flex items-center justify-center shadow-md" style="background: var(--gradient-warm);">
+                                <i class="fas fa-plane-arrival text-white text-2xl"></i>
+                            </div>
+                            <h4 class="text-xl font-bold mb-2 text-teal-900">Incoming</h4>
+                            <p class="text-gray-600 text-sm">Scopri l'Italia e la Campania con noi</p>
+                        </a>
+
+                        <!-- Wedding Button -->
+                        <a href="wedding-planner.html" class="button-hover bg-white rounded-2xl p-8 text-center shadow-lg border border-gray-100 block">
+                            <div class="h-16 w-16 rounded-2xl mx-auto mb-4 flex items-center justify-center shadow-md" style="background: var(--gradient-cool);">
+                                <i class="fas fa-heart text-white text-2xl"></i>
+                            </div>
+                            <h4 class="text-xl font-bold mb-2 text-teal-900">Wedding</h4>
+                            <p class="text-gray-600 text-sm">Il tuo matrimonio da sogno</p>
+                        </a>
+
+                        <!-- Outgoing Button -->
+                        <a href="contatti.html" class="button-hover bg-white rounded-2xl p-8 text-center shadow-lg border border-gray-100 block">
+                            <div class="h-16 w-16 rounded-2xl mx-auto mb-4 flex items-center justify-center shadow-md" style="background: var(--gradient-primary);">
+                                <i class="fas fa-plane-departure text-white text-2xl"></i>
+                            </div>
+                            <h4 class="text-xl font-bold mb-2 text-teal-900">Outgoing</h4>
+                            <p class="text-gray-600 text-sm">Viaggia nel mondo</p>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Location Section -->
+                <div class="max-w-4xl mx-auto text-center bg-gradient-to-r from-amber-50/70 to-teal-50/70 rounded-3xl p-10 shadow-xl border border-gray-100">
+                    <h3 class="text-3xl font-extrabold mb-4 text-teal-900">Vieni a trovarci!</h3>
+                    <p class="text-base text-gray-700 leading-relaxed mb-6 max-w-2xl mx-auto">
+                        Venite ad incontrarci nel nostro spazio Travel Cafè, in pieno centro storico a Napoli, nella splendida cornice di Piazza del Gesù Nuovo, all'interno del 500esco Palazzo dei principi Pignatelli di Monteleone.
+                    </p>
+                    <a href="contatti.html" class="inline-block bg-gradient-to-r from-[#E6A532] to-[#D4941A] text-white font-extrabold px-8 py-4 rounded-full shadow-lg hover:opacity-95 transform hover:scale-105 transition">
+                        Vi aspettiamo!
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <iframe src="footer.html" onload="this.before((this.contentDocument.body||this.contentDocument).children[0]);this.remove()"></iframe>
+
+    <!-- Scripts -->
+    <script src="../assets/js/config.js"></script>
+    <script src="../assets/js/api.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const navbar = document.querySelector('.navbar');
+            if (navbar) {
+                window.addEventListener('scroll', () => {
+                    if (window.scrollY > 100) {
+                        navbar.classList.add('scrolled');
+                    } else {
+                        navbar.classList.remove('scrolled');
+                    }
+                });
+            }
+        });
+    </script>
+</body>
+</html>

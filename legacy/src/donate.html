@@ -1,0 +1,516 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Donate - IncanTour</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="icon" type="image/png" href="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/spirale_incantour_highres%20%281%29-7hzjNru1zG0Gbw6WqE4bJuWZ3FzOU2.png">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+        
+        :root {
+            --primary-orange: #E6A532;
+            --primary-orange-dark: #D4941A;
+            --primary-teal: #1B5E5F;
+            --primary-teal-dark: #0F4142;
+            --gradient-primary: linear-gradient(135deg, #E6A532 0%, #D4941A 25%, #1B5E5F 75%, #0F4142 100%);
+            --gradient-warm: linear-gradient(135deg, #E6A532 0%, #D4941A 100%);
+            --gradient-cool: linear-gradient(135deg, #1B5E5F 0%, #0F4142 100%);
+        }
+        
+        * {
+            font-family: 'Poppins', sans-serif;
+        }
+        
+        .donation-bg {
+            background: linear-gradient(135deg, rgba(0,0,0,0.6), rgba(0,0,0,0.4)), 
+                        url('https://images.unsplash.com/photo-1488085061387-422e29b40080?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+
+        .page-header-bg {
+            background: linear-gradient(135deg, rgba(0,0,0,0.6), rgba(0,0,0,0.4)), 
+                        url('../assets/images/slides/istockphoto-955332870-2048x2048.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+        
+        .loading {
+            display: none;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .loading-spinner {
+            width: 20px;
+            height: 20px;
+            border: 2px solid #f3f4f6;
+            border-top: 2px solid var(--primary-orange);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin-right: 0.5rem;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Navbar styles */
+        .navbar {
+            transition: background-color 0.3s, padding 0.3s;
+        }
+
+        .navbar.scrolled {
+            background-color: rgba(255, 255, 255, 0.9);
+            padding-top: 10px;
+            padding-bottom: 10px;
+        }
+
+        .nav-links a {
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-orange);
+        }
+
+        /* Footer styles */
+        .footer {
+            background-color: #1B5E5F;
+            color: white;
+        }
+
+        .footer a {
+            color: #E6A532;
+            transition: color 0.3s;
+        }
+
+        .footer a:hover {
+            color: #D4941A;
+        }
+
+        /* Utility classes */
+        .gradient-text {
+            background: linear-gradient(135deg, #E6A532 0%, #1B5E5F 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .fade-in {
+            animation: fadeIn 0.8s ease-out forwards;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .floating {
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translatey(0px);
+            }
+            50% {
+                transform: translatey(-10px);
+            }
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Navigation -->
+    <header class="fixed w-full top-0 z-50">
+        <nav class="navbar px-6 py-4 transition-all duration-300">
+            <div class="container mx-auto flex justify-between items-center">
+                <div class="logo">
+                    <a href="../index.html" class="flex items-center space-x-3">
+                        <div class="w-12 h-12 spiral-rotate">
+                            <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/spirale_incantour_highres%20%281%29-7hzjNru1zG0Gbw6WqE4bJuWZ3FzOU2.png" alt="IncanTour Logo" class="w-full h-full object-contain">
+                        </div>
+                        <img style="height: 30px;" src="../assets/images/logo - text.png" alt="IncanTour">
+                    </a>
+                </div>
+                <ul class="nav-links hidden md:flex space-x-8">
+                    <li><a href="../index.html" class="text-white hover:text-orange-300 transition-colors duration-300 font-medium">Home</a></li>
+                    <li><a href="tours.html" class="text-white hover:text-orange-300 transition-colors duration-300 font-medium">Tour Packages</a></li>
+                    <li><a href="blog.html" class="text-white hover:text-orange-300 transition-colors duration-300 font-medium">Blog</a></li>
+                    <li><a href="partner.html" class="text-white hover:text-orange-300 transition-colors duration-300 font-medium">Partner</a></li>
+                    <li><a href="lavora-con-noi.html" class="text-white hover:text-orange-300 transition-colors duration-300 font-medium">Lavora con noi</a></li>
+                    <li><a href="donate.html" class="text-white px-6 py-2 rounded-full hover:shadow-lg transition-all duration-300 font-medium active" style="background: var(--gradient-warm);">Donate</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Page Header -->
+        <section class="page-header-bg min-h-[60vh] flex items-center justify-center relative overflow-hidden">
+            <div class="absolute inset-0" style="background: linear-gradient(135deg, rgba(230, 165, 50, 0.3), rgba(27, 94, 95, 0.3));"></div>
+            
+            <!-- Floating Elements -->
+            <div class="absolute top-20 left-10 floating" style="animation-delay: 0.5s;">
+                <div class="w-20 h-20 bg-white/10 rounded-full flex items-center justify-center backdrop-blur-sm">
+                    <i class="fas fa-heart text-orange-300 text-2xl"></i>
+                </div>
+            </div>
+            <div class="absolute bottom-20 right-10 floating" style="animation-delay: 1s;">
+                <div class="w-16 h-16 bg-white/10 rounded-full flex items-center justify-center backdrop-blur-sm">
+                    <i class="fas fa-hand-holding-heart text-teal-300 text-xl"></i>
+                </div>
+            </div>
+            
+            <div class="text-center text-white z-10 px-6 max-w-4xl mx-auto">
+                <div class="breadcrumb fade-in">
+                    <a href="../index.html">Home</a> / <span>Support Our Cause</span>
+                </div>
+                <h1 class="text-5xl md:text-7xl font-bold mb-6 fade-in gradient-text">
+                    Support Our Mission
+                </h1>
+                <p class="text-xl md:text-2xl mb-8 fade-in opacity-90 max-w-2xl mx-auto">
+                    Help us preserve and promote cultural heritage through sustainable tourism
+                </p>
+            </div>
+        </section>
+
+        <!-- Donation Options -->
+        <section class="py-20 bg-white">
+            <div class="container mx-auto px-6">
+                <div class="max-w-6xl mx-auto">
+                    <div class="text-center mb-16">
+                        <h2 class="text-4xl font-bold gradient-text mb-6">Choose Your Impact Level</h2>
+                        <p class="text-xl text-gray-600">Your support helps us create meaningful cultural experiences and preserve local traditions</p>
+                    </div>
+
+                    <div class="grid md:grid-cols-3 gap-8">
+                        <!-- Monthly Support -->
+                        <div class="bg-white rounded-2xl shadow-lg p-8 transform transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl">
+                            <div class="text-center mb-8">
+                                <div class="w-20 h-20 mx-auto bg-orange-100 rounded-full flex items-center justify-center mb-4">
+                                    <i class="fas fa-calendar text-orange-500 text-3xl"></i>
+                                </div>
+                                <h3 class="text-2xl font-bold text-gray-800 mb-2">Monthly Support</h3>
+                                <p class="text-gray-600">Become a regular supporter</p>
+                            </div>
+                            <div class="space-y-4">
+                                <button class="w-full py-3 px-4 rounded-lg border-2 border-orange-500 text-orange-500 hover:bg-orange-500 hover:text-white transition-colors duration-300">
+                                    €10/month
+                                </button>
+                                <button class="w-full py-3 px-4 rounded-lg border-2 border-orange-500 text-orange-500 hover:bg-orange-500 hover:text-white transition-colors duration-300">
+                                    €25/month
+                                </button>
+                                <button class="w-full py-3 px-4 rounded-lg border-2 border-orange-500 text-orange-500 hover:bg-orange-500 hover:text-white transition-colors duration-300">
+                                    €50/month
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- One-time Donation -->
+                        <div class="bg-white rounded-2xl shadow-lg p-8 transform transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl">
+                            <div class="text-center mb-8">
+                                <div class="w-20 h-20 mx-auto bg-teal-100 rounded-full flex items-center justify-center mb-4">
+                                    <i class="fas fa-gift text-teal-500 text-3xl"></i>
+                                </div>
+                                <h3 class="text-2xl font-bold text-gray-800 mb-2">One-time Gift</h3>
+                                <p class="text-gray-600">Make a single contribution</p>
+                            </div>
+                            <div class="space-y-4">
+                                <button class="w-full py-3 px-4 rounded-lg border-2 border-teal-500 text-teal-500 hover:bg-teal-500 hover:text-white transition-colors duration-300">
+                                    €50
+                                </button>
+                                <button class="w-full py-3 px-4 rounded-lg border-2 border-teal-500 text-teal-500 hover:bg-teal-500 hover:text-white transition-colors duration-300">
+                                    €100
+                                </button>
+                                <button class="w-full py-3 px-4 rounded-lg border-2 border-teal-500 text-teal-500 hover:bg-teal-500 hover:text-white transition-colors duration-300">
+                                    €200
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Custom Amount -->
+                        <div class="bg-white rounded-2xl shadow-lg p-8 transform transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl">
+                            <div class="text-center mb-8">
+                                <div class="w-20 h-20 mx-auto bg-gray-100 rounded-full flex items-center justify-center mb-4">
+                                    <i class="fas fa-euro-sign text-gray-500 text-3xl"></i>
+                                </div>
+                                <h3 class="text-2xl font-bold text-gray-800 mb-2">Custom Amount</h3>
+                                <p class="text-gray-600">Choose your own amount</p>
+                            </div>
+                            <div class="space-y-4">
+                                <input type="number" min="1" placeholder="Enter amount in EUR" class="w-full px-4 py-3 rounded-lg border-2 border-gray-300 focus:border-gray-500 focus:outline-none">
+                                <button class="w-full py-3 px-4 rounded-lg text-white transition-colors duration-300" style="background: var(--gradient-primary);">
+                                    Donate Now
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Impact Section -->
+        <section class="py-20 bg-gray-50">
+            <div class="container mx-auto px-6">
+                <div class="max-w-4xl mx-auto text-center">
+                    <h2 class="text-4xl font-bold gradient-text mb-12">Your Impact</h2>
+                    <div class="grid md:grid-cols-3 gap-8">
+                        <div class="text-center">
+                            <div class="w-16 h-16 mx-auto bg-orange-100 rounded-full flex items-center justify-center mb-4">
+                                <i class="fas fa-landmark text-orange-500 text-2xl"></i>
+                            </div>
+                            <h3 class="text-xl font-bold text-gray-800 mb-2">Cultural Preservation</h3>
+                            <p class="text-gray-600">Help preserve local traditions and cultural heritage sites</p>
+                        </div>
+                        <div class="text-center">
+                            <div class="w-16 h-16 mx-auto bg-teal-100 rounded-full flex items-center justify-center mb-4">
+                                <i class="fas fa-users text-teal-500 text-2xl"></i>
+                            </div>
+                            <h3 class="text-xl font-bold text-gray-800 mb-2">Community Support</h3>
+                            <p class="text-gray-600">Support local communities and their sustainable development</p>
+                        </div>
+                        <div class="text-center">
+                            <div class="w-16 h-16 mx-auto bg-gray-100 rounded-full flex items-center justify-center mb-4">
+                                <i class="fas fa-book text-gray-500 text-2xl"></i>
+                            </div>
+                            <h3 class="text-xl font-bold text-gray-800 mb-2">Education</h3>
+                            <p class="text-gray-600">Fund educational programs about cultural heritage</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQ Section -->
+        <section class="py-20 bg-white">
+            <div class="container mx-auto px-6">
+                <div class="max-w-4xl mx-auto">
+                    <h2 class="text-4xl font-bold gradient-text text-center mb-12">Frequently Asked Questions</h2>
+                    <div class="space-y-6">
+                        <div class="bg-gray-50 rounded-xl p-6">
+                            <h3 class="text-xl font-bold text-gray-800 mb-2">How is my donation used?</h3>
+                            <p class="text-gray-600">Your donation directly supports our cultural preservation initiatives, community development programs, and educational projects.</p>
+                        </div>
+                        <div class="bg-gray-50 rounded-xl p-6">
+                            <h3 class="text-xl font-bold text-gray-800 mb-2">Is my donation tax-deductible?</h3>
+                            <p class="text-gray-600">Yes, all donations are tax-deductible. You will receive a receipt for your records.</p>
+                        </div>
+                        <div class="bg-gray-50 rounded-xl p-6">
+                            <h3 class="text-xl font-bold text-gray-800 mb-2">Can I make a recurring donation?</h3>
+                            <p class="text-gray-600">Yes, you can choose to make a monthly donation to provide sustained support for our mission.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+
+    <iframe src="footer.html" onload="this.before((this.contentDocument.body||this.contentDocument).children[0]);this.remove()"></iframe>
+
+
+    <!-- Scripts -->
+    <script src="../assets/js/config.js"></script>
+    <script>
+        // Initialize Stripe with configuration to handle blocked requests
+        const stripe = Stripe('pk_test_51RVXZXFPmwPC3P8RSZjIH3RirILDMSAgkBXSqhABVtv3EANp2MKXG42lPgIKeHXBT13YcjXIb43Lo95kIUtYwSDN00FcUKJejv', {
+            betas: ['network_error_handling_beta_1']
+        });
+        
+        // Create card Element with specific configuration
+        const elements = stripe.elements();
+        const card = elements.create('card', {
+            networkErrorHandling: true
+        });
+        card.mount('#card-element');
+
+        // Add event listener for card errors
+        card.addEventListener('change', function(event) {
+            const displayError = document.getElementById('card-errors');
+            if (event.error) {
+                if (event.error.message.includes('Receiving end does not exist')) {
+                    console.warn('Extension communication error ignored');
+                    return;
+                }
+                displayError.textContent = event.error.message;
+            } else {
+                displayError.textContent = '';
+            }
+        });
+
+        // Handle form submission
+        const form = document.getElementById('donation-form');
+        const errorElement = document.getElementById('card-errors');
+        
+        form.addEventListener('submit', async (event) => {
+            event.preventDefault();
+            
+            // Show loading state
+            const submitButton = form.querySelector('button[type="submit"]');
+            submitButton.querySelector('.normal-state').style.display = 'none';
+            submitButton.querySelector('.loading').style.display = 'flex';
+            submitButton.disabled = true;
+
+            try {
+                // Create payment method with error handling
+                let paymentMethod;
+                try {
+                    const result = await stripe.createPaymentMethod({
+                        type: 'card',
+                        card: card,
+                    });
+                    
+                    if (result.error) {
+                        if (result.error.message.includes('Receiving end does not exist')) {
+                            console.warn('Extension communication error ignored, continuing payment');
+                        } else {
+                            throw result.error;
+                        }
+                    }
+                    
+                    paymentMethod = result.paymentMethod;
+                } catch (e) {
+                    // Ignore network errors from blocked analytics or extension communication
+                    if (e.type === 'network_error' && 
+                        (e.message.includes('r.stripe.com') || e.message.includes('Receiving end does not exist'))) {
+                        console.warn('Non-critical error ignored, continuing with payment processing');
+                    } else {
+                        throw e;
+                    }
+                }
+
+                // Send payment method ID to server
+                const amountInput = document.getElementById('donation-amount');
+                const amount = Math.floor(parseFloat(amountInput.value) * 100); // Convert dollars to cents
+
+                if (amount < 500) { // Minimum $5 validation
+                    throw new Error('Minimum donation amount is $5');
+                }
+
+                console.log('Sending request to:', `${config.wordPressUrl}/wp-content/themes/twentytwentyfive/process-donation.php`);
+                const response = await fetch(`${config.wordPressUrl}/wp-content/themes/twentytwentyfive/process-donation.php`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        payment_method_id: paymentMethod.id,
+                        amount: amount,
+                    }),
+                });
+
+                if (!response.ok) {
+                    const errorText = await response.text();
+                    console.error('Server error response:', response.status, errorText);
+                    throw new Error(`Payment failed: ${errorText}`);
+                }
+
+                console.log('Server response received');
+                const result = await response.json();
+                console.log('Parsed response:', result);
+
+                if (result.error) {
+                    throw new Error(result.error);
+                }
+
+                if (result.requires_action) {
+                    try {
+                        // Handle additional authentication if needed
+                        const { paymentIntent, error } = await stripe.confirmCardPayment(
+                            result.payment_intent_client_secret
+                        );
+                        
+                        if (error) {
+                            throw error;
+                        }
+                        
+                        if (paymentIntent.status === 'succeeded') {
+                            handleSuccess();
+                        }
+                    } catch (e) {
+                        // Ignore network errors from blocked analytics
+                        if (e.type === 'network_error' && e.message.includes('r.stripe.com')) {
+                            console.warn('Analytics request blocked during authentication');
+                            handleSuccess(); // Proceed if it's just an analytics error
+                        } else {
+                            throw e;
+                        }
+                    }
+                } else {
+                    handleSuccess();
+                }
+                
+            } catch (error) {
+                console.error('Payment error:', error);
+                errorElement.textContent = error.message || 'An error occurred while processing your donation. Please try again.';
+            } finally {
+                // Reset button state
+                submitButton.querySelector('.normal-state').style.display = 'block';
+                submitButton.querySelector('.loading').style.display = 'none';
+                submitButton.disabled = false;
+            }
+        });
+
+        function handleSuccess() {
+            card.clear();
+            errorElement.textContent = '';
+            alert('Thank you for your donation!');
+        }
+
+        // Handle navigation background
+        window.addEventListener('scroll', () => {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 100) {
+                navbar.classList.add('bg-white/95', 'backdrop-blur-sm', 'shadow-lg');
+                document.querySelectorAll('.nav-links a').forEach(link => {
+                    link.classList.remove('text-white');
+                    link.classList.add('text-gray-800');
+                });
+            } else {
+                navbar.classList.remove('bg-white/95', 'backdrop-blur-sm', 'shadow-lg');
+                document.querySelectorAll('.nav-links a').forEach(link => {
+                    link.classList.add('text-white');
+                    link.classList.remove('text-gray-800');
+                });
+            }
+        });
+
+        document.addEventListener('DOMContentLoaded', function() {
+            // Navbar scroll effect
+            const navbar = document.querySelector('.navbar');
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 100) {
+                    navbar.classList.add('scrolled');
+                } else {
+                    navbar.classList.remove('scrolled');
+                }
+            });
+
+            // Donation amount buttons
+            document.querySelectorAll('.donation-btn').forEach(button => {
+                button.addEventListener('click', function() {
+                    const amount = this.dataset.amount;
+                    document.getElementById('custom-amount').value = amount;
+                });
+            });
+
+            // Custom amount validation
+            document.getElementById('custom-amount').addEventListener('input', function() {
+                this.value = this.value.replace(/[^0-9]/g, '');
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,630 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Regala un Viaggio - IncanTour</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="icon" type="image/png" href="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/spirale_incantour_highres%20%281%29-7hzjNru1zG0Gbw6WqE4bJuWZ3FzOU2.png">
+    <script src="https://js.stripe.com/v3/"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+        
+        :root {
+            --primary-orange: #E6A532;
+            --primary-orange-dark: #D4941A;
+            --primary-teal: #1B5E5F;
+            --primary-teal-dark: #0F4142;
+            --gradient-primary: linear-gradient(135deg, #E6A532 0%, #D4941A 25%, #1B5E5F 75%, #0F4142 100%);
+            --gradient-warm: linear-gradient(135deg, #E6A532 0%, #D4941A 100%);
+            --gradient-cool: linear-gradient(135deg, #1B5E5F 0%, #0F4142 100%);
+        }
+        
+        * {
+            font-family: 'Poppins', sans-serif;
+        }
+        
+        .page-header-bg {
+            background: linear-gradient(135deg, rgba(0,0,0,0.6), rgba(0,0,0,0.4)), 
+                        url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+        
+        .spiral-rotate {
+            animation: spiralRotate 20s linear infinite;
+        }
+        
+        @keyframes spiralRotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        
+        .floating {
+            animation: floating 3s ease-in-out infinite;
+        }
+        
+        @keyframes floating {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+        
+        .form-group label {
+            color: var(--primary-teal);
+        }
+        
+        .form-input:focus {
+            outline: none;
+            border-color: var(--primary-orange);
+            background: white;
+            box-shadow: 0 0 0 3px rgba(230, 165, 50, 0.1);
+            transform: translateY(-1px);
+        }
+
+        .voucher-card {
+            background: linear-gradient(135deg, #1B5E5F 0%, #0F4142 50%, #D4941A 100%);
+            position: relative;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+        }
+        
+        .navbar {
+            background: linear-gradient(135deg, rgba(230, 165, 50, 0.98) 0%, rgba(212, 148, 26, 0.98) 25%, rgba(27, 94, 95, 0.98) 75%, rgba(15, 65, 66, 0.98) 100%);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 20px rgba(230, 165, 50, 0.2);
+        }
+        
+        .navbar.scrolled .nav-links > a,
+        .navbar.scrolled .nav-links > button,
+        .navbar.scrolled .nav-agency-link,
+        .navbar.scrolled a[href*="agencyservices"] {
+            color: #E6A532 !important;
+        }
+
+        .navbar.scrolled .nav-links > a:hover,
+        .navbar.scrolled .nav-links > button:hover,
+        .navbar.scrolled .nav-agency-link:hover,
+        .navbar.scrolled a[href*="agencyservices"]:hover {
+            color: white !important;
+        }
+
+        .navbar.scrolled .nav-links > a.active,
+        .navbar.scrolled .nav-links > button.active,
+        .navbar.scrolled .nav-agency-link.active,
+        .navbar.scrolled a[href*="agencyservices"].active {
+            color: white !important;
+        }
+
+        .toast {
+            position: fixed;
+            top: 100px;
+            right: 20px;
+            padding: 1rem 2rem;
+            border-radius: 10px;
+            color: white;
+            font-weight: 500;
+            transform: translateX(400px);
+            transition: transform 0.3s ease;
+            z-index: 1000;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+        
+        .toast.show {
+            transform: translateX(0);
+        }
+
+        /* Dropdown menu links: readable dark text on white dropdown card */
+        .navbar .nav-links .absolute a,
+        .navbar.scrolled .nav-links .absolute a {
+            color: #1f2937 !important;
+            display: block;
+            background-color: transparent !important;
+            transition: all 0.2s ease;
+        }
+
+        .navbar .nav-links .absolute a:hover,
+        .navbar.scrolled .nav-links .absolute a:hover {
+            color: #E6A532 !important;
+            background-color: #f9fafb !important;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 flex flex-col min-h-screen">
+
+    <!-- Navigation Header -->
+    <iframe src="navbar.html" onload="this.before((this.contentDocument.body||this.contentDocument).children[0]);this.remove()"></iframe>
+
+    <main class="flex-grow">
+        <!-- Hero Header -->
+        <section class="page-header-bg min-h-[45vh] flex items-center justify-center relative overflow-hidden">
+            <div class="absolute inset-0" style="background: linear-gradient(135deg, rgba(230, 165, 50, 0.2), rgba(27, 94, 95, 0.3));"></div>
+            
+            <!-- Floating icons -->
+            <div class="absolute top-20 left-10 floating" style="animation-delay: 0.5s;">
+                <div class="w-16 h-16 bg-white/10 rounded-full flex items-center justify-center backdrop-blur-sm">
+                    <i class="fas fa-gift text-orange-300 text-xl"></i>
+                </div>
+            </div>
+            <div class="absolute bottom-20 right-10 floating" style="animation-delay: 1.2s;">
+                <div class="w-14 h-14 bg-white/10 rounded-full flex items-center justify-center backdrop-blur-sm">
+                    <i class="fas fa-heart text-teal-300 text-lg"></i>
+                </div>
+            </div>
+            
+            <div class="text-center text-white z-10 px-6 max-w-4xl mx-auto mt-16">
+                <div class="text-sm font-semibold tracking-wider uppercase mb-2 opacity-80">
+                    <a href="../index.html" class="hover:text-orange-300">Home</a> / <span>Regala un Viaggio</span>
+                </div>
+                <h1 class="text-4xl md:text-6xl font-bold mb-4">
+                    Regala un Viaggio
+                </h1>
+                <p class="text-lg md:text-xl opacity-90 max-w-2xl mx-auto">
+                    Dona un'esperienza indimenticabile ai tuoi cari. Crea un voucher viaggio personalizzato in pochi istanti.
+                </p>
+            </div>
+        </section>
+
+        <!-- Main Form & Card Preview Section -->
+        <section class="py-16 bg-gray-50">
+            <div class="container mx-auto px-6 max-w-7xl">
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
+                    
+                    <!-- Left side: Voucher Form -->
+                    <div class="lg:col-span-7 bg-white rounded-3xl p-8 md:p-10 shadow-[0_15px_50px_rgba(0,0,0,0.05)] border border-gray-100">
+                        <h2 class="text-3xl font-bold text-gray-800 mb-2 flex items-center gap-3">
+                            <i class="fas fa-edit text-orange-500"></i>
+                            Dettagli del Voucher
+                        </h2>
+                        <p class="text-gray-500 mb-8">Compila i campi sottostanti per personalizzare il tuo regalo. Il valore minimo del voucher è di 100€.</p>
+                        
+                        <form id="voucher-form" class="space-y-6">
+                            
+                             <!-- Voucher Value Select -->
+                             <div class="form-group">
+                                 <label for="voucher-value" class="block font-semibold mb-2">Valore del Voucher (€)*</label>
+                                 <select id="voucher-value" name="value" class="form-input w-full px-4 py-3.5 border-2 border-gray-200 rounded-2xl bg-gray-50/50 transition-all font-semibold text-lg text-gray-800" required>
+                                     <option value="50">Importo €50</option>
+                                     <option value="100" selected>Importo €50 + 50,00 € (€100)</option>
+                                     <option value="150">Importo €50 + 100,00 € (€150)</option>
+                                     <option value="200">Importo €50 + 150,00 € (€200)</option>
+                                     <option value="250">Importo €50 + 200,00 € (€250)</option>
+                                     <option value="300">Importo €50 + 250,00 € (€300)</option>
+                                     <option value="350">Importo €50 + 300,00 € (€350)</option>
+                                     <option value="400">Importo €50 + 350,00 € (€400)</option>
+                                     <option value="500">Importo €50 + 450,00 € (€500)</option>
+                                     <option value="600">Importo €50 + 550,00 € (€600)</option>
+                                     <option value="700">Importo €50 + 650,00 € (€700)</option>
+                                     <option value="800">Importo €50 + 750,00 € (€800)</option>
+                                     <option value="900">Importo €50 + 850,00 € (€900)</option>
+                                     <option value="1000">Importo €50 + 950,00 € (€1000)</option>
+                                     <option value="1500">Importo €50 + 1.450,00 € (€1500)</option>
+                                     <option value="2000">Importo €50 + 1.950,00 € (€2000)</option>
+                                     <option value="3000">Importo €50 + 2.950,00 € (€3000)</option>
+                                     <option value="5000">Importo €50 + 4.950,00 € (€5000)</option>
+                                 </select>
+                                 
+                                 <!-- WhatsApp Custom Amount Prompt -->
+                                 <div class="mt-4 p-4 bg-orange-50/50 border border-orange-100 rounded-2xl flex flex-col sm:flex-row items-center justify-between gap-4">
+                                     <div class="text-xs text-orange-800 text-center sm:text-left">
+                                         <i class="fas fa-info-circle mr-1.5 text-orange-500"></i>
+                                         Non trovi l'importo desiderato? Richiedi un valore personalizzato.
+                                     </div>
+                                     <a href="https://wa.me/393384357143?text=Ciao!%20Vorrei%20acquistare%20un%20buono%20viaggio%20regalo%20con%20un%20importo%20personalizzato..." target="_blank" class="px-4 py-2 bg-emerald-500 hover:bg-emerald-600 text-white rounded-xl text-xs font-bold transition-all shadow-md flex items-center gap-2 whitespace-nowrap">
+                                         <i class="fab fa-whatsapp text-sm"></i>
+                                         Contattaci su WhatsApp
+                                     </a>
+                                 </div>
+                             </div>
+
+                            <!-- Beneficiary Details -->
+                            <div class="border-t border-gray-100 pt-6">
+                                <h3 class="text-xl font-bold text-gray-800 mb-4 flex items-center gap-2">
+                                    <i class="fas fa-user text-[#1B5E5F]"></i>
+                                    Dati del Beneficiario
+                                </h3>
+                                
+                                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                    <div class="form-group">
+                                        <label for="first-name" class="block font-semibold mb-2">Nome*</label>
+                                        <input type="text" id="first-name" name="first_name" placeholder="Es. Mario" class="form-input w-full px-4 py-3.5 border-2 border-gray-200 rounded-2xl bg-gray-50/50 transition-all" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="last-name" class="block font-semibold mb-2">Cognome*</label>
+                                        <input type="text" id="last-name" name="last_name" placeholder="Es. Rossi" class="form-input w-full px-4 py-3.5 border-2 border-gray-200 rounded-2xl bg-gray-50/50 transition-all" required>
+                                    </div>
+                                </div>
+
+                                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-4">
+                                    <div class="form-group">
+                                        <label for="dob" class="block font-semibold mb-2">Data di Nascita*</label>
+                                        <input type="date" id="dob" name="dob" class="form-input w-full px-4 py-3.5 border-2 border-gray-200 rounded-2xl bg-gray-50/50 transition-all" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="phone" class="block font-semibold mb-2">Telefono*</label>
+                                        <input type="tel" id="phone" name="phone" placeholder="Es. 3381234567" class="form-input w-full px-4 py-3.5 border-2 border-gray-200 rounded-2xl bg-gray-50/50 transition-all" required>
+                                    </div>
+                                </div>
+
+                                <div class="form-group mt-4">
+                                    <label for="email" class="block font-semibold mb-2">Email Beneficiario*</label>
+                                    <input type="email" id="email" name="email" placeholder="mario.rossi@email.it" class="form-input w-full px-4 py-3.5 border-2 border-gray-200 rounded-2xl bg-gray-50/50 transition-all" required>
+                                </div>
+                            </div>
+
+                            <!-- Occasion Dropdown -->
+                            <div class="border-t border-gray-100 pt-6">
+                                <div class="form-group">
+                                    <label for="occasion" class="block font-semibold mb-2">Occasione Speciale*</label>
+                                    <select id="occasion" name="occasion" class="form-input w-full px-4 py-3.5 border-2 border-gray-200 rounded-2xl bg-gray-50/50 transition-all" required>
+                                        <option value="Birthday">Compleanno</option>
+                                        <option value="18th Birthday">Diciottesimo</option>
+                                        <option value="First Communion">Prima Comunione</option>
+                                        <option value="Baptism">Battesimo</option>
+                                        <option value="Confirmation">Cresima</option>
+                                        <option value="Wedding">Matrimonio</option>
+                                        <option value="Engagement">Fidanzamento</option>
+                                        <option value="Anniversary">Anniversario</option>
+                                        <option value="Retirement">Pensione</option>
+                                        <option value="Other">Altro</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <!-- Message / Dedication -->
+                            <div class="form-group">
+                                <label for="message" class="block font-semibold mb-2">Dedica / Messaggio Personale*</label>
+                                <textarea id="message" name="message" maxlength="250" placeholder="Scrivi qui il messaggio da stampare sul voucher regalo (max 250 caratteri)..." class="form-input w-full px-4 py-3.5 border-2 border-gray-200 rounded-2xl bg-gray-50/50 transition-all min-h-[120px]" required></textarea>
+                                <p class="text-xs text-gray-400 mt-1 text-right"><span id="char-counter">0</span> / 250 caratteri</p>
+                            </div>
+
+                            <!-- Payment Information (Direct Stripe checkout) -->
+                            <div class="border-t border-gray-100 pt-6">
+                                <h3 class="text-xl font-bold text-gray-800 mb-4 flex items-center gap-2">
+                                    <i class="fas fa-credit-card text-[#1B5E5F]"></i>
+                                    Dettagli di Pagamento
+                                </h3>
+                                <div class="form-group">
+                                    <label for="card-element" class="block font-semibold mb-2">Carta di Credito o Debito*</label>
+                                    <div id="card-element" class="bg-gray-50/50 p-4 border-2 border-gray-200 rounded-2xl transition-all"></div>
+                                    <div id="card-errors" class="text-red-500 text-sm mt-2" role="alert"></div>
+                                </div>
+                            </div>
+
+                            <!-- Terms & Conditions Checkbox -->
+                            <div class="flex items-start gap-3 mt-4">
+                                <input type="checkbox" id="terms" name="terms" class="mt-1 h-5 w-5 rounded border-gray-300 text-orange-500 focus:ring-orange-500" required>
+                                <label for="terms" class="text-sm text-gray-600 leading-relaxed cursor-pointer select-none">
+                                    Dichiaro di aver letto e accettato integralmente le <a href="#" class="text-orange-500 hover:underline font-semibold">Condizioni Generali di Vendita</a>.*
+                                </label>
+                            </div>
+
+                            <!-- Submit Button -->
+                            <button type="submit" id="submit-btn" class="w-full mt-6 py-4 px-6 rounded-2xl text-white font-bold text-lg hover:shadow-xl transition-all duration-300 transform active:scale-95 flex items-center justify-center gap-2" style="background: var(--gradient-warm);">
+                                <i class="fas fa-shopping-bag"></i>
+                                <span>Acquista Regalo</span>
+                            </button>
+                        </form>
+                    </div>
+
+                    <!-- Right side: Visual Live Preview -->
+                    <div class="lg:col-span-5 flex flex-col justify-start lg:sticky lg:top-28 h-fit">
+                        <div class="text-center lg:text-left mb-6">
+                            <h3 class="text-2xl font-bold text-gray-800 flex items-center gap-2 justify-center lg:justify-start">
+                                <i class="fas fa-eye text-[#1B5E5F]"></i>
+                                Anteprima in Tempo Reale
+                            </h3>
+                            <p class="text-sm text-gray-400">Ecco come apparirà il tuo buono regalo.</p>
+                        </div>
+                        
+                        <!-- Voucher Card Box (Boarding Pass / Luxury Ticket Design) -->
+                        <div class="voucher-card w-full aspect-[1.6/1] rounded-[2.5rem] text-white flex relative shadow-2xl overflow-hidden select-none border border-white/10">
+                            <!-- Watermarked background spiral logo -->
+                            <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/spirale_incantour_highres%20%281%29-7hzjNru1zG0Gbw6WqE4bJuWZ3FzOU2.png" alt="Spiral Logo" class="absolute w-72 h-72 opacity-5 -left-10 -bottom-10 pointer-events-none spiral-rotate">
+
+                            <!-- Left Section: Main Ticket Body (72% Width) -->
+                            <div class="w-[72%] p-8 md:p-10 flex flex-col justify-between h-full relative">
+                                
+                                <!-- Brand Header -->
+                                <div class="flex justify-between items-start z-10">
+                                    <div>
+                                        <div class="flex items-center space-x-2">
+                                            <div class="w-8 h-8">
+                                                <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/spirale_incantour_highres%20%281%29-7hzjNru1zG0Gbw6WqE4bJuWZ3FzOU2.png" alt="IncanTour Logo" class="w-full h-full object-contain">
+                                            </div>
+                                            <span class="text-xl font-bold tracking-wider bg-gradient-to-r from-amber-200 to-yellow-400 bg-clip-text text-transparent">IncanTour</span>
+                                        </div>
+                                        <div class="text-[9px] tracking-widest uppercase opacity-70 mt-1 font-semibold text-amber-200/90">BUONO REGALO VIAGGIO</div>
+                                    </div>
+                                </div>
+
+                                <!-- Middle: Recipient & Dedication -->
+                                <div class="my-3 z-10">
+                                    <div class="text-[9px] tracking-wider opacity-60 uppercase font-semibold">Dedicato a</div>
+                                    <div class="text-2xl font-bold tracking-wide truncate text-white drop-shadow-md" id="preview-name">Nome Cognome</div>
+                                    
+                                    <div class="mt-3 bg-black/15 backdrop-blur-md p-3 rounded-2xl border border-white/10 min-h-[68px]">
+                                        <div class="text-[8px] tracking-wider opacity-50 uppercase mb-0.5 font-semibold">Dedica</div>
+                                        <p class="text-[11px] leading-relaxed italic line-clamp-3 opacity-90 text-gray-100" id="preview-msg">Il messaggio regalo inserito comparirà in questa sezione...</p>
+                                    </div>
+                                </div>
+
+                                <!-- Bottom: Occasion & URL -->
+                                <div class="flex justify-between items-end border-t border-white/10 pt-3 z-10">
+                                    <div>
+                                        <span class="text-[8px] tracking-wider opacity-50 uppercase block font-semibold">Occasione</span>
+                                        <span class="text-xs font-bold text-amber-200" id="preview-occasion">Compleanno</span>
+                                    </div>
+                                    <div class="text-[9px] opacity-40 font-mono">
+                                        incantour.it
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Ticket Stub Separator (Dashed vertical line with circular punch-outs) -->
+                            <div class="w-[2px] relative flex flex-col justify-between items-center h-full">
+                                <div class="absolute -top-3 -left-3 w-6 h-6 bg-gray-50 rounded-full border-b border-white/10 z-20"></div>
+                                <div class="h-full border-l-2 border-dashed border-white/20 z-10"></div>
+                                <div class="absolute -bottom-3 -left-3 w-6 h-6 bg-gray-50 rounded-full border-t border-white/10 z-20"></div>
+                            </div>
+
+                            <!-- Right Section: Voucher Stub Receipt (28% Width) -->
+                            <div class="w-[28%] bg-black/10 p-6 flex flex-col justify-between items-center h-full text-center relative">
+                                <!-- Top Label -->
+                                <div class="text-[8px] tracking-widest uppercase opacity-50 font-semibold mt-2">Valore Buono</div>
+
+                                <!-- Big Price Badge -->
+                                <div class="my-auto">
+                                    <div class="text-3xl font-extrabold text-amber-300 font-mono tracking-tighter drop-shadow-[0_2px_4px_rgba(0,0,0,0.4)]" id="preview-val">€100</div>
+                                    <div class="text-[8px] opacity-60 mt-1 uppercase font-semibold">Euros</div>
+                                </div>
+
+                                <!-- Simulated Barcode -->
+                                <div class="w-full">
+                                    <div class="flex space-x-[1.5px] justify-center opacity-30 h-7 w-full bg-white/10 p-1.5 rounded border border-white/5">
+                                        <div class="w-[3px] bg-white h-full"></div>
+                                        <div class="w-[1px] bg-white h-full"></div>
+                                        <div class="w-[2px] bg-white h-full"></div>
+                                        <div class="w-[4px] bg-white h-full"></div>
+                                        <div class="w-[1px] bg-white h-full"></div>
+                                        <div class="w-[3px] bg-white h-full"></div>
+                                        <div class="w-[2px] bg-white h-full"></div>
+                                        <div class="w-[1px] bg-white h-full"></div>
+                                        <div class="w-[3px] bg-white h-full"></div>
+                                        <div class="w-[2px] bg-white h-full"></div>
+                                        <div class="w-[1px] bg-white h-full"></div>
+                                    </div>
+                                    <div class="text-[7px] opacity-40 font-mono mt-1 uppercase tracking-widest">INC-GFT-2026</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Card Visual Design Notice -->
+                        <div class="mt-4 bg-orange-50 border border-orange-100 rounded-2xl p-4 text-xs text-orange-800 flex items-start gap-3">
+                            <i class="fas fa-info-circle text-base mt-0.5"></i>
+                            <p class="leading-relaxed">Questo voucher è spendibile per la prenotazione di qualsiasi pacchetto turistico Incantour. Ha validità di 12 mesi dalla data di emissione ed è cumulabile.</p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Toast Notifications -->
+    <div id="toast" class="toast flex items-center gap-3">
+        <span>Notifica</span>
+    </div>
+
+    <!-- Footer Iframe -->
+    <iframe src="footer.html" onload="this.before((this.contentDocument.body||this.contentDocument).children[0]);this.remove()"></iframe>
+
+    <!-- Load configurations and API scripts -->
+    <script src="../assets/js/config.js"></script>
+    <script>
+        // Setup Form Sync and Visual Preview
+        document.addEventListener('DOMContentLoaded', () => {
+            const valInput = document.getElementById('voucher-value');
+            const fNameInput = document.getElementById('first-name');
+            const lNameInput = document.getElementById('last-name');
+            const occasionSelect = document.getElementById('occasion');
+            const msgInput = document.getElementById('message');
+            const charCounter = document.getElementById('char-counter');
+            
+            const previewVal = document.getElementById('preview-val');
+            const previewName = document.getElementById('preview-name');
+            const previewMsg = document.getElementById('preview-msg');
+            const previewOccasion = document.getElementById('preview-occasion');
+            
+            const form = document.getElementById('voucher-form');
+            const submitBtn = document.getElementById('submit-btn');
+            const toast = document.getElementById('toast');
+
+            // Initialize card preview values
+            previewVal.textContent = '€' + (valInput.value || '100');
+
+            // Initialize Stripe
+            const stripe = Stripe('pk_test_51RVXZXFPmwPC3P8RSZjIH3RirILDMSAgkBXSqhABVtv3EANp2MKXG42lPgIKeHXBT13YcjXIb43Lo95kIUtYwSDN00FcUKJejv', {
+                betas: ['network_error_handling_beta_1']
+            });
+            const elements = stripe.elements();
+            const card = elements.create('card', { networkErrorHandling: true });
+            card.mount('#card-element');
+
+            card.addEventListener('change', function(event) {
+                const displayError = document.getElementById('card-errors');
+                if (event.error) {
+                    if (!event.error.message.includes('Receiving end does not exist')) {
+                        displayError.textContent = event.error.message;
+                    }
+                } else {
+                    displayError.textContent = '';
+                }
+            });
+
+            // 1. Sync Inputs with Preview Card in Realtime
+            valInput.addEventListener('change', () => {
+                const val = valInput.value || '100';
+                previewVal.textContent = '€' + val;
+            });
+
+            const syncName = () => {
+                const fName = fNameInput.value.trim();
+                const lName = lNameInput.value.trim();
+                if (!fName && !lName) {
+                    previewName.textContent = 'Nome Cognome';
+                } else {
+                    previewName.textContent = `${fName} ${lName}`;
+                }
+            };
+            fNameInput.addEventListener('input', syncName);
+            lNameInput.addEventListener('input', syncName);
+
+            occasionSelect.addEventListener('change', () => {
+                const labelMap = {
+                    'Birthday': 'Compleanno',
+                    '18th Birthday': 'Diciottesimo',
+                    'First Communion': 'Prima Comunione',
+                    'Baptism': 'Battesimo',
+                    'Confirmation': 'Cresima',
+                    'Wedding': 'Matrimonio',
+                    'Engagement': 'Fidanzamento',
+                    'Anniversary': 'Anniversario',
+                    'Retirement': 'Pensione',
+                    'Other': 'Altro'
+                };
+                previewOccasion.textContent = labelMap[occasionSelect.value] || 'Compleanno';
+            });
+
+            msgInput.addEventListener('input', () => {
+                const length = msgInput.value.length;
+                charCounter.textContent = length;
+                
+                if (length === 0) {
+                    previewMsg.textContent = 'Il messaggio regalo inserito comparirà in questa sezione...';
+                } else {
+                    previewMsg.textContent = msgInput.value;
+                }
+            });
+
+            // Toast feedback handler
+            const showToast = (message, isError = false) => {
+                toast.textContent = message;
+                toast.className = 'toast show ' + (isError ? 'bg-red-500' : 'bg-green-500');
+                setTimeout(() => {
+                    toast.classList.remove('show');
+                }, 4000);
+            };
+
+             // 2. Submit Form Action
+             form.addEventListener('submit', async (e) => {
+                 e.preventDefault();
+                 
+                 const value = parseInt(valInput.value);
+                 if (isNaN(value) || value < 50) {
+                     showToast('Seleziona un importo valido per il buono regalo.', true);
+                     return;
+                 }
+ 
+                 // Show submitting loading state
+                 const submitBtnText = submitBtn.querySelector('span');
+                 const submitBtnIcon = submitBtn.querySelector('i');
+                 submitBtn.disabled = true;
+                 submitBtnText.textContent = 'Elaborazione pagamento...';
+                 submitBtnIcon.className = 'fas fa-spinner fa-spin';
+ 
+                 try {
+                     // Create Stripe Payment Method
+                     let paymentMethod;
+                     try {
+                         const { paymentMethod: pm, error } = await stripe.createPaymentMethod({
+                             type: 'card',
+                             card: card,
+                         });
+
+                         if (error) {
+                             if (error.message.includes('Receiving end does not exist')) {
+                                 console.warn('Stripe Extension communication error ignored');
+                             } else {
+                                 throw error;
+                             }
+                         }
+                         paymentMethod = pm;
+                     } catch (e) {
+                         if (e.type === 'network_error' && 
+                             (e.message.includes('r.stripe.com') || e.message.includes('Receiving end does not exist'))) {
+                             console.warn('Ignored non-critical Stripe network error');
+                         } else {
+                             throw e;
+                         }
+                     }
+
+                     // Send to the live WordPress custom REST API endpoint
+                     const response = await fetch(`${config.wordPressUrl}/wp-json/tourism/v1/submit-gift-voucher`, {
+                         method: 'POST',
+                         headers: {
+                             'Content-Type': 'application/json',
+                             'Accept': 'application/json'
+                         },
+                         credentials: 'include',
+                         mode: 'cors',
+                         body: JSON.stringify({
+                             value: value,
+                             first_name: fNameInput.value.trim(),
+                             last_name: lNameInput.value.trim(),
+                             dob: document.getElementById('dob').value,
+                             phone: document.getElementById('phone').value.trim(),
+                             email: document.getElementById('email').value.trim(),
+                             occasion: occasionSelect.value,
+                             message: msgInput.value.trim(),
+                             payment_method_id: paymentMethod?.id
+                         })
+                     });
+ 
+                     const result = await response.json();
+ 
+                     if (!response.ok) {
+                         throw new Error(result.message || 'Impossibile inviare la richiesta del voucher.');
+                     }
+ 
+                     // Handle 3D Secure / Confirm Payment if requested by backend
+                     if (result.requires_action) {
+                         const { paymentIntent, error: confirmError } = await stripe.confirmCardPayment(
+                             result.payment_intent_client_secret
+                         );
+
+                         if (confirmError) {
+                             throw confirmError;
+                         }
+
+                         if (paymentIntent.status !== 'succeeded') {
+                             throw new Error('Il pagamento non è andato a buon fine.');
+                         }
+                     }
+
+                     showToast('Buono regalo acquistato con successo! Riceverai il voucher via mail.');
+                     form.reset();
+                     card.clear();
+                     
+                     // Reset card previews
+                     previewVal.textContent = '€' + valInput.value;
+                     previewName.textContent = 'Nome Cognome';
+                     previewMsg.textContent = 'Il messaggio regalo inserito comparirà in questa sezione...';
+                     previewOccasion.textContent = 'Compleanno';
+                     charCounter.textContent = '0';
+                     
+                 } catch (error) {
+                     console.error('Submission error:', error);
+                     showToast(error.message || 'Errore durante la transazione. Riprova con un\'altra carta.', true);
+                 } finally {
+                     submitBtn.disabled = false;
+                     submitBtnText.textContent = 'Acquista Regalo';
+                     submitBtnIcon.className = 'fas fa-shopping-bag';
+                 }
+             });
+        });
+    </script>
+</body>
+</html>

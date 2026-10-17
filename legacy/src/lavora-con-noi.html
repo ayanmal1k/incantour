@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lavora Con Noi - IncanTour</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="icon" type="image/png" href="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/spirale_incantour_highres%20%281%29-7hzjNru1zG0Gbw6WqE4bJuWZ3FzOU2.png">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+        :root {
+            --primary-orange: #E6A532;
+            --primary-orange-dark: #D4941A;
+            --primary-teal: #1B5E5F;
+            --primary-teal-dark: #0F4142;
+            --gradient-primary: linear-gradient(135deg, #E6A532 0%, #D4941A 25%, #1B5E5F 75%, #0F4142 100%);
+            --gradient-warm: linear-gradient(135deg, #E6A532 0%, #D4941A 100%);
+            --gradient-cool: linear-gradient(135deg, #1B5E5F 0%, #0F4142 100%);
+        }
+
+        * {
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .hero-overlay {
+            background: linear-gradient(135deg, rgba(230, 165, 50, 0.75), rgba(27, 94, 95, 0.8));
+        }
+
+        .card-base {
+            transition: all 0.3s ease;
+            background: white;
+        }
+
+        .card-base:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(230, 165, 50, 0.2);
+        }
+
+        .profile-card {
+            text-align: center;
+            border-radius: 20px;
+            padding: 2rem;
+            background: white;
+            border: 1px solid #f3f4f6;
+        }
+
+        .profile-icon {
+            font-size: 2.8rem;
+            margin-bottom: 1rem;
+            color: var(--primary-orange);
+            transition: transform 0.3s ease;
+        }
+
+        .profile-card:hover .profile-icon {
+            transform: scale(1.1) rotate(10deg);
+        }
+
+        .navbar.scrolled {
+            background: linear-gradient(135deg, rgba(230, 165, 50, 0.98) 0%, rgba(212, 148, 26, 0.98) 25%, rgba(27, 94, 95, 0.98) 75%, rgba(15, 65, 66, 0.98) 100%);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 20px rgba(230, 165, 50, 0.2);
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800">
+    <iframe src="navbar.html" onload="this.before((this.contentDocument.body||this.contentDocument).children[0]);this.remove()"></iframe>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="relative min-h-[75vh] flex items-center justify-center overflow-hidden pt-20">
+            <img src="../assets/images/slides/1.png" alt="Lavora con noi" class="absolute inset-0 w-full h-full object-cover">
+            <div class="absolute inset-0 hero-overlay"></div>
+            <div class="relative z-10 text-center text-white px-6 max-w-5xl mx-auto">
+                <span class="text-xs font-bold uppercase tracking-widest text-amber-200 bg-white/20 px-4 py-1.5 rounded-full inline-block mb-3 backdrop-blur-sm">Collabora Con Noi</span>
+                <h1 class="text-5xl md:text-7xl font-extrabold mb-6 drop-shadow-md">LAVORA CON NOI</h1>
+                <p class="text-2xl md:text-3xl font-extrabold text-amber-100 mb-4 drop-shadow-sm">
+                    Diventa attore del tuo territorio!
+                </p>
+                <p class="text-base md:text-xl leading-relaxed opacity-95 max-w-3xl mx-auto">
+                    Un racconto tra cultura, natura, borghi, acqua, terra, aria, fuoco, produzioni tipiche e artigianato artistico per coinvolgere tutti i sensi del viaggiatore.
+                </p>
+            </div>
+        </section>
+
+        <!-- Call to Action Banner Section -->
+        <section class="py-20 bg-white">
+            <div class="container mx-auto px-6 max-w-6xl">
+                <div class="rounded-3xl p-12 md:p-16 text-white shadow-2xl" style="background: var(--gradient-primary);">
+                    <h2 class="text-3xl md:text-5xl font-extrabold mb-6">Entra a far parte del Network<br>Terramare IncanTour</h2>
+                    <p class="text-lg md:text-xl leading-relaxed opacity-95">
+                        Diventa protagonista dell'offerta turistico-culturale esperienziale e slow IncanTour.
+                    </p>
+                    <div class="mt-8 pt-8 border-t border-white/30 flex items-center justify-between flex-wrap gap-4">
+                        <p class="text-2xl md:text-3xl font-extrabold text-amber-200">✨ CERCHIAMO TE ✨</p>
+                        <a href="contatti.html" class="bg-white text-teal-900 font-extrabold px-8 py-4 rounded-full shadow-lg hover:bg-amber-100 transition transform hover:scale-105">
+                            Candidati Ora
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Profiles Section -->
+        <section class="py-20 bg-gradient-to-br from-gray-50 via-white to-gray-50">
+            <div class="container mx-auto px-6 max-w-6xl">
+                <div class="text-center mb-16">
+                    <span class="text-amber-500 font-bold uppercase tracking-widest text-xs">Ricerca Professionisti</span>
+                    <h2 class="text-4xl md:text-5xl font-extrabold text-teal-900 mt-1 mb-4">Profili che vogliamo coinvolgere</h2>
+                    <p class="text-lg text-gray-600 max-w-3xl mx-auto">Siamo alla ricerca di professionisti e organizzazioni appassionati di turismo e cultura</p>
+                    <div class="w-24 h-1 mx-auto mt-6" style="background: var(--gradient-warm);"></div>
+                </div>
+                
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- Profile 1 -->
+                    <div class="profile-card card-base shadow-md">
+                        <div class="profile-icon"><i class="fas fa-users"></i></div>
+                        <p class="font-bold text-xl text-gray-800">Proloco e associazioni</p>
+                    </div>
+
+                    <!-- Profile 2 -->
+                    <div class="profile-card card-base shadow-md">
+                        <div class="profile-icon"><i class="fas fa-map-signs"></i></div>
+                        <p class="font-bold text-xl text-gray-800">Guide turistiche ed escursionistiche</p>
+                    </div>
+
+                    <!-- Profile 3 -->
+                    <div class="profile-card card-base shadow-md">
+                        <div class="profile-icon"><i class="fas fa-hiking"></i></div>
+                        <p class="font-bold text-xl text-gray-800">Operatori turismo esperienziale e outdoor</p>
+                    </div>
+
+                    <!-- Profile 4 -->
+                    <div class="profile-card card-base shadow-md">
+                        <div class="profile-icon"><i class="fas fa-bicycle"></i></div>
+                        <p class="font-bold text-xl text-gray-800">Cicloturismo e accompagnatori</p>
+                    </div>
+
+                    <!-- Profile 5: Updated Icon for Ricettivo to Hotel -->
+                    <div class="profile-card card-base shadow-md">
+                        <div class="profile-icon"><i class="fas fa-hotel"></i></div>
+                        <p class="font-bold text-xl text-gray-800">Ricettivo, alberghi e strutture extralberghiere</p>
+                    </div>
+
+                    <!-- Profile 6 -->
+                    <div class="profile-card card-base shadow-md">
+                        <div class="profile-icon"><i class="fas fa-camera-retro"></i></div>
+                        <p class="font-bold text-xl text-gray-800">Travel blogger, storyteller e content creator</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Territory Collaboration Section -->
+        <section class="py-20 bg-white">
+            <div class="container mx-auto px-6 max-w-6xl">
+                <div class="grid lg:grid-cols-2 gap-12 items-center">
+                    <div class="rounded-3xl p-10 md:p-14 shadow-2xl text-white" style="background: var(--gradient-cool);">
+                        <h3 class="text-3xl font-extrabold mb-6">Raccontiamo insieme il nostro territorio</h3>
+                        <p class="text-lg leading-relaxed opacity-95 mb-8">
+                            Rendiamo partecipi i viaggiatori di suggestioni dal viaggio alla scoperta della Campania, in una perfetta integrazione Terramare tra aree interne e fasce costiere.
+                        </p>
+                        <div class="space-y-4 pt-6 border-t border-white/30">
+                            <div class="flex items-center gap-3">
+                                <i class="fas fa-check-circle text-2xl text-amber-300"></i>
+                                <span class="font-semibold">Collaborazione autentica e duratura</span>
+                            </div>
+                            <div class="flex items-center gap-3">
+                                <i class="fas fa-check-circle text-2xl text-amber-300"></i>
+                                <span class="font-semibold">Valorizzazione delle eccellenze locali</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-gray-50 rounded-3xl p-10 shadow-xl border border-gray-100 space-y-6">
+                        <h3 class="text-2xl font-extrabold text-teal-900">Invia la tua Candidatura</h3>
+                        <p class="text-sm text-gray-600">Scrivici indicando la tua attività e la zona operativa</p>
+                        <a href="contatti.html" class="block text-center bg-gradient-to-r from-[#E6A532] to-[#D4941A] text-white font-extrabold py-4 rounded-xl shadow-lg hover:opacity-95 transition">
+                            Contattaci Subito
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Full-Width Maison Degas - Dimora de Charme Section -->
+        <section class="w-full py-20 bg-gradient-to-r from-[#1B5E5F]/95 via-[#0F4142] to-[#1B5E5F] text-white relative overflow-hidden my-16 shadow-2xl">
+            <!-- Decorative Floating Glow -->
+            <div class="absolute -top-24 -right-24 w-96 h-96 bg-amber-500/20 rounded-full blur-3xl pointer-events-none"></div>
+            <div class="absolute -bottom-24 -left-24 w-96 h-96 bg-teal-400/20 rounded-full blur-3xl pointer-events-none"></div>
+
+            <div class="container mx-auto px-6 max-w-7xl relative z-10">
+                <div class="flex flex-col lg:flex-row items-center justify-between gap-10">
+                    
+                    <!-- Left: Logo & Info -->
+                    <div class="flex flex-col md:flex-row items-center md:items-start gap-8 text-center md:text-left">
+                        <!-- Maison Degas Logo Container -->
+                        <a href="https://maisondegas.it/" target="_blank" rel="noopener noreferrer" class="block flex-shrink-0 group">
+                            <div class="bg-white/95 p-6 rounded-3xl border-2 border-amber-400/80 shadow-2xl group-hover:scale-105 group-hover:border-amber-300 transition-all duration-300">
+                                <img src="../assets/images/mason-degas.png" alt="Maison Degas - Dimora de Charme" class="h-24 w-auto object-contain">
+                            </div>
+                        </a>
+
+                        <div class="space-y-3">
+                            <div class="flex items-center justify-center md:justify-start gap-2">
+                                <span class="bg-amber-400/20 text-amber-300 border border-amber-400/40 text-xs font-extrabold px-4 py-1.5 rounded-full uppercase tracking-widest backdrop-blur-sm">
+                                    Dimora de Charme
+                                </span>
+                            </div>
+                            <h2 class="text-3xl md:text-5xl font-extrabold text-white tracking-tight">Maison Degas</h2>
+                            <p class="text-base md:text-lg text-gray-200 leading-relaxed max-w-2xl font-normal">
+                                Sede ufficiale di Incantour al 3° piano dello storico Palazzo Pignatelli di Monteleone (XVI secolo) in Piazza del Gesù Nuovo, Napoli.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Right: Large CTA Button -->
+                    <div class="flex-shrink-0">
+                        <a href="https://maisondegas.it/" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-3 bg-gradient-to-r from-[#E6A532] to-[#D4941A] hover:from-[#D4941A] hover:to-[#E6A532] text-white font-extrabold px-10 py-5 rounded-full shadow-2xl transform hover:scale-105 transition duration-300 text-lg border border-amber-300/40">
+                            <span>Scopri Maison Degas</span>
+                            <i class="fas fa-external-link-alt text-base"></i>
+                        </a>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <iframe src="footer.html" onload="this.before((this.contentDocument.body||this.contentDocument).children[0]);this.remove()"></iframe>
+
+    <!-- Scripts -->
+    <script src="../assets/js/config.js"></script>
+    <script src="../assets/js/api.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const navbar = document.querySelector('.navbar');
+            if (navbar) {
+                window.addEventListener('scroll', () => {
+                    if (window.scrollY > 100) {
+                        navbar.classList.add('scrolled');
+                    } else {
+                        navbar.classList.remove('scrolled');
+                    }
+                });
+            }
+        });
+    </script>
+</body>
+</html>

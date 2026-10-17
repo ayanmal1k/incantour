@@ -1,0 +1,61 @@
+@import "tailwindcss";
+
+@theme inline {
+  --color-incan-ink: #173c3d;
+  --color-incan-teal: #1b5e5f;
+  --color-incan-gold: #e6a532;
+  --color-incan-gold-dark: #d4941a;
+  --color-incan-cream: #fff7e8;
+  --color-incan-sand: #f8f2e7;
+  --font-display: Georgia, "Times New Roman", serif;
+  --font-sans: Arial, Helvetica, sans-serif;
+  --color-incan-teal-dark: #0f4142;
+  --radius-card: 1.25rem;
+  --shadow-card: 0 10px 30px rgb(23 60 61 / 12%);
+  --shadow-card-hover: 0 20px 45px rgb(23 60 61 / 18%);
+  --shadow-gold: 0 12px 24px rgb(230 165 50 / 26%);
+  --animate-rise: rise 650ms ease-out both;
+  --animate-floating: floating 3s ease-in-out infinite;
+  --animate-spin-slow: spin-slow 12s linear infinite;
+  @keyframes rise {
+    from { opacity: 0; transform: translateY(1rem); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes floating {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-8px); }
+  }
+  @keyframes spin-slow {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+  }
+}
+
+@layer utilities {
+  .bg-gradient-primary {
+    background-image: linear-gradient(135deg, #E6A532 0%, #D4941A 25%, #1B5E5F 75%, #0F4142 100%);
+  }
+  .bg-gradient-warm {
+    background-image: linear-gradient(135deg, #E6A532 0%, #D4941A 100%);
+  }
+  .bg-gradient-cool {
+    background-image: linear-gradient(135deg, #1B5E5F 0%, #0F4142 100%);
+  }
+  .text-gradient-incan {
+    background-image: linear-gradient(135deg, #E6A532 0%, #D4941A 25%, #1B5E5F 75%, #0F4142 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+}
+
+@layer base {
+  html { scroll-behavior: smooth; }
+  body { @apply bg-incan-cream font-sans text-slate-800 antialiased; }
+  :focus-visible { outline: 2px solid var(--color-incan-gold); outline-offset: 3px; }
+  ::selection { background: var(--color-incan-gold); color: white; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; scroll-behavior: auto !important; transition-duration: 0.01ms !important; }
+}

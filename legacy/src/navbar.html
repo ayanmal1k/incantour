@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="it">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IncanTour Navigazione</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="icon" type="image/png"
+        href="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/spirale_incantour_highres%20%281%29-7hzjNru1zG0Gbw6WqE4bJuWZ3FzOU2.png">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+        :root {
+            --primary-orange: #E6A532;
+            --primary-orange-dark: #D4941A;
+            --primary-teal: #1B5E5F;
+            --primary-teal-dark: #0F4142;
+            --gradient-primary: linear-gradient(135deg, #E6A532 0%, #D4941A 25%, #1B5E5F 75%, #0F4142 100%);
+            --gradient-warm: linear-gradient(135deg, #E6A532 0%, #D4941A 100%);
+            --gradient-cool: linear-gradient(135deg, #1B5E5F 0%, #0F4142 100%);
+        }
+
+        * {
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .spiral-rotate {
+            animation: spiralRotate 20s linear infinite;
+        }
+
+        @keyframes spiralRotate {
+            from {
+                transform: rotate(0deg);
+            }
+
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        .navbar {
+            transition: all 0.3s ease;
+            background: rgba(0, 0, 0, 0.2);
+            backdrop-filter: blur(10px);
+        }
+
+        /* Top-level bar items */
+        .navbar .nav-links > a,
+        .navbar .nav-links > button,
+        .navbar .nav-agency-link,
+        .navbar a[href*="agencyservices"] {
+            color: white !important;
+            transition: color 0.3s ease;
+        }
+
+        .navbar .nav-links > a:hover,
+        .navbar .nav-links > button:hover,
+        .navbar .nav-agency-link:hover,
+        .navbar a[href*="agencyservices"]:hover {
+            color: var(--primary-orange) !important;
+        }
+
+        .navbar.scrolled {
+            background: linear-gradient(135deg, rgba(230, 165, 50, 0.98) 0%, rgba(212, 148, 26, 0.98) 25%, rgba(27, 94, 95, 0.98) 75%, rgba(15, 65, 66, 0.98) 100%) !important;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 20px rgba(230, 165, 50, 0.2);
+        }
+
+        /* Scrolled top-level bar items */
+        .navbar.scrolled .nav-links > a,
+        .navbar.scrolled .nav-links > button,
+        .navbar.scrolled .nav-agency-link,
+        .navbar.scrolled a[href*="agencyservices"] {
+            color: #E6A532 !important;
+        }
+
+        .navbar.scrolled .nav-links > a:hover,
+        .navbar.scrolled .nav-links > button:hover,
+        .navbar.scrolled .nav-agency-link:hover,
+        .navbar.scrolled a[href*="agencyservices"]:hover {
+            color: white !important;
+        }
+
+        .navbar.scrolled .nav-links > a.active,
+        .navbar.scrolled .nav-links > button.active,
+        .navbar.scrolled .nav-agency-link.active,
+        .navbar.scrolled a[href*="agencyservices"].active {
+            color: white !important;
+        }
+
+        /* Dropdown menu links: readable dark text on white dropdown card */
+        .navbar .nav-links .absolute a,
+        .navbar.scrolled .nav-links .absolute a {
+            color: #1f2937 !important;
+            display: block;
+            background-color: transparent !important;
+            transition: all 0.2s ease;
+        }
+
+        .navbar .nav-links .absolute a:hover,
+        .navbar.scrolled .nav-links .absolute a:hover {
+            color: #E6A532 !important;
+            background-color: #f9fafb !important;
+        }
+
+        .mobile-menu {
+            background: linear-gradient(135deg, rgba(230, 165, 50, 0.98) 0%, rgba(212, 148, 26, 0.98) 25%, rgba(27, 94, 95, 0.98) 75%, rgba(15, 65, 66, 0.98) 100%);
+            backdrop-filter: blur(10px);
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Navigation -->
+    <header class="fixed w-full top-0 z-50">
+        <style>
+            .navbar {
+                transition: all 0.3s ease;
+                background: rgba(0, 0, 0, 0.2);
+                backdrop-filter: blur(10px);
+            }
+
+            /* Top-level bar items */
+            .navbar .nav-links > a,
+            .navbar .nav-links > button,
+            .navbar .nav-agency-link,
+            .navbar a[href*="agencyservices"] {
+                color: white !important;
+                transition: color 0.3s ease;
+            }
+
+            .navbar .nav-links > a:hover,
+            .navbar .nav-links > button:hover,
+            .navbar .nav-agency-link:hover,
+            .navbar a[href*="agencyservices"]:hover {
+                color: var(--primary-orange) !important;
+            }
+
+            .navbar.scrolled {
+                background: linear-gradient(135deg, rgba(230, 165, 50, 0.98) 0%, rgba(212, 148, 26, 0.98) 25%, rgba(27, 94, 95, 0.98) 75%, rgba(15, 65, 66, 0.98) 100%) !important;
+                backdrop-filter: blur(10px);
+                box-shadow: 0 2px 20px rgba(230, 165, 50, 0.2);
+            }
+
+            /* Scrolled top-level bar items */
+            .navbar.scrolled .nav-links > a,
+            .navbar.scrolled .nav-links > button,
+            .navbar.scrolled .nav-agency-link,
+            .navbar.scrolled a[href*="agencyservices"] {
+                color: #E6A532 !important;
+            }
+
+            .navbar.scrolled .nav-links > a:hover,
+            .navbar.scrolled .nav-links > button:hover,
+            .navbar.scrolled .nav-agency-link:hover,
+            .navbar.scrolled a[href*="agencyservices"]:hover {
+                color: white !important;
+            }
+
+            .navbar.scrolled .nav-links > a.active,
+            .navbar.scrolled .nav-links > button.active,
+            .navbar.scrolled .nav-agency-link.active,
+            .navbar.scrolled a[href*="agencyservices"].active {
+                color: white !important;
+            }
+
+            /* Dropdown menu links: readable dark text on white dropdown card */
+            .navbar .nav-links .absolute a,
+            .navbar.scrolled .nav-links .absolute a {
+                color: #1f2937 !important;
+                display: block;
+                background-color: transparent !important;
+                transition: all 0.2s ease;
+            }
+
+            .navbar .nav-links .absolute a:hover,
+            .navbar.scrolled .nav-links .absolute a:hover {
+                color: #E6A532 !important;
+                background-color: #f9fafb !important;
+            }
+        </style>
+        <nav class="navbar px-6 py-4 transition-all duration-300">
+            <div class="container mx-auto flex justify-between items-center">
+                <div class="logo">
+                    <a href="../index.html" class="flex items-center space-x-3">
+                        <div class="w-12 h-12 spiral-rotate">
+                            <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/spirale_incantour_highres%20%281%29-7hzjNru1zG0Gbw6WqE4bJuWZ3FzOU2.png"
+                                alt="IncanTour Logo" class="w-full h-full object-contain">
+                        </div>
+                        <img style="height: 30px;" src="../assets/images/logo - text.png" alt="IncanTour">
+                    </a>
+                </div>
+                <div class="hidden md:flex items-center space-x-8">
+                    <!-- Main Navigation -->
+                    <div class="nav-links relative group">
+                        <button
+                            class="text-white hover:text-orange-300 transition-colors duration-300 font-medium flex items-center">
+                            Campania Experience
+                            <i class="fas fa-chevron-down ml-2 text-xs"></i>
+                        </button>
+                        <div
+                            class="absolute left-0 mt-2 w-60 bg-white rounded-lg shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50">
+                            <a href="terra-mare-tour.html"
+                                class="block px-4 py-2 text-gray-800 hover:bg-gray-100">TerraMare Tour</a>
+                            <a href="destination-wedding.html"
+                                class="block px-4 py-2 text-gray-800 hover:bg-gray-100">Destination Wedding</a>
+                            <a href="wedding-planner.html"
+                                class="block px-4 py-2 text-gray-800 hover:bg-gray-100">Wedding Planner & Travel Coordinator</a>
+                            <a href="gruppi-a-tema.html" class="block px-4 py-2 text-gray-800 hover:bg-gray-100">Gruppi
+                                a tema</a>
+                        </div>
+                    </div>
+
+                    <div class="nav-links relative group">
+                        <button
+                            class="text-white hover:text-orange-300 transition-colors duration-300 font-medium flex items-center">
+                            Suggestioni dal Mondo
+                            <i class="fas fa-chevron-down ml-2 text-xs"></i>
+                        </button>
+                        <div
+                            class="absolute left-0 mt-2 w-60 bg-white rounded-lg shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50">
+                            <a href="viaggi-atipici.html" class="block px-4 py-2 text-gray-800 hover:bg-gray-100">Viaggi
+                                atipici</a>
+                            <a href="crociere.html" class="block px-4 py-2 text-gray-800 hover:bg-gray-100">Crociere</a>
+                            <a href="viaggi-di-nozze.html"
+                                class="block px-4 py-2 text-gray-800 hover:bg-gray-100">Viaggi di nozze</a>
+                        </div>
+                    </div>
+
+                    <div class="nav-links relative group">
+                        <button
+                            class="text-white hover:text-orange-300 transition-colors duration-300 font-medium flex items-center">
+                            Radici e Cultura
+                            <i class="fas fa-chevron-down ml-2 text-xs"></i>
+                        </button>
+                        <div
+                            class="absolute left-0 mt-2 w-60 bg-white rounded-lg shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50">
+                            <a href="percorsi-lingua-italiana.html"
+                                class="block px-4 py-2 text-gray-800 hover:bg-gray-100">Percorsi di lingua italiana</a>
+                            <a href="turismo-radici.html"
+                                class="block px-4 py-2 text-gray-800 hover:bg-gray-100">Turismo delle radici</a>
+                        </div>
+                    </div>
+
+                    <div class="nav-links relative group">
+                        <button
+                            class="text-white hover:text-orange-300 transition-colors duration-300 font-medium flex items-center">
+                            Chi Siamo
+                            <i class="fas fa-chevron-down ml-2 text-xs"></i>
+                        </button>
+                        <div
+                            class="absolute left-0 mt-2 w-60 bg-white rounded-lg shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50">
+                            <a href="/src/storia-visione.html"
+                                class="block px-4 py-2 text-gray-800 hover:bg-gray-100">Storia & Visione</a>
+                            <a href="/src/team.html" class="block px-4 py-2 text-gray-800 hover:bg-gray-100">Il nostro
+                                team</a>
+                            <a href="/src/partner.html"
+                                class="block px-4 py-2 text-gray-800 hover:bg-gray-100">Partner</a>
+                            <a href="/src/lavora-con-noi.html"
+                                class="block px-4 py-2 text-gray-800 hover:bg-gray-100">Lavora con noi</a>
+                            <a href="/src/contatti.html"
+                                class="block px-4 py-2 text-gray-800 hover:bg-gray-100">Contatti / Dove siamo</a>
+                        </div>
+                    </div>
+
+                    <div class="nav-links relative group">
+                        <button
+                            class="text-white hover:text-orange-300 transition-colors duration-300 font-medium flex items-center">
+                            News
+                            <i class="fas fa-chevron-down ml-2 text-xs"></i>
+                        </button>
+                        <div
+                            class="absolute left-0 mt-2 w-60 bg-white rounded-lg shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50">
+                            <!--
+                            <a href="/src/novita-eventi.html"
+                                class="block px-4 py-2 text-gray-800 hover:bg-gray-100">Novità ed eventi</a>
+                            <a href="/src/racconti-viaggio.html"
+                                class="block px-4 py-2 text-gray-800 hover:bg-gray-100">Racconti di viaggio</a>
+                            -->
+                            <a href="/src/blog.html" class="block px-4 py-2 text-gray-800 hover:bg-gray-100">Blog /
+                                Approfondimenti</a>
+                        </div>
+                    </div>
+
+                    <a href="https://culturedigitalisviluppo.com/vecchioincantour/agencyservices" target="_blank"
+                        class="nav-agency-link text-white hover:text-orange-300 transition-colors duration-300 font-medium">
+                        Agency Services
+                        <i class="fas fa-external-link-alt ml-1 text-xs"></i>
+                    </a>
+
+                    <!-- Login button commented out
+                    <a href="/src/login.html" class="text-white px-6 py-2 rounded-full hover:shadow-lg transition-all duration-300 font-medium" style="background: var(--gradient-warm);">
+                        ACCEDI
+                    </a>
+                    -->
+                </div>
+
+                <!-- Mobile menu button -->
+                <div class="md:hidden">
+                    <button class="text-white text-2xl mobile-menu-button">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Mobile Menu -->
+            <div class="mobile-menu hidden md:hidden absolute w-full bg-white shadow-xl py-4 px-6">
+                <div class="space-y-4">
+                    <!-- Campania Experience -->
+                    <div class="mobile-dropdown">
+                        <button class="w-full flex justify-between items-center py-2 text-gray-800">
+                            Campania Experience
+                            <i class="fas fa-chevron-down text-xs"></i>
+                        </button>
+                        <div class="mobile-submenu hidden pl-4 space-y-2 mt-2">
+                            <a href="terra-mare-tour.html"
+                                class="block py-2 text-gray-600 hover:text-orange-500">TerraMare Tour</a>
+                            <a href="destination-wedding.html"
+                                class="block py-2 text-gray-600 hover:text-orange-500">Destination Wedding</a>
+                            <a href="wedding-planner.html"
+                                class="block py-2 text-gray-600 hover:text-orange-500">Wedding Planner & Travel Coordinator</a>
+                            <a href="gruppi-a-tema.html" class="block py-2 text-gray-600 hover:text-orange-500">Gruppi a
+                                tema</a>
+                        </div>
+                    </div>
+
+                    <!-- Suggestioni dal Mondo -->
+                    <div class="mobile-dropdown">
+                        <button class="w-full flex justify-between items-center py-2 text-gray-800">
+                            Suggestioni dal Mondo
+                            <i class="fas fa-chevron-down text-xs"></i>
+                        </button>
+                        <div class="mobile-submenu hidden pl-4 space-y-2 mt-2">
+                            <a href="viaggi-atipici.html" class="block py-2 text-gray-600 hover:text-orange-500">Viaggi
+                                atipici</a>
+                            <a href="crociere.html" class="block py-2 text-gray-600 hover:text-orange-500">Crociere</a>
+                            <a href="viaggi-di-nozze.html" class="block py-2 text-gray-600 hover:text-orange-500">Viaggi
+                                di nozze</a>
+                        </div>
+                    </div>
+
+                    <!-- Radici e Cultura -->
+                    <div class="mobile-dropdown">
+                        <button class="w-full flex justify-between items-center py-2 text-gray-800">
+                            Radici e Cultura
+                            <i class="fas fa-chevron-down text-xs"></i>
+                        </button>
+                        <div class="mobile-submenu hidden pl-4 space-y-2 mt-2">
+                            <a href="percorsi-lingua-italiana.html"
+                                class="block py-2 text-gray-600 hover:text-orange-500">Percorsi di lingua italiana</a>
+                            <a href="turismo-radici.html" class="block py-2 text-gray-600 hover:text-orange-500">Turismo
+                                delle radici</a>
+                        </div>
+                    </div>
+
+                    <!-- Chi Siamo -->
+                    <div class="mobile-dropdown">
+                        <button class="w-full flex justify-between items-center py-2 text-gray-800">
+                            Chi Siamo
+                            <i class="fas fa-chevron-down text-xs"></i>
+                        </button>
+                        <div class="mobile-submenu hidden pl-4 space-y-2 mt-2">
+                            <a href="/src/storia-visione.html"
+                                class="block py-2 text-gray-600 hover:text-orange-500">Storia & Visione</a>
+                            <a href="/src/team.html" class="block py-2 text-gray-600 hover:text-orange-500">Il nostro
+                                team</a>
+                            <a href="/src/partner.html"
+                                class="block py-2 text-gray-600 hover:text-orange-500">Partner</a>
+                            <a href="/src/lavora-con-noi.html"
+                                class="block py-2 text-gray-600 hover:text-orange-500">Lavora con noi</a>
+                            <a href="/src/contatti.html" class="block py-2 text-gray-600 hover:text-orange-500">Contatti
+                                / Dove siamo</a>
+                        </div>
+                    </div>
+
+                    <!-- News -->
+                    <div class="mobile-dropdown">
+                        <button class="w-full flex justify-between items-center py-2 text-gray-800">
+                            News
+                            <i class="fas fa-chevron-down text-xs"></i>
+                        </button>
+                        <div class="mobile-submenu hidden pl-4 space-y-2 mt-2">
+                            <!--
+                            <a href="/src/novita-eventi.html"
+                                class="block py-2 text-gray-600 hover:text-orange-500">Novità ed eventi</a>
+                            <a href="/src/racconti-viaggio.html"
+                                class="block py-2 text-gray-600 hover:text-orange-500">Racconti di viaggio</a>
+                            -->
+                            <a href="/src/blog.html" class="block py-2 text-gray-600 hover:text-orange-500">Blog /
+                                Approfondimenti</a>
+                        </div>
+                    </div>
+
+                    <a href="https://culturedigitalisviluppo.com/vecchioincantour/agencyservices" target="_blank"
+                        class="block py-2 text-gray-800 hover:text-orange-500">
+                        Agency Services
+                        <i class="fas fa-external-link-alt ml-1 text-xs"></i>
+                    </a>
+
+                    <!-- Login button commented out
+                    <a href="/src/login.html" class="block text-center py-2 px-6 rounded-full text-white font-medium" style="background: var(--gradient-warm);">
+                        ACCEDI
+                    </a>
+                    -->
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // Navbar scroll effect
+            const navbar = document.querySelector('.navbar');
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 100) {
+                    navbar.classList.add('scrolled');
+                } else {
+                    navbar.classList.remove('scrolled');
+                }
+            });
+
+            // Mobile menu functionality
+            const mobileMenuButton = document.querySelector('.mobile-menu-button');
+            const mobileMenu = document.querySelector('.mobile-menu');
+            const mobileDropdowns = document.querySelectorAll('.mobile-dropdown');
+
+            mobileMenuButton.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+            });
+
+            mobileDropdowns.forEach(dropdown => {
+                const button = dropdown.querySelector('button');
+                const submenu = dropdown.querySelector('.mobile-submenu');
+
+                button.addEventListener('click', () => {
+                    submenu.classList.toggle('hidden');
+                    const icon = button.querySelector('i');
+                    icon.classList.toggle('fa-chevron-down');
+                    icon.classList.toggle('fa-chevron-up');
+                });
+            });
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Domande Frequenti (FAQ) - IncanTour</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="icon" type="image/png" href="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/spirale_incantour_highres%20%281%29-7hzjNru1zG0Gbw6WqE4bJuWZ3FzOU2.png">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+        
+        :root {
+            --primary-orange: #E6A532;
+            --primary-orange-dark: #D4941A;
+            --primary-teal: #1B5E5F;
+            --primary-teal-dark: #0F4142;
+            --gradient-primary: linear-gradient(135deg, #E6A532 0%, #D4941A 25%, #1B5E5F 75%, #0F4142 100%);
+            --gradient-warm: linear-gradient(135deg, #E6A532 0%, #D4941A 100%);
+            --gradient-cool: linear-gradient(135deg, #1B5E5F 0%, #0F4142 100%);
+        }
+        
+        * {
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .page-header-bg {
+            background: linear-gradient(135deg, rgba(0,0,0,0.65), rgba(15,65,66,0.6)), 
+                        url('../assets/images/contact.png');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+
+        .navbar.scrolled {
+            background: linear-gradient(135deg, rgba(230, 165, 50, 0.98) 0%, rgba(212, 148, 26, 0.98) 25%, rgba(27, 94, 95, 0.98) 75%, rgba(15, 65, 66, 0.98) 100%);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 20px rgba(230, 165, 50, 0.2);
+        }
+
+        /* Modern Accordion Styling */
+        .faq-card {
+            transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+            background: #ffffff;
+            border: 1px solid #e5e7eb;
+            border-radius: 1.25rem;
+        }
+
+        .faq-card:hover {
+            border-color: #E6A532;
+            transform: translateY(-2px);
+            box-shadow: 0 12px 30px rgba(230, 165, 50, 0.12);
+        }
+
+        .faq-card.open {
+            border-color: #E6A532;
+            background: linear-gradient(180deg, #ffffff 0%, #fffdf9 100%);
+            box-shadow: 0 15px 35px rgba(230, 165, 50, 0.18);
+        }
+
+        .faq-card .faq-icon {
+            transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1), color 0.3s ease;
+        }
+
+        .faq-card.open .faq-icon {
+            transform: rotate(180deg);
+            color: #E6A532;
+        }
+
+        /* Answer is 100% hidden until open class is added */
+        .faq-answer {
+            max-height: 0;
+            opacity: 0;
+            padding-left: 1.5rem;
+            padding-right: 1.5rem;
+            padding-top: 0;
+            padding-bottom: 0;
+            overflow: hidden;
+            transition: max-height 0.45s cubic-bezier(0.4, 0, 0.2, 1), 
+                        opacity 0.35s ease, 
+                        padding 0.35s ease;
+        }
+
+        .faq-card.open .faq-answer {
+            max-height: 600px;
+            opacity: 1;
+            padding-top: 1rem;
+            padding-bottom: 1.5rem;
+        }
+
+        .search-container {
+            background: white;
+            border-radius: 24px;
+            padding: 1.5rem 2rem;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.08);
+            margin: -50px auto 0;
+            position: relative;
+            z-index: 10;
+            max-width: 840px;
+            border: 1px solid #f3f4f6;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 1.1rem 1.5rem 1.1rem 3.25rem;
+            border: 2px solid #e5e7eb;
+            border-radius: 9999px;
+            font-size: 1.05rem;
+            transition: all 0.3s ease;
+        }
+
+        .search-input:focus {
+            outline: none;
+            border-color: var(--primary-orange);
+            box-shadow: 0 0 0 4px rgba(230, 165, 50, 0.15);
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800">
+    <iframe src="navbar.html" onload="this.before((this.contentDocument.body||this.contentDocument).children[0]);this.remove()"></iframe>
+
+    <main>
+        <!-- Page Header -->
+        <section class="page-header-bg min-h-[55vh] flex items-center justify-center relative overflow-hidden pt-20 pb-16">
+            <div class="absolute inset-0" style="background: linear-gradient(135deg, rgba(230, 165, 50, 0.3), rgba(27, 94, 95, 0.35));"></div>
+            
+            <div class="text-center text-white z-10 px-6 max-w-4xl mx-auto">
+                <div class="breadcrumb text-sm text-gray-200 mb-3">
+                    <a href="../index.html" class="hover:text-amber-300 transition">Home</a> / <span class="text-amber-300 font-medium">FAQ</span>
+                </div>
+                <span class="text-xs font-bold uppercase tracking-widest text-amber-200 bg-white/20 px-4 py-1.5 rounded-full inline-block mb-3 backdrop-blur-sm">Assistenza & Risposte</span>
+                <h1 class="text-4xl md:text-6xl font-extrabold mb-4 drop-shadow-md">Domande Frequenti (FAQ)</h1>
+                <p class="text-lg md:text-2xl opacity-95 max-w-2xl mx-auto text-amber-100 font-medium">
+                    Le risposte alle domande più comuni sui nostri viaggi e servizi.
+                </p>
+            </div>
+        </section>
+
+        <!-- Search Bar Section -->
+        <section class="py-6 bg-gray-50">
+            <div class="container mx-auto px-6">
+                <div class="search-container">
+                    <div class="relative">
+                        <input 
+                            type="text" 
+                            id="faq-search"
+                            class="search-input" 
+                            placeholder="Cerca una domanda o parola chiave..."
+                            oninput="filterFAQs()"
+                        >
+                        <div class="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400 text-xl">
+                            <i class="fas fa-search"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQ Content Accordion Section -->
+        <section class="py-16 bg-white">
+            <div class="container mx-auto px-6 max-w-4xl">
+                <!-- Loading Spinner -->
+                <div id="faq-loading" class="text-center py-12">
+                    <div class="animate-spin rounded-full h-12 w-12 border-b-2 border-amber-500 mx-auto mb-4"></div>
+                    <p class="text-gray-500 text-sm">Caricamento delle risposte in corso...</p>
+                </div>
+
+                <!-- Accordion Container -->
+                <div id="faq-list" class="space-y-4">
+                    <!-- Dynamic FAQs load here -->
+                </div>
+
+                <!-- No Results Message -->
+                <div id="faq-no-results" class="text-center py-16 hidden">
+                    <i class="fas fa-question-circle text-5xl text-gray-300 mb-3"></i>
+                    <h3 class="text-xl font-bold text-gray-800 mb-1">Nessuna domanda trovata</h3>
+                    <p class="text-gray-500 text-sm mb-6">Prova a cercare con una parola chiave diversa o contattaci direttamente.</p>
+                    <a href="contatti.html" class="inline-block bg-gradient-to-r from-[#E6A532] to-[#D4941A] text-white font-bold px-6 py-3 rounded-full shadow hover:opacity-95 transition">
+                        Contatta il Supporto
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Ask Question CTA Banner -->
+        <section class="py-16 bg-gradient-to-r from-amber-500 via-amber-600 to-teal-800 text-white text-center">
+            <div class="container mx-auto px-6 max-w-3xl">
+                <h2 class="text-3xl font-extrabold mb-4">Hai altre domande per il nostro team?</h2>
+                <p class="text-lg opacity-90 mb-8">Siamo sempre a tua disposizione per personalizzare il tuo viaggio ed offrirti la massima assistenza.</p>
+                <a href="contatti.html" class="bg-white text-teal-900 font-extrabold px-8 py-4 rounded-full shadow-2xl hover:bg-amber-100 transition transform hover:scale-105 inline-flex items-center gap-2">
+                    <i class="fas fa-paper-plane"></i> Scrivici un Messaggio
+                </a>
+            </div>
+        </section>
+    </main>
+
+    <iframe src="footer.html" onload="this.before((this.contentDocument.body||this.contentDocument).children[0]);this.remove()"></iframe>
+
+    <!-- Scripts -->
+    <script src="../assets/js/config.js"></script>
+    <script src="../assets/js/api.js"></script>
+    <script>
+        let allFAQs = [];
+
+        // Simple Question & Answer list (answers completely hidden until clicked)
+        const initialFAQs = [
+            {
+                question: 'Che cos’è Incantour?',
+                answer: 'Incantour è un’agenzia di viaggi e tour operator autore per l’incoming turistico-culturale in Campania e in Italia, specializzata in itinerari esperienziali, Turismo delle Radici, Viaggi di Nozze e percorsi su misura.'
+            },
+            {
+                question: 'Che cos\'è il Turismo delle Radici e come funziona il servizio Incantour?',
+                answer: 'Il Turismo delle Radici è un viaggio emozionale dedicato a chi desidera ricostruire il legame con la propria cultura d\'origine. Incantour vi accompagna nella ricerca genealogica, nella riscoperta della storia del cognome e nell\'organizzazione di incontri con la comunità del borgo natio dei vostri antenati in Campania e in Italia.'
+            },
+            {
+                question: 'Come posso personalizzare la mia Luna di Miele o aprire una Lista di Nozze?',
+                answer: 'Con Incantour puoi disegnare la tua Luna di Miele su misura insieme ai nostri consulenti esperti. Inoltre, tramite il form "Apri la tua lista" sul nostro sito, puoi attivare una lista di nozze personalizzata per permettere ad amici e parenti di contribuire facilmente al vostro viaggio da sogno.'
+            },
+            {
+                question: 'Come posso prenotare un tour o richiedere un preventivo?',
+                answer: 'Puoi compilare il form di prenotazione presente nella pagina del tour desiderato o nella sezione Contatti. Il nostro team elaborerà la richiesta e ti ricontatterà entro 24 ore.'
+            },
+            {
+                question: 'Dove si trova la sede di Incantour e quali sono le indicazioni per raggiungervi?',
+                answer: 'Siamo nel Centro Storico di Napoli, al 3° piano dello storico Palazzo Pignatelli di Monteleone (XVI secolo), in Calata Trinità Maggiore 53 (angolo Piazza del Gesù Nuovo, all\'interno della Maison Degas). Siamo raggiungibili con la Metropolitana Linea 1 (fermata Dante) o in autobus (linea R2 o R1).'
+            }
+        ];
+
+        async function fetchFAQs() {
+            const loading = document.getElementById('faq-loading');
+
+            const wpUrl = (typeof config !== 'undefined' && config.wordPressUrl) 
+                ? config.wordPressUrl 
+                : 'https://staging.incantour.it/wordpress';
+
+            try {
+                const res = await fetch(`${wpUrl}/wp-json/incantour/v1/faqs`);
+                if (res.ok) {
+                    const data = await res.json();
+                    if (Array.isArray(data) && data.length > 0) {
+                        allFAQs = data;
+                    } else {
+                        allFAQs = initialFAQs;
+                    }
+                } else {
+                    allFAQs = initialFAQs;
+                }
+            } catch (err) {
+                console.error('Error fetching FAQs:', err);
+                allFAQs = initialFAQs;
+            } finally {
+                loading.style.display = 'none';
+                renderFAQs();
+            }
+        }
+
+        function filterFAQs() {
+            renderFAQs();
+        }
+
+        function renderFAQs() {
+            const container = document.getElementById('faq-list');
+            const noResults = document.getElementById('faq-no-results');
+            const searchVal = document.getElementById('faq-search').value.toLowerCase();
+
+            let filtered = allFAQs.filter(faq => {
+                return (faq.question && faq.question.toLowerCase().includes(searchVal)) || 
+                       (faq.answer && faq.answer.toLowerCase().includes(searchVal));
+            });
+
+            if (filtered.length === 0) {
+                container.innerHTML = '';
+                noResults.classList.remove('hidden');
+                return;
+            }
+
+            noResults.classList.add('hidden');
+            container.innerHTML = filtered.map((faq, idx) => `
+                <div class="faq-card overflow-hidden" id="faq-card-${idx}">
+                    <button onclick="toggleFAQ(${idx})" class="w-full text-left p-6 font-bold text-gray-900 text-base md:text-lg flex justify-between items-center gap-4 cursor-pointer select-none">
+                        <div class="flex items-center gap-3">
+                            <span class="w-8 h-8 rounded-full bg-amber-100 text-amber-700 flex items-center justify-center text-sm font-bold flex-shrink-0">
+                                <i class="fas fa-question"></i>
+                            </span>
+                            <span class="leading-snug">${faq.question}</span>
+                        </div>
+                        <div class="w-9 h-9 rounded-full bg-gray-100 flex items-center justify-center flex-shrink-0">
+                            <i class="fas fa-chevron-down faq-icon text-gray-500 text-sm"></i>
+                        </div>
+                    </button>
+                    <!-- Answer is 100% hidden until clicked -->
+                    <div class="faq-answer border-t border-amber-100/50 text-gray-600 text-sm md:text-base leading-relaxed">
+                        ${faq.answer}
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function toggleFAQ(idx) {
+            const card = document.getElementById(`faq-card-${idx}`);
+            const isOpen = card.classList.contains('open');
+            
+            // Close all other FAQs for accordion effect
+            document.querySelectorAll('.faq-card').forEach(c => c.classList.remove('open'));
+            
+            if (!isOpen) {
+                card.classList.add('open');
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', fetchFAQs);
+    </script>
+</body>
+</html>

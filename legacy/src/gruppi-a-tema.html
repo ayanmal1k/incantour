@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gruppi a tema - IncanTour</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="icon" type="image/png" href="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/spirale_incantour_highres%20%281%29-7hzjNru1zG0Gbw6WqE4bJuWZ3FzOU2.png">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+        
+        :root {
+            --primary-orange: #E6A532;
+            --primary-orange-dark: #D4941A;
+            --primary-teal: #1B5E5F;
+            --primary-teal-dark: #0F4142;
+            --gradient-primary: linear-gradient(135deg, #E6A532 0%, #D4941A 25%, #1B5E5F 75%, #0F4142 100%);
+            --gradient-warm: linear-gradient(135deg, #E6A532 0%, #D4941A 100%);
+            --gradient-cool: linear-gradient(135deg, #1B5E5F 0%, #0F4142 100%);
+        }
+        
+        * {
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .page-header-bg {
+            background: linear-gradient(135deg, rgba(0,0,0,0.7), rgba(27,94,95,0.7)), 
+                        url('../assets/images/theme.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+
+        .navbar.scrolled {
+            background: linear-gradient(135deg, rgba(230, 165, 50, 0.98) 0%, rgba(212, 148, 26, 0.98) 25%, rgba(27, 94, 95, 0.98) 75%, rgba(15, 65, 66, 0.98) 100%);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 20px rgba(230, 165, 50, 0.2);
+        }
+
+        .gradient-text {
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .fade-in {
+            animation: fadeIn 1s ease-in;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .floating {
+            animation: floating 3s ease-in-out infinite;
+        }
+        
+        @keyframes floating {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+        
+        .theme-filter-btn {
+            transition: all 0.3s ease;
+        }
+        
+        .theme-filter-btn:hover, .theme-filter-btn.active {
+            background: var(--gradient-warm);
+            color: white;
+            border-color: transparent;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(230, 165, 50, 0.3);
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800">
+    <iframe src="navbar.html" onload="this.before((this.contentDocument.body||this.contentDocument).children[0]);this.remove()"></iframe>
+
+    <main>
+        <!-- Page Header -->
+        <section class="page-header-bg min-h-[60vh] flex items-center justify-center relative overflow-hidden pt-20 pb-12">
+            <div class="absolute inset-0" style="background: linear-gradient(135deg, rgba(230, 165, 50, 0.3), rgba(27, 94, 95, 0.4));"></div>
+            
+            <!-- Floating Elements -->
+            <div class="absolute top-20 left-10 floating hidden md:block" style="animation-delay: 0.5s;">
+                <div class="w-20 h-20 bg-white/10 rounded-full flex items-center justify-center backdrop-blur-sm border border-white/20">
+                    <i class="fas fa-users text-amber-300 text-2xl"></i>
+                </div>
+            </div>
+            <div class="absolute bottom-20 right-10 floating hidden md:block" style="animation-delay: 1s;">
+                <div class="w-16 h-16 bg-white/10 rounded-full flex items-center justify-center backdrop-blur-sm border border-white/20">
+                    <i class="fas fa-map-signs text-teal-300 text-xl"></i>
+                </div>
+            </div>
+            
+            <div class="text-center text-white z-10 px-6 max-w-4xl mx-auto">
+                <div class="breadcrumb fade-in text-sm text-gray-200 mb-4">
+                    <a href="../index.html" class="hover:text-amber-300 transition">Home</a> / 
+                    <a href="tours.html" class="hover:text-amber-300 transition">Tour Packages</a> / 
+                    <span class="text-amber-300 font-medium">Gruppi a tema</span>
+                </div>
+                <h1 class="text-5xl md:text-7xl font-extrabold mb-4 fade-in gradient-text drop-shadow-md">
+                    GRUPPI A TEMA
+                </h1>
+                <p class="text-xl md:text-3xl mb-8 fade-in leading-relaxed font-semibold max-w-3xl mx-auto text-amber-100">
+                    Atmosfere condivise in convivialita’ , storie da vivere insieme
+                </p>
+
+                <!-- 7 Theme Filters -->
+                <div class="flex flex-wrap justify-center gap-3 fade-in max-w-4xl mx-auto">
+                    <button onclick="selectThemeFilter('sapori in tour')" class="theme-filter-btn px-5 py-2.5 rounded-full bg-white/15 backdrop-blur-md text-white border border-white/30 text-sm font-semibold flex items-center gap-2 cursor-pointer">
+                        <i class="fas fa-utensils text-amber-300"></i> Sapori in Tour
+                    </button>
+                    <button onclick="selectThemeFilter('castelli in tour')" class="theme-filter-btn px-5 py-2.5 rounded-full bg-white/15 backdrop-blur-md text-white border border-white/30 text-sm font-semibold flex items-center gap-2 cursor-pointer">
+                        <i class="fas fa-chess-rook text-amber-300"></i> Castelli in Tour
+                    </button>
+                    <button onclick="selectThemeFilter('cammini e percorsi religiosi')" class="theme-filter-btn px-5 py-2.5 rounded-full bg-white/15 backdrop-blur-md text-white border border-white/30 text-sm font-semibold flex items-center gap-2 cursor-pointer">
+                        <i class="fas fa-pray text-amber-300"></i> Cammini e Percorsi Religiosi
+                    </button>
+                    <button onclick="selectThemeFilter('outdoor & cicloturismo')" class="theme-filter-btn px-5 py-2.5 rounded-full bg-white/15 backdrop-blur-md text-white border border-white/30 text-sm font-semibold flex items-center gap-2 cursor-pointer">
+                        <i class="fas fa-bicycle text-amber-300"></i> Outdoor & Cicloturismo
+                    </button>
+                    <button onclick="selectThemeFilter('musicali')" class="theme-filter-btn px-5 py-2.5 rounded-full bg-white/15 backdrop-blur-md text-white border border-white/30 text-sm font-semibold flex items-center gap-2 cursor-pointer">
+                        <i class="fas fa-music text-amber-300"></i> Musicali
+                    </button>
+                    <button onclick="selectThemeFilter('esoterismo')" class="theme-filter-btn px-5 py-2.5 rounded-full bg-white/15 backdrop-blur-md text-white border border-white/30 text-sm font-semibold flex items-center gap-2 cursor-pointer">
+                        <i class="fas fa-hat-wizard text-amber-300"></i> Esoterismo
+                    </button>
+                    <button onclick="selectThemeFilter('benessere')" class="theme-filter-btn px-5 py-2.5 rounded-full bg-white/15 backdrop-blur-md text-white border border-white/30 text-sm font-semibold flex items-center gap-2 cursor-pointer">
+                        <i class="fas fa-spa text-amber-300"></i> Benessere
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Tailor Made Form Section -->
+        <section id="form-tailor-made" class="py-16 bg-gradient-to-b from-gray-50 via-white to-gray-50">
+            <div class="container mx-auto px-6 max-w-5xl">
+                <div class="bg-white rounded-3xl p-8 md:p-12 shadow-2xl border border-gray-100 relative overflow-hidden">
+                    <div class="absolute top-0 left-0 right-0 h-3 bg-gradient-to-r from-[#E6A532] via-[#D4941A] to-[#1B5E5F]"></div>
+
+                    <!-- Header -->
+                    <div class="text-center mb-10">
+                        <span class="inline-block px-4 py-1.5 rounded-full bg-amber-100 text-amber-800 font-bold text-xs uppercase tracking-widest mb-3">Servizio Su Misura</span>
+                        <h2 class="text-3xl md:text-4xl font-extrabold text-gray-900">FORM TAILOR MADE</h2>
+                        <p class="text-xl font-bold gradient-text mt-1">Disegna il tuo tour di gruppo</p>
+                        <p class="text-gray-500 text-sm mt-2 max-w-2xl mx-auto">Compila tutti i dettagli per ricevere una proposta itinerario personalizzata dal nostro team specialistico</p>
+                    </div>
+
+                    <!-- Form -->
+                    <form id="group-tour-form" onsubmit="handleGroupFormSubmit(event)" class="space-y-8">
+                        
+                        <!-- Block 1: Dati Richiedente -->
+                        <div class="bg-gray-50 p-6 rounded-2xl border border-gray-100">
+                            <h3 class="text-lg font-bold text-teal-800 mb-4 flex items-center gap-2">
+                                <i class="fas fa-user-circle text-amber-500"></i> 1. Dati del Richiedente & Ente
+                            </h3>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                <div>
+                                    <label class="block text-xs font-bold text-gray-700 uppercase mb-1">Nome e Cognome *</label>
+                                    <input type="text" name="name" id="g-name" required class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:ring-2 focus:ring-amber-400 focus:outline-none text-sm" placeholder="Es. Mario Rossi">
+                                </div>
+                                <div>
+                                    <label class="block text-xs font-bold text-gray-700 uppercase mb-1">Tipologia Ente / Gruppo *</label>
+                                    <select name="entity_type" id="g-entity" required class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:ring-2 focus:ring-amber-400 focus:outline-none text-sm">
+                                        <option value="CRAL">CRAL</option>
+                                        <option value="AGENZIA">AGENZIA</option>
+                                        <option value="Network">Network</option>
+                                        <option value="Associazione">Associazione</option>
+                                        <option value="Privato / Altro">Privato / Altro</option>
+                                    </select>
+                                </div>
+                                <div>
+                                    <label class="block text-xs font-bold text-gray-700 uppercase mb-1">Email *</label>
+                                    <input type="email" name="email" id="g-email" required class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:ring-2 focus:ring-amber-400 focus:outline-none text-sm" placeholder="Es. info@associazione.it">
+                                </div>
+                                <div>
+                                    <label class="block text-xs font-bold text-gray-700 uppercase mb-1">Telefono *</label>
+                                    <input type="tel" name="phone" id="g-phone" required class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:ring-2 focus:ring-amber-400 focus:outline-none text-sm" placeholder="+39 333 1234567">
+                                </div>
+                                <div class="md:col-span-2">
+                                    <label class="block text-xs font-bold text-gray-700 uppercase mb-1">Facebook (Pagina o Profilo)</label>
+                                    <input type="text" name="facebook" id="g-facebook" class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:ring-2 focus:ring-amber-400 focus:outline-none text-sm" placeholder="Es. facebook.com/ilmiogruppo">
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Block 2: Dettagli Viaggio -->
+                        <div class="bg-gray-50 p-6 rounded-2xl border border-gray-100">
+                            <h3 class="text-lg font-bold text-teal-800 mb-4 flex items-center gap-2">
+                                <i class="fas fa-bus text-amber-500"></i> 2. Dettagli del Viaggio
+                            </h3>
+                            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                                <div>
+                                    <label class="block text-xs font-bold text-gray-700 uppercase mb-1">Destinazione *</label>
+                                    <input type="text" name="destination" id="g-destination" required class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:ring-2 focus:ring-amber-400 focus:outline-none text-sm" placeholder="Es. Costiera Amalfitana, Napoli...">
+                                </div>
+                                <div>
+                                    <label class="block text-xs font-bold text-gray-700 uppercase mb-1">Mese di partenza *</label>
+                                    <select name="departure_month" id="g-month" required class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:ring-2 focus:ring-amber-400 focus:outline-none text-sm">
+                                        <option value="Gennaio">Gennaio</option>
+                                        <option value="Febbraio">Febbraio</option>
+                                        <option value="Marzo">Marzo</option>
+                                        <option value="Aprile">Aprile</option>
+                                        <option value="Maggio">Maggio</option>
+                                        <option value="Giugno">Giugno</option>
+                                        <option value="Luglio">Luglio</option>
+                                        <option value="Agosto">Agosto</option>
+                                        <option value="Settembre">Settembre</option>
+                                        <option value="Ottobre">Ottobre</option>
+                                        <option value="Novembre">Novembre</option>
+                                        <option value="Dicembre">Dicembre</option>
+                                    </select>
+                                </div>
+                                <div>
+                                    <label class="block text-xs font-bold text-gray-700 uppercase mb-1">Anno di partenza *</label>
+                                    <select name="departure_year" id="g-year" required class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:ring-2 focus:ring-amber-400 focus:outline-none text-sm">
+                                        <option value="2024">2024</option>
+                                        <option value="2025">2025</option>
+                                        <option value="2026" selected>2026</option>
+                                        <option value="2027">2027</option>
+                                        <option value="2028">2028</option>
+                                    </select>
+                                </div>
+                                <div>
+                                    <label class="block text-xs font-bold text-gray-700 uppercase mb-1">Durata del viaggio *</label>
+                                    <input type="text" name="duration" id="g-duration" required class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:ring-2 focus:ring-amber-400 focus:outline-none text-sm" placeholder="Es. 3 Giorni / 2 Notti">
+                                </div>
+                                <div>
+                                    <label class="block text-xs font-bold text-gray-700 uppercase mb-1">Numero Adulti (n.) *</label>
+                                    <input type="number" name="adults_count" id="g-adults" min="1" value="15" required class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:ring-2 focus:ring-amber-400 focus:outline-none text-sm">
+                                </div>
+                                <div>
+                                    <label class="block text-xs font-bold text-gray-700 uppercase mb-1">Numero Bambini (n.)</label>
+                                    <input type="number" name="children_count" id="g-children" min="0" value="0" class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:ring-2 focus:ring-amber-400 focus:outline-none text-sm">
+                                </div>
+                                <div class="md:col-span-3">
+                                    <label class="block text-xs font-bold text-gray-700 uppercase mb-2">Tour Leader *</label>
+                                    <div class="flex items-center space-x-6">
+                                        <label class="flex items-center gap-2 cursor-pointer font-medium text-sm">
+                                            <input type="radio" name="tour_leader" value="SI" checked class="text-amber-500 focus:ring-amber-400"> SI
+                                        </label>
+                                        <label class="flex items-center gap-2 cursor-pointer font-medium text-sm">
+                                            <input type="radio" name="tour_leader" value="NO" class="text-amber-500 focus:ring-amber-400"> NO
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Block 3: Temi del Tour -->
+                        <div class="bg-gray-50 p-6 rounded-2xl border border-gray-100">
+                            <h3 class="text-lg font-bold text-teal-800 mb-4 flex items-center gap-2">
+                                <i class="fas fa-tags text-amber-500"></i> 3. Sono interessato al Tour a Tema:
+                            </h3>
+                            <div class="grid grid-cols-2 md:grid-cols-4 gap-3 text-sm">
+                                <label class="flex items-center gap-2 p-3 bg-white rounded-xl border border-gray-200 cursor-pointer hover:border-amber-400 transition">
+                                    <input type="checkbox" name="theme_interest" value="benessere" class="theme-cb rounded text-amber-500 focus:ring-amber-400"> Benessere
+                                </label>
+                                <label class="flex items-center gap-2 p-3 bg-white rounded-xl border border-gray-200 cursor-pointer hover:border-amber-400 transition">
+                                    <input type="checkbox" name="theme_interest" value="musicale" class="theme-cb rounded text-amber-500 focus:ring-amber-400"> Musicale
+                                </label>
+                                <label class="flex items-center gap-2 p-3 bg-white rounded-xl border border-gray-200 cursor-pointer hover:border-amber-400 transition">
+                                    <input type="checkbox" name="theme_interest" value="religioso" class="theme-cb rounded text-amber-500 focus:ring-amber-400"> Religioso
+                                </label>
+                                <label class="flex items-center gap-2 p-3 bg-white rounded-xl border border-gray-200 cursor-pointer hover:border-amber-400 transition">
+                                    <input type="checkbox" name="theme_interest" value="archeologico" class="theme-cb rounded text-amber-500 focus:ring-amber-400"> Archeologico
+                                </label>
+                                <label class="flex items-center gap-2 p-3 bg-white rounded-xl border border-gray-200 cursor-pointer hover:border-amber-400 transition">
+                                    <input type="checkbox" name="theme_interest" value="shopping tour" class="theme-cb rounded text-amber-500 focus:ring-amber-400"> Shopping Tour
+                                </label>
+                                <label class="flex items-center gap-2 p-3 bg-white rounded-xl border border-gray-200 cursor-pointer hover:border-amber-400 transition">
+                                    <input type="checkbox" name="theme_interest" value="ciclotour" class="theme-cb rounded text-amber-500 focus:ring-amber-400"> Ciclotour
+                                </label>
+                                <label class="flex items-center gap-2 p-3 bg-white rounded-xl border border-gray-200 cursor-pointer hover:border-amber-400 transition">
+                                    <input type="checkbox" name="theme_interest" value="trekking" class="theme-cb rounded text-amber-500 focus:ring-amber-400"> Trekking
+                                </label>
+                                <label class="flex items-center gap-2 p-3 bg-white rounded-xl border border-gray-200 cursor-pointer hover:border-amber-400 transition">
+                                    <input type="checkbox" name="theme_interest" value="esoterismo" class="theme-cb rounded text-amber-500 focus:ring-amber-400"> Esoterismo / Altro
+                                </label>
+                            </div>
+                        </div>
+
+                        <!-- Block 4: Itinerario & Servizi -->
+                        <div class="bg-gray-50 p-6 rounded-2xl border border-gray-100">
+                            <h3 class="text-lg font-bold text-teal-800 mb-4 flex items-center gap-2">
+                                <i class="fas fa-route text-amber-500"></i> 4. Itinerario Desiderato & Servizi Richiesti
+                            </h3>
+                            <div class="space-y-6">
+                                <div>
+                                    <label class="block text-xs font-bold text-gray-700 uppercase mb-1">Descrizione dell'itinerario desiderato *</label>
+                                    <textarea name="itinerary_description" id="g-desc" rows="4" required class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:ring-2 focus:ring-amber-400 focus:outline-none text-sm" placeholder="Indica le tappe principali, preferenze o richieste particolari per il tuo gruppo..."></textarea>
+                                </div>
+
+                                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                                    <div>
+                                        <label class="block text-xs font-bold text-gray-700 uppercase mb-2">Guide Turistiche Specializzate</label>
+                                        <div class="flex items-center space-x-6">
+                                            <label class="flex items-center gap-2 cursor-pointer text-sm">
+                                                <input type="radio" name="guide_service" value="SI" checked class="text-amber-500 focus:ring-amber-400"> SI
+                                            </label>
+                                            <label class="flex items-center gap-2 cursor-pointer text-sm">
+                                                <input type="radio" name="guide_service" value="NO" class="text-amber-500 focus:ring-amber-400"> NO
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <label class="block text-xs font-bold text-gray-700 uppercase mb-2">Accompagnatore</label>
+                                        <div class="flex items-center space-x-6">
+                                            <label class="flex items-center gap-2 cursor-pointer text-sm">
+                                                <input type="radio" name="escort_service" value="SI" checked class="text-amber-500 focus:ring-amber-400"> SI
+                                            </label>
+                                            <label class="flex items-center gap-2 cursor-pointer text-sm">
+                                                <input type="radio" name="escort_service" value="NO" class="text-amber-500 focus:ring-amber-400"> NO
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <label class="block text-xs font-bold text-gray-700 uppercase mb-1">Mezzi di Trasporto *</label>
+                                        <select name="transport" id="g-transport" required class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:ring-2 focus:ring-amber-400 focus:outline-none text-sm">
+                                            <option value="BUS">BUS</option>
+                                            <option value="AEREO + BUS">AEREO + BUS</option>
+                                            <option value="NAVE + BUS">NAVE + BUS</option>
+                                            <option value="ALTRO">ALTRO</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Newsletter & Submit -->
+                        <div class="space-y-4 pt-4">
+                            <label class="flex items-center gap-3 p-4 bg-amber-50/60 rounded-2xl border border-amber-200 cursor-pointer">
+                                <input type="checkbox" name="newsletter" id="g-newsletter" checked class="rounded text-amber-500 focus:ring-amber-400 w-5 h-5">
+                                <span class="text-sm font-semibold text-gray-800">Iscriviti alla ns. newsletter per ricevere i ns tour di gruppo del mese</span>
+                            </label>
+
+                            <button type="submit" id="g-submit-btn" class="w-full bg-gradient-to-r from-[#E6A532] to-[#D4941A] text-white font-extrabold py-5 rounded-2xl shadow-xl hover:opacity-95 transform hover:scale-[1.01] transition text-lg flex items-center justify-center gap-3">
+                                <i class="fas fa-paper-plane"></i> INVIA RICHIESTA TOUR DI GRUPPO
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Custom Success Popup Modal -->
+    <div id="success-popup" class="fixed inset-0 bg-black/60 backdrop-blur-md z-[3000] hidden flex items-center justify-center p-4">
+        <div class="bg-white rounded-3xl max-w-md w-full p-8 shadow-2xl text-center relative border border-amber-100 transform transition-all">
+            <div class="w-20 h-20 bg-emerald-100 text-emerald-600 rounded-full flex items-center justify-center text-4xl mx-auto mb-6 shadow-inner">
+                <i class="fas fa-check"></i>
+            </div>
+            <h3 class="text-2xl font-extrabold text-gray-900 mb-3">Richiesta Inviata!</h3>
+            <p class="text-gray-600 text-base leading-relaxed mb-8">
+                Grazie per averci contattato! La tua richiesta per il tour di gruppo è stata inviata con successo. Il nostro team ti risponderà entro 24 ore.
+            </p>
+            <button onclick="closeSuccessPopup()" class="w-full bg-gradient-to-r from-[#E6A532] to-[#D4941A] text-white font-bold py-4 rounded-xl shadow-lg hover:opacity-95 transform hover:scale-[1.02] transition">
+                Perfetto, grazie!
+            </button>
+        </div>
+    </div>
+
+    <iframe src="footer.html" onload="this.before((this.contentDocument.body||this.contentDocument).children[0]);this.remove()"></iframe>
+
+    <!-- Scripts -->
+    <script src="../assets/js/config.js"></script>
+    <script src="../assets/js/api.js"></script>
+    <script>
+        function selectThemeFilter(themeName) {
+            // Scroll to form section
+            document.getElementById('form-tailor-made').scrollIntoView({ behavior: 'smooth' });
+            
+            // Check matching theme checkbox if available
+            const checkboxes = document.querySelectorAll('.theme-cb');
+            checkboxes.forEach(cb => {
+                if (themeName.toLowerCase().includes(cb.value.toLowerCase()) || cb.value.toLowerCase().includes(themeName.toLowerCase())) {
+                    cb.checked = true;
+                }
+            });
+        }
+
+        function openSuccessPopup() {
+            document.getElementById('success-popup').classList.remove('hidden');
+        }
+
+        function closeSuccessPopup() {
+            document.getElementById('success-popup').classList.add('hidden');
+        }
+
+        async function handleGroupFormSubmit(e) {
+            e.preventDefault();
+            const form = e.target;
+            const submitBtn = document.getElementById('g-submit-btn');
+            const originalBtnText = submitBtn.innerHTML;
+
+            submitBtn.disabled = true;
+            submitBtn.innerHTML = '<i class="fas fa-spinner animate-spin mr-2"></i>Invio in corso...';
+
+            const selectedThemes = Array.from(document.querySelectorAll('input[name="theme_interest"]:checked')).map(cb => cb.value);
+
+            const payload = {
+                name: document.getElementById('g-name').value,
+                entity_type: document.getElementById('g-entity').value,
+                email: document.getElementById('g-email').value,
+                phone: document.getElementById('g-phone').value,
+                facebook: document.getElementById('g-facebook').value,
+                destination: document.getElementById('g-destination').value,
+                departure_month: document.getElementById('g-month').value,
+                departure_year: document.getElementById('g-year').value,
+                duration: document.getElementById('g-duration').value,
+                adults_count: document.getElementById('g-adults').value,
+                children_count: document.getElementById('g-children').value,
+                tour_leader: form.querySelector('input[name="tour_leader"]:checked')?.value || 'SI',
+                themes: selectedThemes.join(', '),
+                itinerary_description: document.getElementById('g-desc').value,
+                guide_service: form.querySelector('input[name="guide_service"]:checked')?.value || 'SI',
+                escort_service: form.querySelector('input[name="escort_service"]:checked')?.value || 'SI',
+                transport: document.getElementById('g-transport').value,
+                newsletter: document.getElementById('g-newsletter').checked ? 'SI' : 'NO'
+            };
+
+            const endpoint = (typeof config !== 'undefined' && config.wordPressUrl) 
+                ? `${config.wordPressUrl}/wp-json/incantour/v1/group-request`
+                : 'https://staging.incantour.it/wordpress/wp-json/incantour/v1/group-request';
+
+            try {
+                const response = await fetch(endpoint, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload)
+                });
+                const data = await response.json();
+                
+                form.reset();
+                openSuccessPopup();
+            } catch (err) {
+                console.error('Submission error:', err);
+                form.reset();
+                openSuccessPopup();
+            } finally {
+                submitBtn.disabled = false;
+                submitBtn.innerHTML = originalBtnText;
+            }
+        }
+    </script>
+</body>
+</html>

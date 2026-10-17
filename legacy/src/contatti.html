@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dove Siamo & Contatti - IncanTour</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="icon" type="image/png" href="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/spirale_incantour_highres%20%281%29-7hzjNru1zG0Gbw6WqE4bJuWZ3FzOU2.png">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+        
+        :root {
+            --primary-orange: #E6A532;
+            --primary-orange-dark: #D4941A;
+            --primary-teal: #1B5E5F;
+            --primary-teal-dark: #0F4142;
+            --gradient-primary: linear-gradient(135deg, #E6A532 0%, #D4941A 25%, #1B5E5F 75%, #0F4142 100%);
+            --gradient-warm: linear-gradient(135deg, #E6A532 0%, #D4941A 100%);
+            --gradient-cool: linear-gradient(135deg, #1B5E5F 0%, #0F4142 100%);
+        }
+        
+        * {
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .direction-card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            background: white;
+        }
+
+        .direction-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(230, 165, 50, 0.15);
+        }
+
+        .navbar.scrolled {
+            background: linear-gradient(135deg, rgba(230, 165, 50, 0.98) 0%, rgba(212, 148, 26, 0.98) 25%, rgba(27, 94, 95, 0.98) 75%, rgba(15, 65, 66, 0.98) 100%);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 20px rgba(230, 165, 50, 0.2);
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800">
+    <iframe src="navbar.html" onload="this.before((this.contentDocument.body||this.contentDocument).children[0]);this.remove()"></iframe>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="relative min-h-[60vh] flex items-center justify-center overflow-hidden pt-20">
+            <div class="absolute inset-0">
+                <img src="../assets/images/contact.png" alt="Contatti" class="w-full h-full object-cover">
+                <div class="absolute inset-0" style="background: linear-gradient(135deg, rgba(230, 165, 50, 0.8), rgba(27, 94, 95, 0.85));"></div>
+            </div>
+            <div class="relative z-10 text-center text-white px-6 max-w-4xl mx-auto">
+                <span class="text-xs font-bold uppercase tracking-widest text-amber-200 bg-white/20 px-4 py-1.5 rounded-full inline-block mb-3 backdrop-blur-sm">Sede & Contatti</span>
+                <h1 class="text-5xl md:text-7xl font-extrabold mb-4 drop-shadow-md">DOVE SIAMO</h1>
+                <p class="text-xl md:text-2xl opacity-95 max-w-2xl mx-auto">
+                    Vieni a trovarci nel cuore del Centro Storico di Napoli
+                </p>
+            </div>
+        </section>
+
+        <!-- DOVE SIAMO Section -->
+        <section class="py-20 bg-white">
+            <div class="container mx-auto px-6 max-w-6xl">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+                    
+                    <!-- Left: Palazzo Pignatelli Image & Maison Degas Logo -->
+                    <div class="space-y-6">
+                        <div class="rounded-3xl overflow-hidden shadow-2xl border border-gray-100 group relative">
+                            <img src="../assets/images/contact map.png" alt="Palazzo Pignatelli di Monteleone" class="w-full h-auto object-cover transform group-hover:scale-105 transition-transform duration-500">
+                            <div class="absolute bottom-4 left-4 bg-black/60 backdrop-blur-md text-white px-4 py-2 rounded-xl text-xs font-bold">
+                                Palazzo Pignatelli di Monteleone (XVI sec.)
+                            </div>
+                        </div>
+
+                        <!-- Clickable Maison Degas Link/Logo -->
+                        <div class="bg-amber-50/70 p-6 rounded-2xl border border-amber-200/80 flex items-center justify-between">
+                            <div>
+                                <h4 class="font-bold text-gray-900 text-sm">Maison Degas – Dimora de Charme</h4>
+                                <p class="text-xs text-gray-600">Sede Incantour al 3° piano</p>
+                            </div>
+                            <a href="https://www.maisondegas.it" target="_blank" rel="noopener font-bold" class="bg-[#1B5E5F] text-white text-xs px-5 py-3 rounded-xl hover:bg-[#0F4142] transition shadow-md flex items-center gap-2">
+                                <span>Visita Sito Ufficiale</span> <i class="fas fa-external-link-alt text-[10px]"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Right: Complete Location Description -->
+                    <div class="space-y-6">
+                        <div>
+                            <span class="text-amber-500 font-bold uppercase tracking-widest text-xs">Sede Principale</span>
+                            <h2 class="text-3xl md:text-4xl font-extrabold text-teal-900 mt-1 mb-4">DOVE SIAMO</h2>
+                        </div>
+                        
+                        <p class="text-lg text-gray-700 leading-relaxed font-medium">
+                            Siamo nel Centro Storico di Napoli, al 3° piano dello storico Palazzo Pignatelli di Monteleone (XVI secolo), in Calata Trinità Maggiore 53, angolo Piazza del Gesù Nuovo, all'interno della Maison Degas – Dimora de Charme.
+                        </p>
+
+                        <!-- ZTL Information Box -->
+                        <div class="bg-amber-50/80 p-6 rounded-2xl border border-amber-200 shadow-sm space-y-3">
+                            <div class="flex items-center gap-3">
+                                <div class="w-10 h-10 bg-amber-500 text-white rounded-xl flex items-center justify-center text-lg flex-shrink-0">
+                                    <i class="fas fa-parking"></i>
+                                </div>
+                                <div>
+                                    <h3 class="font-bold text-gray-900 text-base">ZTL (Zona a Traffico Limitato)</h3>
+                                    <p class="text-xs text-amber-800 font-medium">Informazioni utili per i visitatori</p>
+                                </div>
+                            </div>
+                            <p class="text-xs text-gray-700 leading-relaxed">
+                                Our office is located within Naples' historic centre, inside a Limited Traffic Zone (ZTL) and the pedestrian area of Piazza del Gesù Nuovo.
+                            </p>
+                            <div class="text-xs text-gray-700 space-y-1 font-medium pt-1">
+                                <p><i class="far fa-clock text-amber-600 mr-2"></i><strong>Opening Hours:</strong> All day.</p>
+                                <p><i class="fas fa-shield-alt text-amber-600 mr-2"></i>Access to the pedestrian area is through the monitored entrance on Calata Trinità Maggiore.</p>
+                                <p><i class="fas fa-car text-amber-600 mr-2"></i>Only authorized vehicles are permitted.</p>
+                                <p><i class="fas fa-motorcycle text-amber-600 mr-2"></i>Motorcycles and scooters are not allowed unless specifically authorized.</p>
+                            </div>
+                            <div class="pt-2">
+                                <a href="#contact-form-section" class="inline-flex items-center gap-2 bg-gradient-to-r from-[#E6A532] to-[#D4941A] text-white text-xs font-bold px-5 py-2.5 rounded-xl shadow hover:opacity-95 transition">
+                                    <i class="fas fa-headset"></i> CONTATTACI PER ASSISTENZA
+                                </a>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <!-- Google Maps Embed -->
+                <div class="mt-16 rounded-3xl overflow-hidden shadow-2xl border border-gray-100 h-[400px]">
+                    <iframe 
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3018.0649755490715!2d14.25055047656606!3d40.84632832924376!2m3!1f0!f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x133b0844f2b960b7%3A0x67c76ec7c0e5a95!2sCalata%20Trinit%C3%A0%20Maggiore%2C%2053%2C%2080134%20Napoli%20NA!5e0!3m2!1sit!2sit!4v1700000000000!5m2!1sit!2sit" 
+                        width="100%" 
+                        height="100%" 
+                        style="border:0;" 
+                        allowfullscreen="" 
+                        loading="lazy" 
+                        referrerpolicy="no-referrer-when-downgrade">
+                    </iframe>
+                </div>
+            </div>
+        </section>
+
+        <!-- Come raggiungerci Section -->
+        <section class="py-20 bg-gray-50 border-t border-gray-100">
+            <div class="container mx-auto px-6 max-w-6xl">
+                <div class="text-center mb-16">
+                    <span class="text-amber-500 font-bold uppercase tracking-widest text-xs">Indicazioni Stradali</span>
+                    <h2 class="text-4xl md:text-5xl font-extrabold text-teal-900 mt-1 mb-4">Come Raggiungerci</h2>
+                    <p class="text-gray-600 max-w-2xl mx-auto">Indicazioni chiare per raggiungerci con ogni mezzo di trasporto</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                    
+                    <!-- Auto Card -->
+                    <div class="direction-card rounded-2xl p-6 shadow-md border border-gray-100">
+                        <div class="w-12 h-12 rounded-xl bg-amber-100 text-amber-600 flex items-center justify-center text-xl mb-4">
+                            <i class="fas fa-car"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-900 mb-4">IN AUTO</h3>
+                        <div class="space-y-4 text-xs text-gray-600 leading-relaxed">
+                            <div>
+                                <p class="font-bold text-amber-700 uppercase">Via Autostrade</p>
+                                <p class="mt-1">Per chi proviene dalle autostrade A1 (Milano–Napoli), A3 (Salerno–Reggio Calabria) e A16 (Napoli–Canosa), uscire a Napoli Porto.</p>
+                                <p class="mt-1">Percorrere Via Nuova Marina verso Via A. De Gasperi, proseguire per Via Depretis, svoltare a destra in Piazza Municipio e nuovamente a destra in Via Medina.</p>
+                                <p class="mt-1">Al semaforo proseguire dritto lungo Via Monteoliveto. Dopo circa 150 metri, svoltare a destra in Calata Trinità Maggiore.</p>
+                            </div>
+                            <div class="pt-3 border-t border-gray-100">
+                                <p class="font-bold text-amber-700 uppercase">Via Tangenziale di Napoli</p>
+                                <p class="mt-1">Dalla Tangenziale di Napoli, uscita Capodimonte, proseguire lungo Via Santa Teresa degli Scalzi.</p>
+                                <p class="mt-1">Continuare su Via Pessina fino a Piazza Dante. Proseguire lungo Via Toledo. Giunti a Piazza Carità, svoltare a sinistra verso Piazza Matteotti.</p>
+                                <p class="mt-1">Seguire la rotonda e, al semaforo, svoltare a sinistra in Via Monteoliveto. Dopo circa 300 metri, svoltare a destra in Calata Trinità Maggiore.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Treno Card -->
+                    <div class="direction-card rounded-2xl p-6 shadow-md border border-gray-100">
+                        <div class="w-12 h-12 rounded-xl bg-teal-100 text-teal-700 flex items-center justify-center text-xl mb-4">
+                            <i class="fas fa-train"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-900 mb-4">IN TRENO</h3>
+                        <div class="space-y-3 text-xs text-gray-600 leading-relaxed">
+                            <p class="font-bold text-teal-800 uppercase">Dalla Stazione Centrale di Piazza Garibaldi:</p>
+                            <p>• Autobus R2 fino a Via Medina, poi a piedi fino a Calata Trinità Maggiore;</p>
+                            <p class="font-semibold text-gray-700">oppure</p>
+                            <p>• Metropolitana Linea 1 direzione Piscinola, fermata Dante.</p>
+                            <p class="mt-2">Da Piazza Dante percorrere Via Toledo, attraversare Via Cisterna dell'Olio e raggiungere Piazza del Gesù Nuovo. Da qui imboccare Calata Trinità Maggiore fino a Palazzo Pignatelli di Monteleone.</p>
+                        </div>
+                    </div>
+
+                    <!-- Nave Card -->
+                    <div class="direction-card rounded-2xl p-6 shadow-md border border-gray-100">
+                        <div class="w-12 h-12 rounded-xl bg-blue-100 text-blue-600 flex items-center justify-center text-xl mb-4">
+                            <i class="fas fa-ship"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-900 mb-4">IN NAVE</h3>
+                        <div class="space-y-3 text-xs text-gray-600 leading-relaxed">
+                            <p class="font-bold text-blue-800 uppercase">Dalla Stazione Marittima o dal Molo Beverello:</p>
+                            <p>Raggiungere Piazza Municipio, proseguire lungo Via Medina, poi Via Monteoliveto fino a Calata Trinità Maggiore.</p>
+                        </div>
+                    </div>
+
+                    <!-- Aereo Card -->
+                    <div class="direction-card rounded-2xl p-6 shadow-md border border-gray-100">
+                        <div class="w-12 h-12 rounded-xl bg-amber-100 text-amber-600 flex items-center justify-center text-xl mb-4">
+                            <i class="fas fa-plane"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-900 mb-4">IN AEREO</h3>
+                        <div class="space-y-3 text-xs text-gray-600 leading-relaxed">
+                            <p class="font-bold text-amber-800 uppercase">Dall'Aeroporto di Capodichino:</p>
+                            <p>Prendere la navetta Alibus (partenza ogni 15 minuti) fino a Piazza Municipio.</p>
+                            <p>Successivamente prendere l'autobus R1 fino a Via Monteoliveto. Proseguire a piedi lungo Calata Trinità Maggiore fino alla Maison Degas.</p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- Dedicated Contact Us & Form Section -->
+        <section id="contact-form-section" class="py-20 bg-white">
+            <div class="container mx-auto px-6 max-w-5xl">
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-12">
+                    
+                    <!-- Direct Contacts -->
+                    <div class="space-y-8 bg-gray-50 p-8 rounded-3xl border border-gray-100">
+                        <div>
+                            <span class="text-amber-500 font-bold uppercase tracking-widest text-xs">Contatti Diretti</span>
+                            <h3 class="text-2xl font-extrabold text-gray-900 mt-1">Parla con noi</h3>
+                        </div>
+
+                        <div class="space-y-6">
+                            <div class="flex items-center gap-4">
+                                <div class="w-12 h-12 rounded-2xl bg-amber-500 text-white flex items-center justify-center text-xl shadow-md">
+                                    <i class="fas fa-phone-alt"></i>
+                                </div>
+                                <div>
+                                    <p class="text-xs font-bold text-gray-500 uppercase">Telefono</p>
+                                    <a href="tel:+393384357143" class="text-base font-bold text-gray-900 hover:text-amber-600 transition">338 435 7143</a>
+                                </div>
+                            </div>
+
+                            <div class="flex items-center gap-4">
+                                <div class="w-12 h-12 rounded-2xl bg-[#1B5E5F] text-white flex items-center justify-center text-xl shadow-md">
+                                    <i class="fas fa-envelope"></i>
+                                </div>
+                                <div>
+                                    <p class="text-xs font-bold text-gray-500 uppercase">Email</p>
+                                    <a href="mailto:info@incantour.it" class="text-base font-bold text-gray-900 hover:text-[#1B5E5F] transition">info@incantour.it</a>
+                                </div>
+                            </div>
+
+                            <div class="flex items-center gap-4">
+                                <div class="w-12 h-12 rounded-2xl bg-teal-700 text-white flex items-center justify-center text-xl shadow-md">
+                                    <i class="fas fa-map-marker-alt"></i>
+                                </div>
+                                <div>
+                                    <p class="text-xs font-bold text-gray-500 uppercase">Indirizzo</p>
+                                    <p class="text-sm font-semibold text-gray-800">Calata Trinità Maggiore 53, 80134 Napoli</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Contact Form -->
+                    <div class="md:col-span-2 bg-white rounded-3xl p-8 md:p-10 shadow-xl border border-gray-100">
+                        <h3 class="text-2xl font-extrabold text-gray-900 mb-2">Inviaci un Messaggio</h3>
+                        <p class="text-sm text-gray-500 mb-8">Compila il form per richiedere informazioni sulle nostre proposte di viaggio</p>
+
+                        <form id="contact-form" onsubmit="handleContactSubmit(event)" class="space-y-5">
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+                                <div>
+                                    <label class="block text-xs font-bold text-gray-700 uppercase mb-1">Nome *</label>
+                                    <input type="text" name="firstname" id="c-firstname" required class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:ring-2 focus:ring-amber-400 focus:outline-none text-sm" placeholder="Il tuo nome">
+                                </div>
+                                <div>
+                                    <label class="block text-xs font-bold text-gray-700 uppercase mb-1">Cognome *</label>
+                                    <input type="text" name="lastname" id="c-lastname" required class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:ring-2 focus:ring-amber-400 focus:outline-none text-sm" placeholder="Il tuo cognome">
+                                </div>
+                            </div>
+
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+                                <div>
+                                    <label class="block text-xs font-bold text-gray-700 uppercase mb-1">Email *</label>
+                                    <input type="email" name="email" id="c-email" required class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:ring-2 focus:ring-amber-400 focus:outline-none text-sm" placeholder="la-tua-email@example.com">
+                                </div>
+                                <div>
+                                    <label class="block text-xs font-bold text-gray-700 uppercase mb-1">Telefono *</label>
+                                    <input type="tel" name="phone" id="c-phone" required class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:ring-2 focus:ring-amber-400 focus:outline-none text-sm" placeholder="+39 333 1234567">
+                                </div>
+                            </div>
+
+                            <div>
+                                <label class="block text-xs font-bold text-gray-700 uppercase mb-1">Oggetto *</label>
+                                <input type="text" name="subject" id="c-subject" required class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:ring-2 focus:ring-amber-400 focus:outline-none text-sm" placeholder="Oggetto della richiesta">
+                            </div>
+
+                            <div>
+                                <label class="block text-xs font-bold text-gray-700 uppercase mb-1">Messaggio *</label>
+                                <textarea name="message" id="c-message" rows="4" required class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:ring-2 focus:ring-amber-400 focus:outline-none text-sm" placeholder="Scrivi qui il tuo messaggio..."></textarea>
+                            </div>
+
+                            <div class="pt-2">
+                                <button type="submit" id="c-submit-btn" class="w-full bg-gradient-to-r from-[#E6A532] to-[#D4941A] text-white font-extrabold py-4 rounded-xl shadow-lg hover:opacity-95 transform hover:scale-[1.01] transition flex items-center justify-center gap-2">
+                                    <i class="fas fa-paper-plane"></i> INVIA
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Custom Success Popup Modal -->
+    <div id="success-popup" class="fixed inset-0 bg-black/60 backdrop-blur-md z-[3000] hidden flex items-center justify-center p-4">
+        <div class="bg-white rounded-3xl max-w-md w-full p-8 shadow-2xl text-center relative border border-amber-100 transform transition-all">
+            <div class="w-20 h-20 bg-emerald-100 text-emerald-600 rounded-full flex items-center justify-center text-4xl mx-auto mb-6 shadow-inner">
+                <i class="fas fa-check-circle"></i>
+            </div>
+            <h3 class="text-2xl font-extrabold text-gray-900 mb-3">Messaggio Inviato!</h3>
+            <p class="text-gray-600 text-base leading-relaxed mb-8">
+                Grazie per averci contattato! Il nostro team ti risponderà entro 24 ore.
+            </p>
+            <button onclick="closeSuccessPopup()" class="w-full bg-gradient-to-r from-[#E6A532] to-[#D4941A] text-white font-bold py-4 rounded-xl shadow-lg hover:opacity-95 transform hover:scale-[1.02] transition">
+                Perfetto, grazie!
+            </button>
+        </div>
+    </div>
+
+    <iframe src="footer.html" onload="this.before((this.contentDocument.body||this.contentDocument).children[0]);this.remove()"></iframe>
+
+    <!-- Scripts -->
+    <script src="../assets/js/config.js"></script>
+    <script src="../assets/js/api.js"></script>
+    <script>
+        function openSuccessPopup() {
+            document.getElementById('success-popup').classList.remove('hidden');
+        }
+
+        function closeSuccessPopup() {
+            document.getElementById('success-popup').classList.add('hidden');
+        }
+
+        async function handleContactSubmit(e) {
+            e.preventDefault();
+            const form = e.target;
+            const submitBtn = document.getElementById('c-submit-btn');
+            const originalBtnText = submitBtn.innerHTML;
+
+            submitBtn.disabled = true;
+            submitBtn.innerHTML = '<i class="fas fa-spinner animate-spin mr-2"></i>Invio in corso...';
+
+            const payload = {
+                name: document.getElementById('c-firstname').value + ' ' + document.getElementById('c-lastname').value,
+                email: document.getElementById('c-email').value,
+                phone: document.getElementById('c-phone').value,
+                subject: document.getElementById('c-subject').value,
+                details: document.getElementById('c-message').value,
+                service: 'Contatti General Inquiry'
+            };
+
+            const wpUrl = (typeof config !== 'undefined' && config.wordPressUrl) 
+                ? config.wordPressUrl 
+                : 'https://staging.incantour.it/wordpress';
+
+            const primaryEndpoint = `${wpUrl}/wp-json/incantour/v1/contact-request`;
+            const fallbackEndpoint = `${wpUrl}/wp-json/incantour/v1/wedding-request`;
+
+            try {
+                let res = await fetch(primaryEndpoint, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload)
+                });
+
+                if (!res.ok) {
+                    await fetch(fallbackEndpoint, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(payload)
+                    });
+                }
+            } catch (err) {
+                console.error('Error submitting contact form:', err);
+            } finally {
+                form.reset();
+                submitBtn.disabled = false;
+                submitBtn.innerHTML = originalBtnText;
+                openSuccessPopup();
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const navbar = document.querySelector('.navbar');
+            if (navbar) {
+                window.addEventListener('scroll', () => {
+                    if (window.scrollY > 100) {
+                        navbar.classList.add('scrolled');
+                    } else {
+                        navbar.classList.remove('scrolled');
+                    }
+                });
+            }
+        });
+    </script>
+</body>
+</html>
