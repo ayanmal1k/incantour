@@ -3,7 +3,7 @@
 import { useId, useState } from "react";
 import Link from "next/link";
 
-import { CalendarIcon, ChatIcon, CheckIcon, MinusIcon, PlusIcon, WhatsAppIcon } from "@/components/ui/icons";
+import { CalendarIcon, CheckIcon, MinusIcon, PlusIcon, WhatsAppIcon } from "@/components/ui/icons";
 import type { Tour } from "@/lib/wordpress/types";
 
 function parseBasePrice(price?: string | number): number {
@@ -127,19 +127,11 @@ export function TourBookingCard({ tour, className = "" }: TourBookingCardProps) 
           <span>Prenota Ora</span>
         </Link>
 
-        <Link
-          href={`/contatti?tour=${encodeURIComponent(tour.id)}`}
-          className="w-full inline-flex items-center justify-center gap-2 rounded-full border-2 border-[#1B5E5F] py-3.5 px-6 text-center text-sm font-bold text-[#1B5E5F] transition-all duration-300 hover:bg-[#1B5E5F] hover:text-white focus:outline-none"
-        >
-          <ChatIcon className="h-4 w-4" />
-          <span>Richiedi Informazioni</span>
-        </Link>
-
         <a
           href={whatsappUrl}
           target="_blank"
           rel="noopener noreferrer"
-          className="w-full inline-flex items-center justify-center gap-2 rounded-full bg-emerald-50 border border-emerald-200 py-3 px-6 text-center text-xs sm:text-sm font-bold text-emerald-800 transition hover:bg-emerald-100 focus:outline-none"
+          className="w-full inline-flex items-center justify-center gap-2 rounded-full bg-emerald-50 border border-emerald-200 py-3.5 px-6 text-center text-xs sm:text-sm font-bold text-emerald-800 transition hover:bg-emerald-100 focus:outline-none"
         >
           <WhatsAppIcon className="h-4 w-4 text-emerald-600" />
           <span>Chiedi su WhatsApp</span>
