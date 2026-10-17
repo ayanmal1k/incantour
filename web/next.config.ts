@@ -173,6 +173,56 @@ const nextConfig: NextConfig = {
         destination: "/gruppi-a-tema",
         permanent: true,
       },
+      {
+        source: "/src/storia-visione.html",
+        destination: "/storia-visione",
+        permanent: true,
+      },
+      {
+        source: "/storia-visione.html",
+        destination: "/storia-visione",
+        permanent: true,
+      },
+      {
+        source: "/src/team.html",
+        destination: "/team",
+        permanent: true,
+      },
+      {
+        source: "/team.html",
+        destination: "/team",
+        permanent: true,
+      },
+      {
+        source: "/src/partner.html",
+        destination: "/partner",
+        permanent: true,
+      },
+      {
+        source: "/partner.html",
+        destination: "/partner",
+        permanent: true,
+      },
+      {
+        source: "/src/lavora-con-noi.html",
+        destination: "/lavora-con-noi",
+        permanent: true,
+      },
+      {
+        source: "/lavora-con-noi.html",
+        destination: "/lavora-con-noi",
+        permanent: true,
+      },
+      {
+        source: "/src/faq.html",
+        destination: "/faq",
+        permanent: true,
+      },
+      {
+        source: "/faq.html",
+        destination: "/faq",
+        permanent: true,
+      },
     ];
   },
 };
