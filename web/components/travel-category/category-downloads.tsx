@@ -17,8 +17,8 @@ export function CategoryDownloads({
         <span className="text-[#E6A532] font-bold uppercase tracking-widest text-xs sm:text-sm block mb-1">
           {downloads.badge}
         </span>
-        <h2 className="text-3xl sm:text-4xl font-extrabold text-gradient-dark mb-8 tracking-tight">
-          {downloads.title}
+        <h2 className="text-3xl sm:text-4xl font-extrabold text-gradient-dark mb-8">
+          <span className="inline-block pb-2">{downloads.title}</span>
         </h2>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">

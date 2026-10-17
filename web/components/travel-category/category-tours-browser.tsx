@@ -18,20 +18,11 @@ export function CategoryToursBrowser({
   const keywords = useMemo(() => config.toursSection.filterKeywords || [], [config.toursSection.filterKeywords]);
 
   const categoryTours = useMemo(() => {
-    const matched = allTours.filter((tour) => {
+    return allTours.filter((tour) => {
       const cat = String(tour.acf?.category || "").toLowerCase();
       const title = String(tour.title?.rendered || "").toLowerCase();
-      return keywords.some((kw) => cat.includes(kw) || title.includes(kw));
-    });
-    // If strict filter yielded matches, use them; otherwise, fall back gracefully to all tours
-    return matched.length > 0 ? matched : allTours;
-  }, [allTours, keywords]);
-
-  const hasCategorySpecificTours = useMemo(() => {
-    return allTours.some((tour) => {
-      const cat = String(tour.acf?.category || "").toLowerCase();
-      const title = String(tour.title?.rendered || "").toLowerCase();
-      return keywords.some((kw) => cat.includes(kw) || title.includes(kw));
+      const tags = String(tour.acf?.Tags || "").toLowerCase();
+      return keywords.some((kw) => cat.includes(kw) || title.includes(kw) || tags.includes(kw));
     });
   }, [allTours, keywords]);
 
@@ -55,7 +46,7 @@ export function CategoryToursBrowser({
         <div className="bg-white rounded-2xl p-6 sm:p-8 shadow-[0_15px_40px_rgba(0,0,0,0.12)] border border-gray-100">
           <div className="text-center mb-5">
             <h2 className="text-xl sm:text-2xl font-extrabold text-gradient-dark mb-1">
-              {config.search.title}
+              <span className="inline-block pb-1">{config.search.title}</span>
             </h2>
             <p className="text-xs sm:text-sm text-gray-500">
               {config.search.subtitle}
@@ -86,18 +77,12 @@ export function CategoryToursBrowser({
             <span className="text-[#E6A532] font-bold uppercase tracking-widest text-xs sm:text-sm block mb-2">
               {config.toursSection.badge}
             </span>
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-gradient-dark mb-4 tracking-tight">
-              {config.toursSection.title}
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-gradient-dark mb-4">
+              <span className="inline-block pb-2">{config.toursSection.title}</span>
             </h2>
             <p className="text-base sm:text-lg text-gray-600 max-w-2xl mx-auto">
               {config.toursSection.subtitle}
             </p>
-
-            {!hasCategorySpecificTours && (
-              <div className="mt-4 inline-block bg-amber-50 border border-amber-200 text-amber-900 text-xs sm:text-sm px-4 py-2 rounded-xl">
-                Nota: Le partenze dedicate sono in costante aggiornamento dal catalogo. Di seguito puoi esplorare le esperienze consigliate da personalizzare.
-              </div>
-            )}
           </div>
 
           {/* Results Count & Clear */}

@@ -21,8 +21,8 @@ export function CategoryRelatedNews({
             <span className="text-[#E6A532] font-bold uppercase tracking-widest text-xs sm:text-sm block mb-1">
               Blog &amp; Storie
             </span>
-            <h2 className="text-3xl sm:text-4xl font-extrabold text-gradient-dark tracking-tight">
-              {title}
+            <h2 className="text-3xl sm:text-4xl font-extrabold text-gradient-dark">
+              <span className="inline-block pb-2">{title}</span>
             </h2>
             <p className="text-gray-600 text-sm sm:text-base mt-2 max-w-xl">
               {subtitle}

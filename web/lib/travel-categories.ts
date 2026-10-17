@@ -171,7 +171,7 @@ export const travelCategoryConfigs: Record<
       subtitle: "Scegli tra la nostra selezione di avventure ed esperienze straordinarie nel mondo",
       emptyMessage: "Nessun pacchetto trovato con i criteri di ricerca specificati.",
       cardBadge: "Viaggi Atipici",
-      filterKeywords: ["atipic", "suggestioni", "avventura"],
+      filterKeywords: ["atipic", "suggestioni", "avventura", "adventure", "viaggi-atipici"],
     },
     relatedPosts: {
       title: "Notizie e Approfondimenti",
