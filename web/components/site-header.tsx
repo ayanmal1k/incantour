@@ -67,13 +67,13 @@ export function SiteHeader() {
           </Link>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center space-x-8">
+          <div className="hidden md:flex items-center space-x-7 lg:space-x-8">
             {navigation.map((item) =>
               item.children ? (
                 <div key={item.label} className="relative group">
                   <button
                     type="button"
-                    className={`flex items-center gap-1.5 font-medium text-sm transition-colors duration-300 py-2 cursor-pointer ${
+                    className={`flex items-center gap-1.5 font-semibold text-[15px] lg:text-base tracking-wide transition-colors duration-300 py-2 cursor-pointer ${
                       isScrolled
                         ? "text-[#E6A532] hover:text-white"
                         : "text-white hover:text-orange-300"
@@ -85,7 +85,7 @@ export function SiteHeader() {
                       fill="none"
                       stroke="currentColor"
                       strokeWidth="2.5"
-                      className="h-3 w-3 transition-transform duration-300 group-hover:rotate-180"
+                      className="h-3.5 w-3.5 transition-transform duration-300 group-hover:rotate-180"
                       aria-hidden="true"
                     >
                       <polyline points="6 9 12 15 18 9" />
@@ -98,9 +98,9 @@ export function SiteHeader() {
                       <Link
                         key={child.href}
                         href={child.href}
-                        className={`block rounded-lg px-4 py-2.5 text-sm font-medium transition-colors ${
+                        className={`block rounded-lg px-4 py-2.5 text-[15px] font-semibold transition-colors ${
                           pathname === child.href
-                            ? "bg-amber-50 text-[#E6A532] font-semibold"
+                            ? "bg-amber-50 text-[#E6A532]"
                             : "text-gray-800 hover:bg-gray-100 hover:text-[#E6A532]"
                         }`}
                       >
@@ -115,7 +115,7 @@ export function SiteHeader() {
                   href={item.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className={`flex items-center gap-1 font-medium text-sm transition-colors duration-300 py-2 ${
+                  className={`flex items-center gap-1 font-semibold text-[15px] lg:text-base tracking-wide transition-colors duration-300 py-2 ${
                     isScrolled
                       ? "text-[#E6A532] hover:text-white"
                       : "text-white hover:text-orange-300"
@@ -129,7 +129,7 @@ export function SiteHeader() {
                     strokeWidth="2"
                     strokeLinecap="round"
                     strokeLinejoin="round"
-                    className="h-3 w-3 ml-0.5"
+                    className="h-3.5 w-3.5 ml-0.5"
                     aria-hidden="true"
                   >
                     <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
@@ -141,7 +141,7 @@ export function SiteHeader() {
                 <Link
                   key={item.href}
                   href={item.href}
-                  className={`font-medium text-sm transition-colors duration-300 py-2 ${
+                  className={`font-semibold text-[15px] lg:text-base tracking-wide transition-colors duration-300 py-2 ${
                     isScrolled
                       ? "text-[#E6A532] hover:text-white"
                       : "text-white hover:text-orange-300"
@@ -188,7 +188,7 @@ export function SiteHeader() {
                     <button
                       type="button"
                       onClick={() => toggleMobileDropdown(item.label)}
-                      className="w-full flex justify-between items-center py-2 text-left font-semibold text-gray-800 hover:text-amber-600 cursor-pointer"
+                      className="w-full flex justify-between items-center py-2.5 text-left font-bold text-base text-gray-800 hover:text-amber-600 cursor-pointer"
                     >
                       <span>{item.label}</span>
                       <svg
@@ -210,7 +210,7 @@ export function SiteHeader() {
                             key={child.href}
                             href={child.href}
                             onClick={() => setMobileMenuOpen(false)}
-                            className="block py-2 text-sm text-gray-600 hover:text-[#E6A532] font-medium"
+                            className="block py-2 text-[15px] text-gray-700 hover:text-[#E6A532] font-semibold"
                           >
                             {child.label}
                           </Link>
@@ -225,7 +225,7 @@ export function SiteHeader() {
                     target="_blank"
                     rel="noopener noreferrer"
                     onClick={() => setMobileMenuOpen(false)}
-                    className="flex items-center justify-between py-2 font-semibold text-gray-800 hover:text-[#E6A532] border-b border-gray-100"
+                    className="flex items-center justify-between py-2.5 font-bold text-base text-gray-800 hover:text-[#E6A532] border-b border-gray-100"
                   >
                     <span>{item.label}</span>
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="h-4 w-4 ml-1">
@@ -239,7 +239,7 @@ export function SiteHeader() {
                     key={item.href}
                     href={item.href}
                     onClick={() => setMobileMenuOpen(false)}
-                    className="block py-2 font-semibold text-gray-800 hover:text-[#E6A532] border-b border-gray-100"
+                    className="block py-2.5 font-bold text-base text-gray-800 hover:text-[#E6A532] border-b border-gray-100"
                   >
                     {item.label}
                   </Link>
