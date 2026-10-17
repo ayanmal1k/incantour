@@ -108,9 +108,8 @@ export function HeroSection() {
         {heroSlides.map((slide, index) => (
           <div
             key={slide.src}
-            className={`absolute inset-0 transition-opacity duration-1000 ease-in-out ${
-              index === currentSlide ? "opacity-100" : "opacity-0 pointer-events-none"
-            }`}
+            className={`absolute inset-0 transition-opacity duration-1000 ease-in-out ${index === currentSlide ? "opacity-100" : "opacity-0 pointer-events-none"
+              }`}
             aria-hidden={index !== currentSlide}
           >
             <Image
@@ -175,9 +174,8 @@ export function HeroSection() {
               onClick={() => goToSlide(idx)}
               aria-label={`Vai alla diapositiva ${idx + 1}: ${slide.alt}`}
               aria-current={idx === currentSlide}
-              className={`h-2.5 rounded-full transition-all duration-300 ${
-                idx === currentSlide ? "w-8 bg-incan-gold" : "w-2.5 bg-white/50 hover:bg-white/80"
-              }`}
+              className={`h-2.5 rounded-full transition-all duration-300 ${idx === currentSlide ? "w-8 bg-incan-gold" : "w-2.5 bg-white/50 hover:bg-white/80"
+                }`}
             />
           ))}
         </div>
