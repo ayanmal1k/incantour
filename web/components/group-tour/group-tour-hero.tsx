@@ -4,8 +4,6 @@ import React from "react";
 import Image from "next/image";
 import Link from "next/link";
 import {
-  UsersIcon,
-  RouteIcon,
   UtensilsIcon,
   CastleIcon,
   PrayIcon,
@@ -45,18 +43,6 @@ export function GroupTourHero({
       {/* Overlays */}
       <div className="absolute inset-0 bg-gradient-to-b from-black/80 via-black/60 to-black/85" />
       <div className="absolute inset-0 bg-gradient-to-tr from-[#0F4142]/45 via-transparent to-[#E6A532]/25 pointer-events-none" />
-
-      {/* Floating decorative glass icons */}
-      <div className="absolute top-28 left-10 hidden lg:block animate-float pointer-events-none">
-        <div className="w-20 h-20 bg-white/10 rounded-full flex items-center justify-center backdrop-blur-md border border-white/20 shadow-xl">
-          <UsersIcon className="w-9 h-9 text-amber-300" />
-        </div>
-      </div>
-      <div className="absolute bottom-20 right-10 hidden lg:block animate-float-delayed pointer-events-none">
-        <div className="w-16 h-16 bg-white/10 rounded-full flex items-center justify-center backdrop-blur-md border border-white/20 shadow-xl">
-          <RouteIcon className="w-7 h-7 text-teal-300" />
-        </div>
-      </div>
 
       <div className="relative z-10 container mx-auto px-6 max-w-4xl text-center">
         {/* Breadcrumb */}
