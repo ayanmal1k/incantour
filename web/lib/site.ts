@@ -46,6 +46,7 @@ export const navigation: readonly NavigationItem[] = [
       { href: "/team", label: "Il nostro team" },
       { href: "/partner", label: "Partner" },
       { href: "/lavora-con-noi", label: "Lavora con noi" },
+      { href: "/faq", label: "FAQ" },
       { href: "/contatti", label: "Contatti / Dove siamo" },
     ],
   },
