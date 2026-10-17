@@ -118,6 +118,41 @@ const nextConfig: NextConfig = {
         destination: "/percorsi-lingua-italiana",
         permanent: true,
       },
+      {
+        source: "/src/destination-wedding.html",
+        destination: "/destination-wedding",
+        permanent: true,
+      },
+      {
+        source: "/destination-wedding.html",
+        destination: "/destination-wedding",
+        permanent: true,
+      },
+      {
+        source: "/src/wedding-planner.html",
+        destination: "/wedding-planner",
+        permanent: true,
+      },
+      {
+        source: "/wedding-planner.html",
+        destination: "/wedding-planner",
+        permanent: true,
+      },
+      {
+        source: "/src/terra-mare-tour.html",
+        destination: "/terra-mare-tour",
+        permanent: true,
+      },
+      {
+        source: "/terra-mare-tour.html",
+        destination: "/terra-mare-tour",
+        permanent: true,
+      },
+      {
+        source: "/terra-mare",
+        destination: "/terra-mare-tour",
+        permanent: true,
+      },
     ];
   },
 };
