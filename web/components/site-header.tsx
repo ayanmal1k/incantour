@@ -3,7 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 import { navigation, siteName } from "@/lib/site";
 
@@ -12,6 +12,8 @@ export function SiteHeader() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [openMobileDropdown, setOpenMobileDropdown] = useState<string | null>(null);
+  const [openDesktopDropdown, setOpenDesktopDropdown] = useState<string | null>(null);
+  const leaveTimeoutRef = useRef<NodeJS.Timeout | null>(null);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -26,6 +28,71 @@ export function SiteHeader() {
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
+  // Close all menus and dropdowns when navigating to a new route
+  const [prevPathname, setPrevPathname] = useState(pathname);
+  if (prevPathname !== pathname) {
+    setPrevPathname(pathname);
+    setOpenDesktopDropdown(null);
+    setOpenMobileDropdown(null);
+    setMobileMenuOpen(false);
+  }
+
+  // Cleanup timeout on unmount
+  useEffect(() => {
+    return () => {
+      if (leaveTimeoutRef.current) clearTimeout(leaveTimeoutRef.current);
+    };
+  }, []);
+
+  // Close desktop dropdown on Escape or click outside nav
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") {
+        if (leaveTimeoutRef.current) clearTimeout(leaveTimeoutRef.current);
+        setOpenDesktopDropdown(null);
+        setMobileMenuOpen(false);
+      }
+    };
+    const handleClickOutside = (e: MouseEvent) => {
+      const target = e.target as HTMLElement | null;
+      if (!target?.closest("nav")) {
+        if (leaveTimeoutRef.current) clearTimeout(leaveTimeoutRef.current);
+        setOpenDesktopDropdown(null);
+      }
+    };
+    document.addEventListener("keydown", handleKeyDown);
+    document.addEventListener("click", handleClickOutside);
+    return () => {
+      document.removeEventListener("keydown", handleKeyDown);
+      document.removeEventListener("click", handleClickOutside);
+    };
+  }, []);
+
+  const handleMouseEnter = (label: string) => {
+    if (leaveTimeoutRef.current) {
+      clearTimeout(leaveTimeoutRef.current);
+      leaveTimeoutRef.current = null;
+    }
+    setOpenDesktopDropdown(label);
+  };
+
+  const handleMouseLeave = () => {
+    if (leaveTimeoutRef.current) clearTimeout(leaveTimeoutRef.current);
+    leaveTimeoutRef.current = setTimeout(() => {
+      setOpenDesktopDropdown(null);
+    }, 180);
+  };
+
+  const handleDropdownItemClick = () => {
+    if (leaveTimeoutRef.current) clearTimeout(leaveTimeoutRef.current);
+    setOpenDesktopDropdown(null);
+    setOpenMobileDropdown(null);
+    setMobileMenuOpen(false);
+    if (typeof document !== "undefined" && document.activeElement instanceof HTMLElement) {
+      document.activeElement.blur();
+    }
+  };
 
   const toggleMobileDropdown = (label: string) => {
     setOpenMobileDropdown((prev) => (prev === label ? null : label));
@@ -70,10 +137,19 @@ export function SiteHeader() {
           <div className="hidden md:flex items-center space-x-6 lg:space-x-8 xl:space-x-9">
             {navigation.map((item) =>
               item.children ? (
-                <div key={item.label} className="relative group">
+                <div
+                  key={item.label}
+                  className="relative py-2"
+                  onMouseEnter={() => handleMouseEnter(item.label)}
+                  onMouseLeave={handleMouseLeave}
+                >
                   <button
                     type="button"
-                    className="flex items-center gap-1.5 font-semibold text-[15px] lg:text-base tracking-wide text-white hover:text-[#E6A532] transition-colors duration-300 py-2 cursor-pointer"
+                    onClick={() =>
+                      setOpenDesktopDropdown((prev) => (prev === item.label ? null : item.label))
+                    }
+                    aria-expanded={openDesktopDropdown === item.label}
+                    className="flex items-center gap-1.5 font-semibold text-[15px] lg:text-base tracking-wide text-white hover:text-[#E6A532] transition-colors duration-300 cursor-pointer"
                   >
                     <span>{item.label}</span>
                     <svg
@@ -81,28 +157,39 @@ export function SiteHeader() {
                       fill="none"
                       stroke="currentColor"
                       strokeWidth="2.5"
-                      className="h-3.5 w-3.5 transition-transform duration-300 group-hover:rotate-180"
+                      className={`h-3.5 w-3.5 transition-transform duration-300 ${
+                        openDesktopDropdown === item.label ? "rotate-180 text-[#E6A532]" : ""
+                      }`}
                       aria-hidden="true"
                     >
                       <polyline points="6 9 12 15 18 9" />
                     </svg>
                   </button>
 
-                  {/* Dropdown Menu Card */}
-                  <div className="absolute left-0 top-full mt-2 w-64 rounded-xl bg-white p-2 shadow-2xl opacity-0 invisible group-hover:opacity-100 group-hover:visible group-focus-within:opacity-100 group-focus-within:visible transition-all duration-300 z-50 border border-slate-100">
-                    {item.children.map((child) => (
-                      <Link
-                        key={child.href}
-                        href={child.href}
-                        className={`block rounded-lg px-4 py-2.5 text-[15px] font-semibold transition-colors ${
-                          pathname === child.href
-                            ? "bg-amber-50 text-[#E6A532]"
-                            : "text-gray-800 hover:bg-gray-100 hover:text-[#E6A532]"
-                        }`}
-                      >
-                        {child.label}
-                      </Link>
-                    ))}
+                  {/* Dropdown Menu Card with zero-gap hover bridge */}
+                  <div
+                    className={`absolute left-0 top-full pt-2 w-64 z-50 transition-all duration-200 before:content-[''] before:absolute before:-top-3 before:left-0 before:right-0 before:h-4 ${
+                      openDesktopDropdown === item.label
+                        ? "opacity-100 visible pointer-events-auto translate-y-0"
+                        : "opacity-0 invisible pointer-events-none -translate-y-1"
+                    }`}
+                  >
+                    <div className="rounded-xl bg-white p-2 shadow-2xl border border-slate-100">
+                      {item.children.map((child) => (
+                        <Link
+                          key={child.href}
+                          href={child.href}
+                          onClick={handleDropdownItemClick}
+                          className={`block rounded-lg px-4 py-2.5 text-[15px] font-semibold transition-colors ${
+                            pathname === child.href
+                              ? "bg-amber-50 text-[#E6A532]"
+                              : "text-gray-800 hover:bg-gray-100 hover:text-[#E6A532]"
+                          }`}
+                        >
+                          {child.label}
+                        </Link>
+                      ))}
+                    </div>
                   </div>
                 </div>
               ) : item.isExternal ? (
@@ -199,7 +286,7 @@ export function SiteHeader() {
                           <Link
                             key={child.href}
                             href={child.href}
-                            onClick={() => setMobileMenuOpen(false)}
+                            onClick={handleDropdownItemClick}
                             className="block py-2 text-[15px] text-gray-700 hover:text-[#E6A532] font-semibold"
                           >
                             {child.label}
@@ -214,7 +301,7 @@ export function SiteHeader() {
                     href={item.href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    onClick={() => setMobileMenuOpen(false)}
+                    onClick={handleDropdownItemClick}
                     className="flex items-center justify-between py-2.5 font-bold text-base text-gray-800 hover:text-[#E6A532] border-b border-gray-100"
                   >
                     <span>{item.label}</span>
@@ -228,7 +315,7 @@ export function SiteHeader() {
                   <Link
                     key={item.href}
                     href={item.href}
-                    onClick={() => setMobileMenuOpen(false)}
+                    onClick={handleDropdownItemClick}
                     className="block py-2.5 font-bold text-base text-gray-800 hover:text-[#E6A532] border-b border-gray-100"
                   >
                     {item.label}
