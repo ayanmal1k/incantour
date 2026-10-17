@@ -1,8 +1,22 @@
 import "server-only";
 
 import sanitizeHtml from "sanitize-html";
+import type { Metadata } from "next";
 
-import type { Post, Tour, TourAcf, WordPressEntity } from "@/lib/wordpress/types";
+import type {
+  BookingFormData,
+  ContactFormData,
+  FAQItem,
+  GiftVoucherFormData,
+  GroupFormData,
+  Post,
+  RootsFormData,
+  Tour,
+  TourAcf,
+  WeddingFormData,
+  WordPressEntity,
+  WordPressTerm,
+} from "@/lib/wordpress/types";
 
 const allowedTags = [
   "a", "b", "blockquote", "br", "code", "em", "figcaption", "figure", "h2", "h3",
@@ -25,29 +39,43 @@ export function sanitizeWordPressHtml(html: string) {
   });
 }
 
-function requiredEnv(name: "WORDPRESS_URL" | "WORDPRESS_REST_BASE" | "WORDPRESS_CUSTOM_API_BASE") {
-  const value = process.env[name]?.replace(/\/$/, "");
-  if (!value) {
-    throw new Error(`${name} is not configured. See .env.example.`);
-  }
-  return value;
+export function getWordPressUrl(): string {
+  return (process.env.WORDPRESS_URL || "https://staging.incantour.it/wordpress").replace(/\/$/, "");
+}
+
+export function getWordPressRestBase(): string {
+  return (process.env.WORDPRESS_REST_BASE || `${getWordPressUrl()}/wp-json/wp/v2`).replace(/\/$/, "");
+}
+
+export function getCustomApiBase(): string {
+  return (process.env.WORDPRESS_CUSTOM_API_BASE || `${getWordPressUrl()}/wp-json/tourism/v1`).replace(/\/$/, "");
+}
+
+export function getIncantourApiBase(): string {
+  return `${getWordPressUrl()}/wp-json/incantour/v1`;
 }
 
 async function restFetch<T>(path: string, revalidate = 300): Promise<T> {
-  const response = await fetch(`${requiredEnv("WORDPRESS_REST_BASE")}/${path.replace(/^\//, "")}`, {
+  const url = `${getWordPressRestBase()}/${path.replace(/^\//, "")}`;
+  const response = await fetch(url, {
     headers: { Accept: "application/json" },
     next: { revalidate },
   });
 
   if (!response.ok) {
-    throw new Error(`WordPress REST request failed (${response.status}).`);
+    throw new Error(`WordPress REST request failed (${response.status}) at ${url}`);
   }
 
   return response.json() as Promise<T>;
 }
 
-function featuredImage(entity: WordPressEntity) {
+function featuredImage(entity: WordPressEntity): string | undefined {
   return entity._embedded?.["wp:featuredmedia"]?.[0]?.source_url;
+}
+
+function extractTerms(entity: WordPressEntity): WordPressTerm[] {
+  if (!entity._embedded?.["wp:term"]) return [];
+  return entity._embedded["wp:term"].flat();
 }
 
 function toTour(entity: WordPressEntity<TourAcf>): Tour {
@@ -55,6 +83,7 @@ function toTour(entity: WordPressEntity<TourAcf>): Tour {
     ...entity,
     featuredImageUrl: featuredImage(entity),
     sanitizedContent: sanitizeWordPressHtml(entity.content?.rendered ?? ""),
+    terms: extractTerms(entity),
   };
 }
 
@@ -64,33 +93,252 @@ function toPost(entity: WordPressEntity): Post {
     featuredImageUrl: featuredImage(entity),
     sanitizedContent: sanitizeWordPressHtml(entity.content?.rendered ?? ""),
     sanitizedExcerpt: sanitizeWordPressHtml(entity.excerpt?.rendered ?? ""),
+    terms: extractTerms(entity),
   };
 }
 
-export async function getTours(perPage = 12) {
+/* -------------------------------------------------------------------------- */
+/*                                    TOURS                                   */
+/* -------------------------------------------------------------------------- */
+
+export async function getTours(perPage = 12): Promise<Tour[]> {
   const tours = await restFetch<WordPressEntity<TourAcf>[]>(`tour_package?per_page=${perPage}&_embed`);
   return tours.map(toTour);
 }
 
-export async function getTourById(id: string | number) {
+export async function getTourById(id: string | number): Promise<Tour> {
   const tour = await restFetch<WordPressEntity<TourAcf>>(`tour_package/${id}?_embed`);
   return toTour(tour);
 }
 
-export async function getPosts(perPage = 12) {
-  const posts = await restFetch<WordPressEntity[]>(`posts?per_page=${perPage}&_embed`);
+export async function getRelatedPackages(limit = 3): Promise<Tour[]> {
+  try {
+    const packages = await restFetch<WordPressEntity<TourAcf>[]>(`tour_package?per_page=${limit}&_embed`);
+    return packages.map(toTour);
+  } catch (error) {
+    console.error("Error fetching related packages:", error);
+    return [];
+  }
+}
+
+/* -------------------------------------------------------------------------- */
+/*                                    POSTS                                   */
+/* -------------------------------------------------------------------------- */
+
+export async function getPosts(perPage = 12, page = 1): Promise<Post[]> {
+  const posts = await restFetch<WordPressEntity[]>(`posts?per_page=${perPage}&page=${page}&_embed`);
   return posts.map(toPost);
 }
 
-export async function getPostById(id: string | number) {
+export async function getPostById(id: string | number): Promise<Post> {
   const post = await restFetch<WordPressEntity>(`posts/${id}?_embed`);
   return toPost(post);
 }
 
-export function getCustomApiBase() {
-  return requiredEnv("WORDPRESS_CUSTOM_API_BASE");
+export async function getRelatedPosts(tags: string | string[], limit = 3): Promise<Post[]> {
+  try {
+    const posts = await restFetch<WordPressEntity[]>("posts?per_page=10&_embed");
+    const searchTags = (Array.isArray(tags) ? tags : tags.split(","))
+      .map((t) => t.trim().toLowerCase().replace(/^#/, ""))
+      .filter(Boolean);
+
+    if (searchTags.length === 0) {
+      return posts.slice(0, limit).map(toPost);
+    }
+
+    const filtered = posts.filter((post) => {
+      const terms = post._embedded?.["wp:term"]?.flat() || [];
+      return terms.some((term) => {
+        const termName = term.name?.toLowerCase() || "";
+        const termSlug = term.slug?.toLowerCase() || "";
+        return searchTags.some((cleanTag) => termName.includes(cleanTag) || termSlug.includes(cleanTag));
+      });
+    });
+
+    const results = filtered.length > 0 ? filtered : posts;
+    return results.slice(0, limit).map(toPost);
+  } catch (error) {
+    console.error("Error fetching related posts:", error);
+    return [];
+  }
 }
 
-export function getWordPressUrl() {
-  return requiredEnv("WORDPRESS_URL");
+/* -------------------------------------------------------------------------- */
+/*                                    FAQS                                    */
+/* -------------------------------------------------------------------------- */
+
+const fallbackFAQs: FAQItem[] = [
+  {
+    id: 192,
+    category: "Generale",
+    question: "Che cos'è il Turismo delle Radici e come funziona il servizio Incantour?",
+    answer:
+      "<p>Il Turismo delle Radici è un viaggio emozionale dedicato a chi desidera ricostruire il legame con la propria cultura d'origine. Incantour vi accompagna nella ricerca genealogica, nella riscoperta della storia del cognome e nell'organizzazione di incontri con la comunità del borgo natio dei vostri antenati in Campania e in Italia.</p>",
+  },
+  {
+    id: 193,
+    category: "Generale",
+    question: "Come posso prenotare un tour o richiedere un preventivo?",
+    answer:
+      "<p>Puoi compilare il form di prenotazione presente nella pagina del tour desiderato o nella sezione Contatti. Il nostro team elaborerà la richiesta e ti ricontatterà entro 24 ore.</p>",
+  },
+  {
+    id: 194,
+    category: "Generale",
+    question: "Dove si trova la sede di Incantour e quali sono le indicazioni per raggiungervi?",
+    answer:
+      "<p>Siamo nel Centro Storico di Napoli, al 3° piano dello storico Palazzo Pignatelli di Monteleone (XVI secolo), in Calata Trinità Maggiore 53 (angolo Piazza del Gesù Nuovo, all'interno della Maison Degas). Siamo raggiungibili con la Metropolitana Linea 1 (fermata Dante) o in autobus (linea R2 o R1).</p>",
+  },
+];
+
+export async function getFaqs(): Promise<FAQItem[]> {
+  try {
+    const url = `${getIncantourApiBase()}/faqs`;
+    const res = await fetch(url, {
+      headers: { Accept: "application/json" },
+      next: { revalidate: 300 },
+    });
+    if (!res.ok) return fallbackFAQs;
+    const data = await res.json();
+    return Array.isArray(data) && data.length > 0 ? data : fallbackFAQs;
+  } catch (error) {
+    console.warn("Unable to fetch remote FAQs, using fallback FAQs", error);
+    return fallbackFAQs;
+  }
+}
+
+/* -------------------------------------------------------------------------- */
+/*                               SEO EXTRACTION                               */
+/* -------------------------------------------------------------------------- */
+
+export function extractEntityMetadata(entity: WordPressEntity, defaultTitle = "IncanTour"): Metadata {
+  const yoast = entity.yoast_head_json;
+  const rawTitle = entity.title?.rendered ? sanitizeHtml(entity.title.rendered, { allowedTags: [] }) : "";
+  const title = yoast?.title || (rawTitle ? `${rawTitle} | IncanTour` : defaultTitle);
+  const rawExcerpt = entity.excerpt?.rendered ? sanitizeHtml(entity.excerpt.rendered, { allowedTags: [] }).trim() : "";
+  const description = yoast?.description || yoast?.og_description || rawExcerpt || "Scopri itinerari esclusivi ed esperienze uniche con IncanTour.";
+  const featured = featuredImage(entity);
+  const ogImageUrl = yoast?.og_image?.[0]?.url || featured;
+
+  return {
+    title,
+    description,
+    openGraph: {
+      title: yoast?.og_title || title,
+      description,
+      type: (yoast?.og_type as "article" | "website") || "website",
+      images: ogImageUrl ? [{ url: ogImageUrl }] : undefined,
+    },
+    alternates: yoast?.canonical ? { canonical: yoast.canonical } : undefined,
+  };
+}
+
+/* -------------------------------------------------------------------------- */
+/*                               FORM SUBMISSIONS                             */
+/* -------------------------------------------------------------------------- */
+
+export async function submitBooking(data: BookingFormData) {
+  const url = `${getCustomApiBase()}/submit-booking`;
+  const response = await fetch(url, {
+    method: "POST",
+    headers: { "Content-Type": "application/json", Accept: "application/json" },
+    body: JSON.stringify({
+      name: data.name,
+      email: data.email,
+      tour: data.tour,
+      date: data.date,
+      quantity: data.quantity,
+      total: String(data.total).replace(/[^0-9.]/g, ""),
+      message: data.message || "",
+    }),
+    cache: "no-store",
+  });
+  if (!response.ok) {
+    const errorJson = await response.json().catch(() => ({}));
+    throw new Error(errorJson.message || `Booking failed (${response.status})`);
+  }
+  return response.json();
+}
+
+export async function submitGiftVoucher(data: GiftVoucherFormData) {
+  const url = `${getCustomApiBase()}/submit-gift-voucher`;
+  const response = await fetch(url, {
+    method: "POST",
+    headers: { "Content-Type": "application/json", Accept: "application/json" },
+    body: JSON.stringify(data),
+    cache: "no-store",
+  });
+  if (!response.ok) {
+    const errorJson = await response.json().catch(() => ({}));
+    throw new Error(errorJson.message || `Gift voucher request failed (${response.status})`);
+  }
+  return response.json();
+}
+
+export async function submitContact(data: ContactFormData) {
+  const primaryUrl = `${getIncantourApiBase()}/contact-request`;
+  const fallbackUrl = `${getIncantourApiBase()}/wedding-request`;
+
+  let response = await fetch(primaryUrl, {
+    method: "POST",
+    headers: { "Content-Type": "application/json", Accept: "application/json" },
+    body: JSON.stringify(data),
+    cache: "no-store",
+  });
+
+  if (!response.ok) {
+    response = await fetch(fallbackUrl, {
+      method: "POST",
+      headers: { "Content-Type": "application/json", Accept: "application/json" },
+      body: JSON.stringify(data),
+      cache: "no-store",
+    });
+  }
+
+  return response.json();
+}
+
+export async function submitWedding(data: WeddingFormData) {
+  const url = `${getIncantourApiBase()}/wedding-request`;
+  const response = await fetch(url, {
+    method: "POST",
+    headers: { "Content-Type": "application/json", Accept: "application/json" },
+    body: JSON.stringify(data),
+    cache: "no-store",
+  });
+  return response.json();
+}
+
+export async function submitRoots(data: RootsFormData) {
+  const primaryUrl = `${getIncantourApiBase()}/roots-request`;
+  const fallbackUrl = `${getIncantourApiBase()}/wedding-request`;
+
+  let response = await fetch(primaryUrl, {
+    method: "POST",
+    headers: { "Content-Type": "application/json", Accept: "application/json" },
+    body: JSON.stringify(data),
+    cache: "no-store",
+  });
+
+  if (!response.ok) {
+    response = await fetch(fallbackUrl, {
+      method: "POST",
+      headers: { "Content-Type": "application/json", Accept: "application/json" },
+      body: JSON.stringify(data),
+      cache: "no-store",
+    });
+  }
+
+  return response.json();
+}
+
+export async function submitGroup(data: GroupFormData) {
+  const url = `${getIncantourApiBase()}/group-request`;
+  const response = await fetch(url, {
+    method: "POST",
+    headers: { "Content-Type": "application/json", Accept: "application/json" },
+    body: JSON.stringify(data),
+    cache: "no-store",
+  });
+  return response.json();
 }
