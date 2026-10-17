@@ -178,15 +178,28 @@ export async function getPostById(id: string | number): Promise<Post> {
   return toPost(post);
 }
 
-export async function getRelatedPosts(tags: string | string[], limit = 3): Promise<Post[]> {
+export type RelatedPostsResult = {
+  posts: Post[];
+  hasExactMatch: boolean;
+};
+
+export async function getRelatedPosts(
+  tags: string | string[],
+  limit = 3
+): Promise<RelatedPostsResult> {
   try {
-    const posts = await restFetch<WordPressEntity[]>("posts?per_page=10&_embed");
+    const posts = await restFetch<WordPressEntity[]>("posts?per_page=12&_embed");
     const searchTags = (Array.isArray(tags) ? tags : tags.split(","))
       .map((t) => t.trim().toLowerCase().replace(/^#/, ""))
       .filter(Boolean);
 
     if (searchTags.length === 0) {
-      return posts.slice(0, limit).map(toPost);
+      // No tags provided: return random 3 posts with hasExactMatch false
+      const shuffled = [...posts].sort(() => 0.5 - Math.random());
+      return {
+        posts: shuffled.slice(0, limit).map(toPost),
+        hasExactMatch: false,
+      };
     }
 
     const filtered = posts.filter((post) => {
@@ -198,13 +211,28 @@ export async function getRelatedPosts(tags: string | string[], limit = 3): Promi
       });
     });
 
-    const results = filtered.length > 0 ? filtered : posts;
-    return results.slice(0, limit).map(toPost);
+    if (filtered.length > 0) {
+      return {
+        posts: filtered.slice(0, limit).map(toPost),
+        hasExactMatch: true,
+      };
+    }
+
+    // No matching tags found: return random 3 posts with hasExactMatch false
+    const shuffled = [...posts].sort(() => 0.5 - Math.random());
+    return {
+      posts: shuffled.slice(0, limit).map(toPost),
+      hasExactMatch: false,
+    };
   } catch (error) {
     console.error("Error fetching related posts:", error);
-    return [];
+    return {
+      posts: [],
+      hasExactMatch: false,
+    };
   }
 }
+
 
 /* -------------------------------------------------------------------------- */
 /*                                    FAQS                                    */
