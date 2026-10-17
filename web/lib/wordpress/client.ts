@@ -27,7 +27,15 @@ const allowedTags = [
 
 /** Sanitize untrusted CMS HTML before passing it to a rich-text renderer. */
 export function sanitizeWordPressHtml(html: string) {
-  return sanitizeHtml(html, {
+  if (!html) return "";
+
+  // Replace horizontal separator lines (<hr>) with an empty line break as requested
+  let prepared = html.replace(/<hr[^>]*\/?>/gi, '<p class="empty-line-break">&nbsp;</p>');
+
+  // Preserve empty WordPress paragraphs as empty line skips
+  prepared = prepared.replace(/<p([^>]*)>\s*<\/p>/gi, '<p$1 class="empty-line-break">&nbsp;</p>');
+
+  return sanitizeHtml(prepared, {
     allowedTags,
     allowedAttributes: {
       a: ["href", "title", "target", "rel"],

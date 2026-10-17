@@ -109,3 +109,52 @@
   user-select: none;
 }
 
+/* Replace horizontal separator lines with empty line skips as requested */
+.tour-details-prose hr,
+.tour-details-prose .wp-block-separator,
+.tour-details-prose .empty-line-break {
+  border: 0 !important;
+  border-top: 0 !important;
+  border-bottom: 0 !important;
+  height: 1.5rem !important;
+  min-height: 1.5rem !important;
+  margin: 0 0 1.5rem 0 !important;
+  background: transparent !important;
+  opacity: 0 !important;
+  display: block !important;
+}
+
+/* Empty paragraphs rendered as empty line skips */
+.tour-details-prose p:empty,
+.tour-details-prose .wp-block-paragraph:empty {
+  min-height: 1.5rem;
+  margin-bottom: 1.5rem;
+  display: block;
+}
+
+.tour-details-prose p:empty::before,
+.tour-details-prose .wp-block-paragraph:empty::before {
+  content: "\00a0";
+  display: inline-block;
+}
+
+.tour-details-prose p {
+  margin-bottom: 1.5rem;
+  line-height: 1.8;
+  color: #374151;
+}
+
+.tour-details-prose .has-text-align-center {
+  text-align: center !important;
+}
+
+.tour-details-prose .has-text-align-right {
+  text-align: right !important;
+}
+
+.tour-details-prose .aligncenter {
+  margin-left: auto !important;
+  margin-right: auto !important;
+  text-align: center !important;
+}
+
