@@ -1,3 +1,4 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap");
 @import "tailwindcss";
 
 @theme inline {
@@ -7,8 +8,8 @@
   --color-incan-gold-dark: #d4941a;
   --color-incan-cream: #fff7e8;
   --color-incan-sand: #f8f2e7;
-  --font-display: Georgia, "Times New Roman", serif;
-  --font-sans: Arial, Helvetica, sans-serif;
+  --font-display: var(--font-poppins), "Poppins", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-sans: var(--font-poppins), "Poppins", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   --color-incan-teal-dark: #0f4142;
   --radius-card: 1.25rem;
   --shadow-card: 0 10px 30px rgb(23 60 61 / 12%);

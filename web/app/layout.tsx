@@ -1,9 +1,17 @@
 import type { Metadata } from "next";
+import { Poppins } from "next/font/google";
 
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
 import "@/app/globals.css";
 import { getSiteUrl, siteDescription, siteName } from "@/lib/site";
+
+const poppins = Poppins({
+  subsets: ["latin"],
+  weight: ["300", "400", "500", "600", "700"],
+  variable: "--font-poppins",
+  display: "swap",
+});
 
 export const metadata: Metadata = {
   metadataBase: getSiteUrl(),
@@ -22,5 +30,13 @@ export const metadata: Metadata = {
 };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
-  return <html lang="it"><body><SiteHeader /><main>{children}</main><SiteFooter /></body></html>;
+  return (
+    <html lang="it" className={poppins.variable}>
+      <body className="font-sans antialiased">
+        <SiteHeader />
+        <main>{children}</main>
+        <SiteFooter />
+      </body>
+    </html>
+  );
 }
