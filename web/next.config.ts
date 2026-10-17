@@ -153,6 +153,26 @@ const nextConfig: NextConfig = {
         destination: "/terra-mare-tour",
         permanent: true,
       },
+      {
+        source: "/src/turismo-radici.html",
+        destination: "/turismo-radici",
+        permanent: true,
+      },
+      {
+        source: "/turismo-radici.html",
+        destination: "/turismo-radici",
+        permanent: true,
+      },
+      {
+        source: "/src/gruppi-a-tema.html",
+        destination: "/gruppi-a-tema",
+        permanent: true,
+      },
+      {
+        source: "/gruppi-a-tema.html",
+        destination: "/gruppi-a-tema",
+        permanent: true,
+      },
     ];
   },
 };

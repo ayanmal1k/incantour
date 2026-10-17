@@ -1,5 +1,9 @@
 import React from "react";
-import { DownloadIcon, FilePdfIcon, FileTextIcon, InfoIcon } from "@/components/ui/icons";
+import {
+  FilePdfSolidIcon,
+  FileAltSolidIcon,
+  GraduationCapSolidIcon,
+} from "@/components/ui/icons";
 import type { CategoryDownloadItem } from "@/lib/travel-categories";
 
 export function CategoryDownloads({
@@ -12,85 +16,45 @@ export function CategoryDownloads({
   };
 }) {
   return (
-    <section className="py-16 bg-white border-y border-gray-100">
+    <section className="py-14 sm:py-16 bg-white border-b border-gray-100">
       <div className="container mx-auto px-6 max-w-5xl text-center">
         <span className="text-[#E6A532] font-bold uppercase tracking-widest text-xs sm:text-sm block mb-1">
           {downloads.badge}
         </span>
         <h2 className="text-3xl sm:text-4xl font-extrabold text-gradient-dark mb-8">
-          <span className="inline-block pb-2">{downloads.title}</span>
+          <span className="inline-block pb-1">{downloads.title}</span>
         </h2>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {downloads.items.map((item, index) => {
-            const isPub = item.type === "pub";
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto">
+          {/* 1. Programma Button */}
+          <a
+            href="/assets/documents/Programma.pdf"
+            download="Programma.pdf"
+            className="flex items-center justify-center space-x-3 bg-gradient-to-r from-amber-500 to-amber-600 text-white font-bold px-6 py-4 rounded-2xl shadow-lg hover:opacity-95 transform hover:scale-105 transition-all group"
+          >
+            <FilePdfSolidIcon className="w-6 h-6 text-amber-200 group-hover:scale-110 transition-transform shrink-0" />
+            <span className="text-lg">Programma</span>
+          </a>
 
-            return (
-              <div
-                key={index}
-                className="flex flex-col justify-between bg-gradient-to-b from-slate-50 to-white rounded-2xl p-6 border border-gray-200 shadow-sm hover:shadow-md transition-all text-left"
-              >
-                <div>
-                  <div className="flex items-center justify-between mb-4">
-                    <div
-                      className={`w-12 h-12 rounded-xl flex items-center justify-center ${
-                        item.exists
-                          ? "bg-teal-100 text-[#1B5E5F]"
-                          : "bg-amber-100 text-[#E6A532]"
-                      }`}
-                    >
-                      {isPub ? (
-                        <FileTextIcon className="w-6 h-6" />
-                      ) : (
-                        <FilePdfIcon className="w-6 h-6" />
-                      )}
-                    </div>
-                    {item.exists ? (
-                      <span className="inline-flex items-center text-xs font-semibold px-2.5 py-1 rounded-full bg-emerald-50 text-emerald-700 border border-emerald-200">
-                        Disponibile ({item.size})
-                      </span>
-                    ) : (
-                      <span className="inline-flex items-center text-xs font-semibold px-2.5 py-1 rounded-full bg-amber-50 text-amber-700 border border-amber-200">
-                        Su Richiesta
-                      </span>
-                    )}
-                  </div>
+          {/* 2. Laboratori Button (Connected to existing file) */}
+          <a
+            href="/assets/documents/Laboratori.pub"
+            download="Laboratori.pub"
+            className="flex items-center justify-center space-x-3 bg-gradient-to-r from-[#1B5E5F] to-[#0F4142] text-white font-bold px-6 py-4 rounded-2xl shadow-lg hover:opacity-95 transform hover:scale-105 transition-all group"
+          >
+            <FileAltSolidIcon className="w-6 h-6 text-teal-200 group-hover:scale-110 transition-transform shrink-0" />
+            <span className="text-lg">Laboratori</span>
+          </a>
 
-                  <h3 className="text-lg font-bold text-gray-900 mb-1">
-                    {item.title}
-                  </h3>
-                  <p className="text-xs text-gray-500 mb-4 font-mono">
-                    {item.filename}
-                  </p>
-
-                  {item.note && (
-                    <p className="text-xs text-amber-800 bg-amber-50/70 p-2.5 rounded-lg mb-4 flex items-start gap-1.5 leading-relaxed">
-                      <InfoIcon className="w-4 h-4 shrink-0 mt-0.5 text-amber-600" />
-                      <span>{item.note}</span>
-                    </p>
-                  )}
-                </div>
-
-                <a
-                  href={item.href}
-                  download={item.exists ? item.filename : undefined}
-                  className={`mt-auto inline-flex items-center justify-center gap-2 w-full py-3.5 px-4 rounded-xl font-bold text-sm shadow-sm transition-all ${
-                    item.exists
-                      ? "bg-gradient-cool text-white hover:opacity-95 hover:scale-[1.02]"
-                      : "bg-gradient-warm text-white hover:opacity-95 hover:scale-[1.02]"
-                  }`}
-                  title={
-                    item.exists
-                      ? `Scarica ${item.filename}`
-                      : `Richiedi ${item.title}`
-                  }
-                >
-                  <DownloadIcon className="w-4 h-4" />
-                  <span>{item.exists ? `Scarica ${item.title}` : `Richiedi ${item.title}`}</span>
-                </a>
-              </div>
-            );
-          })}
+          {/* 3. Seminari Button */}
+          <a
+            href="/assets/documents/Seminari.pdf"
+            download="Seminari.pdf"
+            className="flex items-center justify-center space-x-3 bg-gradient-to-r from-amber-500 to-amber-600 text-white font-bold px-6 py-4 rounded-2xl shadow-lg hover:opacity-95 transform hover:scale-105 transition-all group"
+          >
+            <GraduationCapSolidIcon className="w-6 h-6 text-amber-200 group-hover:scale-110 transition-transform shrink-0" />
+            <span className="text-lg">Seminari</span>
+          </a>
         </div>
       </div>
     </section>

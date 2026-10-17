@@ -498,3 +498,183 @@ export function Loader2Icon({ className = "w-5 h-5", ...props }: IconProps) {
     </svg>
   );
 }
+
+export function TreeIcon({ className = "w-5 h-5", ...props }: IconProps) {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className} aria-hidden="true" {...props}>
+      <path d="M12 19v3" />
+      <path d="M7 19h10" />
+      <path d="M12 3a7 7 0 0 0-7 7c0 2.5 1.5 4.5 3.5 5.5V19h7v-3.5c2-1 3.5-3 3.5-5.5a7 7 0 0 0-7-7Z" />
+    </svg>
+  );
+}
+
+export function LandmarkIcon({ className = "w-5 h-5", ...props }: IconProps) {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className} aria-hidden="true" {...props}>
+      <line x1="3" y1="22" x2="21" y2="22" />
+      <line x1="6" y1="18" x2="6" y2="11" />
+      <line x1="10" y1="18" x2="10" y2="11" />
+      <line x1="14" y1="18" x2="14" y2="11" />
+      <line x1="18" y1="18" x2="18" y2="11" />
+      <polygon points="12 2 20 7 4 7 12 2" />
+    </svg>
+  );
+}
+
+export function UtensilsIcon({ className = "w-5 h-5", ...props }: IconProps) {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className} aria-hidden="true" {...props}>
+      <path d="M18 2v6a3 3 0 0 1-3 3 3 3 0 0 1-3-3V2" />
+      <path d="M15 11v11" />
+      <path d="M5 2v10a3 3 0 0 0 3 3h1v7" />
+      <path d="M9 2v6" />
+    </svg>
+  );
+}
+
+export function CastleIcon({ className = "w-5 h-5", ...props }: IconProps) {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className} aria-hidden="true" {...props}>
+      <path d="M22 20v-9H2v9a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2Z" />
+      <path d="M18 11V4H6v7" />
+      <path d="M15 22v-4a3 3 0 0 0-6 0v4" />
+      <path d="M22 11V9a2 2 0 0 0-2-2h-2" />
+      <path d="M6 7H4a2 2 0 0 0-2 2v2" />
+      <path d="M10 4V2h4v2" />
+    </svg>
+  );
+}
+
+export function PrayIcon({ className = "w-5 h-5", ...props }: IconProps) {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className} aria-hidden="true" {...props}>
+      <circle cx="12" cy="5" r="2" />
+      <path d="M12 7v5" />
+      <path d="m8 10 4 4 4-4" />
+      <path d="M9 21h6" />
+      <path d="M12 16v5" />
+    </svg>
+  );
+}
+
+export function BicycleIcon({ className = "w-5 h-5", ...props }: IconProps) {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className} aria-hidden="true" {...props}>
+      <circle cx="18.5" cy="17.5" r="3.5" />
+      <circle cx="5.5" cy="17.5" r="3.5" />
+      <circle cx="15" cy="5" r="1" />
+      <path d="M12 17.5V14l-3-3 4-3 2 3h2" />
+    </svg>
+  );
+}
+
+export function MusicIcon({ className = "w-5 h-5", ...props }: IconProps) {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className} aria-hidden="true" {...props}>
+      <path d="M9 18V5l12-2v13" />
+      <circle cx="6" cy="18" r="3" />
+      <circle cx="18" cy="16" r="3" />
+    </svg>
+  );
+}
+
+export function WandIcon({ className = "w-5 h-5", ...props }: IconProps) {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className} aria-hidden="true" {...props}>
+      <path d="m15 4-2 2" />
+      <path d="m15 9-4-4" />
+      <path d="M3 21l9-9" />
+      <path d="m20 9 2 2" />
+      <path d="M9 3l1 3" />
+    </svg>
+  );
+}
+
+export function SpaIcon({ className = "w-5 h-5", ...props }: IconProps) {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className} aria-hidden="true" {...props}>
+      <path d="M12 2C6.5 2 2 6.5 2 12c0 3.5 1.8 6.5 4.5 8.2" />
+      <path d="M12 2c5.5 0 10 4.5 10 10 0 3.5-1.8 6.5-4.5 8.2" />
+      <path d="M12 22c-4 0-7-3-7-7 0-4 7-13 7-13s7 9 7 13c0 4-3 7-7 7Z" />
+    </svg>
+  );
+}
+
+export function BusIcon({ className = "w-5 h-5", ...props }: IconProps) {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className} aria-hidden="true" {...props}>
+      <rect x="4" y="3" width="16" height="16" rx="2" />
+      <path d="M4 11h16" />
+      <path d="M8 15h.01" />
+      <path d="M16 15h.01" />
+      <path d="M6 19v2" />
+      <path d="M18 19v2" />
+    </svg>
+  );
+}
+
+export function RouteIcon({ className = "w-5 h-5", ...props }: IconProps) {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className} aria-hidden="true" {...props}>
+      <circle cx="6" cy="19" r="3" />
+      <path d="M9 19h8.5a3.5 3.5 0 0 0 0-7h-11a3.5 3.5 0 0 1 0-7H15" />
+      <circle cx="18" cy="5" r="3" />
+    </svg>
+  );
+}
+
+export function UserCheckIcon({ className = "w-5 h-5", ...props }: IconProps) {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className} aria-hidden="true" {...props}>
+      <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
+      <circle cx="9" cy="7" r="4" />
+      <polyline points="16 11 18 13 22 9" />
+    </svg>
+  );
+}
+
+export function TagIcon({ className = "w-5 h-5", ...props }: IconProps) {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className} aria-hidden="true" {...props}>
+      <path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z" />
+      <line x1="7" y1="7" x2="7.01" y2="7" />
+    </svg>
+  );
+}
+
+export function HandsIcon({ className = "w-5 h-5", ...props }: IconProps) {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className} aria-hidden="true" {...props}>
+      <path d="M18 11V6a2 2 0 0 0-2-2v0a2 2 0 0 0-2 2v0" />
+      <path d="M14 10V4a2 2 0 0 0-2-2v0a2 2 0 0 0-2 2v6" />
+      <path d="M10 10.5V6a2 2 0 0 0-2-2v0a2 2 0 0 0-2 2v8" />
+      <path d="M18 8a2 2 0 1 1 4 0v6a8 8 0 0 1-8 8h-2c-2.8 0-4.5-.86-5.99-2.34l-3.6-3.6a2 2 0 0 1 2.83-2.82L7 15" />
+    </svg>
+  );
+}
+
+export function FilePdfSolidIcon({ className = "w-6 h-6", ...props }: IconProps) {
+  return (
+    <svg viewBox="0 0 384 512" fill="currentColor" className={className} aria-hidden="true" {...props}>
+      <path d="M181.9 256.1c-5-16-4.9-46.9-2-46.9 8.4 0 7.6 36.9 2 46.9zm-1.7 47.2c-7.7 20.2-17.3 43.3-28.4 62.7 18.3-7 39-17.2 62.9-21.9-12.7-9.6-24.9-23.4-34.5-40.8zM86.1 428.1c0 .8 13.2-5.4 34.9-40.2-6.7 6.3-29.1 24.5-34.9 40.2zM224 0H48C21.5 0 0 21.5 0 48v416c0 26.5 21.5 48 48 48h288c26.5 0 48-21.5 48-48V160L224 0zm80 448H48V48h144v128h128v272zm-35.8-150.3c-23.1 4.7-47.5 13.9-69.4 25.1-9.3-17.7-16.7-36.9-22.1-56.7 6.3-19 9.9-40.5 9.9-52.2 0-27-14.7-36.9-32-36.9-19.1 0-28 17.6-28 35.8 0 28.1 13.4 56.4 27.2 87.4-17.7 34.5-40 68.3-64.8 90.7-27.1 24.4-42.3 47.9-25.5 61.1 12.3 9.7 31.7 5.6 50.1-9.9 24.7-20.9 45.4-50.5 59.9-85.1 26.6-4.9 52.8-13.4 78.4-23.6 19.8 19.8 40.2 30.5 54.3 30.5 22.8 0 31.2-18.7 20.8-38.3-6.2-11.8-19.7-22.1-41.9-27.9zm-10.4 46.1c-6.8 0-14.7-5.5-23.2-16.3 12.5-3.3 24.6-5.4 36.3-5.4 3.7 0 6.6.6 8.5 1.9 2.2 1.5 2.5 4.8.8 9.3-4.7 6.8-15.6 10.5-22.4 10.5z" />
+    </svg>
+  );
+}
+
+export function FileAltSolidIcon({ className = "w-6 h-6", ...props }: IconProps) {
+  return (
+    <svg viewBox="0 0 384 512" fill="currentColor" className={className} aria-hidden="true" {...props}>
+      <path d="M224 136V0H24C10.7 0 0 10.7 0 24v464c0 13.3 10.7 24 24 24h336c13.3 0 24-10.7 24-24V160H248c-13.2 0-24-10.8-24-24zm64 236c0 6.6-5.4 12-12 12H108c-6.6 0-12-5.4-12-12v-8c0-6.6 5.4-12 12-12h168c6.6 0 12 5.4 12 12v8zm0-64c0 6.6-5.4 12-12 12H108c-6.6 0-12-5.4-12-12v-8c0-6.6 5.4-12 12-12h168c6.6 0 12 5.4 12 12v8zm0-72v8c0 6.6-5.4 12-12 12H108c-6.6 0-12-5.4-12-12v-8c0-6.6 5.4-12 12-12h168c6.6 0 12 5.4 12 12zm96-114.1v6.1H256V0h6.1c6.4 0 12.5 2.5 17 7l97.9 98c4.5 4.5 7 10.6 7 16.9z" />
+    </svg>
+  );
+}
+
+export function GraduationCapSolidIcon({ className = "w-6 h-6", ...props }: IconProps) {
+  return (
+    <svg viewBox="0 0 640 512" fill="currentColor" className={className} aria-hidden="true" {...props}>
+      <path d="M622.34 153.2L343.4 67.5c-15.2-4.67-31.6-4.67-46.79 0L17.66 153.2c-23.54 7.23-23.55 37.36 0 44.59l51.5 15.81V352c0 26.51 21.49 48 48 48h3.48c18.57 26.54 53.64 48 99.36 48s80.79-21.46 99.36-48h3.48c26.51 0 48-21.49 48-48V213.6l67.63-20.78V352c0 8.84 7.16 16 16 16h32c8.84 0 16-7.16 16-16V187.31l70.85-21.78c23.55-7.24 23.55-37.36 0-44.59zm-302.34 94.6l-192-59 192-59 192 59-192 59z" />
+    </svg>
+  );
+}
+

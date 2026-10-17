@@ -8,7 +8,7 @@ const formTargets = {
   contact: { base: "incantour", endpoint: "contact-request", fallback: "wedding-request" },
   wedding: { base: "incantour", endpoint: "wedding-request" },
   "lista-nozze": { base: "incantour", endpoint: "lista-nozze-request", fallback: "wedding-request" },
-  group: { base: "incantour", endpoint: "group-request" },
+  group: { base: "incantour", endpoint: "group-request", fallback: "wedding-request" },
   roots: { base: "incantour", endpoint: "roots-request", fallback: "wedding-request" },
 } as const;
 
