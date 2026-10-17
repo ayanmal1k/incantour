@@ -7,7 +7,7 @@ import { BlogCard } from "@/components/blog-card";
 import { BlogPostShare } from "@/components/blog/blog-post-share";
 import { BlogSidebar } from "@/components/blog/blog-sidebar";
 import { RelatedPackagesSection } from "@/components/blog/related-packages-section";
-import { ArrowLeftIcon, ArrowRightIcon, CalendarIcon, ClockIcon, UsersIcon } from "@/components/ui/icons";
+import { ArrowLeftIcon, ArrowRightIcon, CalendarIcon, ClockIcon } from "@/components/ui/icons";
 import {
   extractEntityMetadata,
   getPost,

@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 
-import { ArrowRightIcon, CalendarIcon, CheckIcon, MapPinIcon, WhatsAppIcon } from "@/components/ui/icons";
+import { ArrowRightIcon, CheckIcon, MapPinIcon, WhatsAppIcon } from "@/components/ui/icons";
 import type { Tour } from "@/lib/wordpress/types";
 
 function formatCurrency(amount?: string | number): string {
