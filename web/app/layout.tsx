@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { Poppins } from "next/font/google";
+import Script from "next/script";
 
+import { ExtensionErrorSuppressor } from "@/components/extension-error-suppressor";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
 import "@/app/globals.css";
@@ -29,43 +31,46 @@ export const metadata: Metadata = {
   robots: { index: true, follow: true },
 };
 
+const extensionSuppressorCode = `
+  (function() {
+    function isExtensionError(err) {
+      if (!err) return false;
+      var str = ((err && err.message) || '') + ' ' + ((err && err.stack) || '') + ' ' + String(err);
+      str = str.toLowerCase();
+      return str.indexOf('metamask') !== -1 ||
+             str.indexOf('chrome-extension://') !== -1 ||
+             str.indexOf('moz-extension://') !== -1 ||
+             str.indexOf('inpage.js') !== -1;
+    }
+    window.addEventListener('error', function(e) {
+      if (isExtensionError(e.error) || (e.filename && e.filename.indexOf('extension://') !== -1)) {
+        e.preventDefault();
+        e.stopImmediatePropagation();
+        return true;
+      }
+    }, true);
+    window.addEventListener('unhandledrejection', function(e) {
+      if (isExtensionError(e.reason)) {
+        e.preventDefault();
+        e.stopImmediatePropagation();
+        return true;
+      }
+    }, true);
+  })();
+`;
+
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="it" className={poppins.variable}>
       <head>
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `
-              (function() {
-                function isExtensionError(err) {
-                  if (!err) return false;
-                  var str = ((err && err.message) || '') + ' ' + ((err && err.stack) || '') + ' ' + String(err);
-                  str = str.toLowerCase();
-                  return str.indexOf('metamask') !== -1 ||
-                         str.indexOf('chrome-extension://') !== -1 ||
-                         str.indexOf('moz-extension://') !== -1 ||
-                         str.indexOf('inpage.js') !== -1;
-                }
-                window.addEventListener('error', function(e) {
-                  if (isExtensionError(e.error) || (e.filename && e.filename.indexOf('extension://') !== -1)) {
-                    e.preventDefault();
-                    e.stopImmediatePropagation();
-                    return true;
-                  }
-                }, true);
-                window.addEventListener('unhandledrejection', function(e) {
-                  if (isExtensionError(e.reason)) {
-                    e.preventDefault();
-                    e.stopImmediatePropagation();
-                    return true;
-                  }
-                }, true);
-              })();
-            `,
-          }}
+        <Script
+          id="extension-error-suppressor"
+          strategy="beforeInteractive"
+          dangerouslySetInnerHTML={{ __html: extensionSuppressorCode }}
         />
       </head>
       <body className="font-sans antialiased">
+        <ExtensionErrorSuppressor />
         <SiteHeader />
         <main>{children}</main>
         <SiteFooter />
@@ -73,4 +78,5 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
     </html>
   );
 }
+
 
