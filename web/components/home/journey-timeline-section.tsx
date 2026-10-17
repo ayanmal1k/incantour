@@ -31,71 +31,74 @@ export function JourneyTimelineSection() {
           </p>
         </div>
 
-        {/* Timeline */}
-        <div className="relative mx-auto mt-20 max-w-3xl">
-          {/* Vertical Center Line */}
-          <div
-            className="absolute left-1/2 top-0 h-full w-1 -translate-x-1/2 rounded-full bg-gradient-primary hidden sm:block"
-            aria-hidden="true"
-          />
+        {/* Timeline Container */}
+        <div className="mx-auto mt-20 max-w-4xl">
+          {/* Steps & Central Line Wrapper */}
+          <div className="relative">
+            {/* Vertical Center Line - Layered strictly below icons (z-0) and stops at the steps */}
+            <div
+              className="absolute left-1/2 top-8 bottom-8 w-1 -translate-x-1/2 rounded-full bg-gradient-primary z-0 hidden sm:block"
+              aria-hidden="true"
+            />
 
-          <div className="space-y-12 sm:space-y-16">
-            {/* Step 1 */}
-            <div className="flex flex-col items-center sm:flex-row">
-              <div className="w-full text-center sm:w-1/2 sm:pr-10 sm:text-right">
-                <h3 className="font-display text-xl font-bold text-slate-800 sm:text-2xl">
-                  Ascoltiamo il tuo desiderio di scoperta
-                </h3>
+            <div className="space-y-12 sm:space-y-16">
+              {/* Step 1 */}
+              <div className="flex flex-col items-center sm:flex-row">
+                <div className="w-full text-center sm:w-1/2 sm:pr-8 sm:text-right">
+                  <h3 className="font-display text-xl font-bold text-slate-800 sm:text-2xl">
+                    Ascoltiamo il tuo desiderio di scoperta
+                  </h3>
+                </div>
+                <div className="relative z-10 my-3 flex h-16 w-16 shrink-0 items-center justify-center rounded-full bg-gradient-warm text-white shadow-gold sm:my-0">
+                  <HeartIcon className="h-7 w-7 text-white" />
+                </div>
+                <div className="hidden sm:block sm:w-1/2 sm:pl-8" />
               </div>
-              <div className="my-3 flex h-16 w-16 shrink-0 items-center justify-center rounded-full bg-gradient-warm text-white shadow-gold sm:my-0">
-                <HeartIcon className="h-7 w-7 text-white" />
-              </div>
-              <div className="hidden sm:block sm:w-1/2 sm:pl-10" />
-            </div>
 
-            {/* Step 2 */}
-            <div className="flex flex-col items-center sm:flex-row">
-              <div className="hidden sm:block sm:w-1/2 sm:pr-10" />
-              <div className="my-3 flex h-16 w-16 shrink-0 items-center justify-center rounded-full bg-gradient-cool text-white shadow-md sm:my-0">
-                <PencilIcon className="h-7 w-7 text-white" />
+              {/* Step 2 */}
+              <div className="flex flex-col items-center sm:flex-row">
+                <div className="hidden sm:block sm:w-1/2 sm:pr-8" />
+                <div className="relative z-10 my-3 flex h-16 w-16 shrink-0 items-center justify-center rounded-full bg-gradient-cool text-white shadow-md sm:my-0">
+                  <PencilIcon className="h-7 w-7 text-white" />
+                </div>
+                <div className="w-full text-center sm:w-1/2 sm:pl-8 sm:text-left">
+                  <h3 className="font-display text-xl font-bold text-slate-800 sm:text-2xl">
+                    Disegniamo insieme la tua esperienza
+                  </h3>
+                </div>
               </div>
-              <div className="w-full text-center sm:w-1/2 sm:pl-10 sm:text-left">
-                <h3 className="font-display text-xl font-bold text-slate-800 sm:text-2xl">
-                  Disegniamo insieme la tua esperienza
-                </h3>
-              </div>
-            </div>
 
-            {/* Step 3 */}
-            <div className="flex flex-col items-center sm:flex-row">
-              <div className="w-full text-center sm:w-1/2 sm:pr-10 sm:text-right">
-                <h3 className="font-display text-xl font-bold text-slate-800 sm:text-2xl">
-                  Vivi il viaggio come incontro
-                </h3>
+              {/* Step 3 */}
+              <div className="flex flex-col items-center sm:flex-row">
+                <div className="w-full text-center sm:w-1/2 sm:pr-8 sm:text-right">
+                  <h3 className="font-display text-xl font-bold text-slate-800 sm:text-2xl">
+                    Vivi il viaggio come incontro
+                  </h3>
+                </div>
+                <div className="relative z-10 my-3 flex h-16 w-16 shrink-0 items-center justify-center rounded-full bg-gradient-primary text-white shadow-md sm:my-0">
+                  <GlobeIcon className="h-7 w-7 text-white" />
+                </div>
+                <div className="hidden sm:block sm:w-1/2 sm:pl-8" />
               </div>
-              <div className="my-3 flex h-16 w-16 shrink-0 items-center justify-center rounded-full bg-gradient-primary text-white shadow-md sm:my-0">
-                <GlobeIcon className="h-7 w-7 text-white" />
-              </div>
-              <div className="hidden sm:block sm:w-1/2 sm:pl-10" />
-            </div>
 
-            {/* Step 4 */}
-            <div className="flex flex-col items-center sm:flex-row">
-              <div className="hidden sm:block sm:w-1/2 sm:pr-10" />
-              <div className="my-3 flex h-16 w-16 shrink-0 items-center justify-center rounded-full bg-gradient-warm text-white shadow-gold sm:my-0">
-                <QuoteIcon className="h-7 w-7 text-white" />
-              </div>
-              <div className="w-full text-center sm:w-1/2 sm:pl-10 sm:text-left">
-                <blockquote className="font-display text-xl font-bold italic text-slate-800 sm:text-2xl">
-                  &ldquo;Non si viaggia per trovare se stessi ma per ritornare a casa trasformati&rdquo;
-                </blockquote>
-                <p className="mt-2 text-sm font-semibold text-slate-500">— Ralph Waldo Emerson</p>
+              {/* Step 4 */}
+              <div className="flex flex-col items-center sm:flex-row">
+                <div className="hidden sm:block sm:w-1/2 sm:pr-8" />
+                <div className="relative z-10 my-3 flex h-16 w-16 shrink-0 items-center justify-center rounded-full bg-gradient-warm text-white shadow-gold sm:my-0">
+                  <QuoteIcon className="h-7 w-7 text-white" />
+                </div>
+                <div className="w-full text-center sm:w-1/2 sm:pl-8 sm:text-left">
+                  <blockquote className="font-display text-xl font-bold italic text-slate-800 sm:text-2xl">
+                    &ldquo;Non si viaggia per trovare se stessi ma per ritornare a casa trasformati&rdquo;
+                  </blockquote>
+                  <p className="mt-2 text-sm font-semibold text-slate-500">— Ralph Waldo Emerson</p>
+                </div>
               </div>
             </div>
           </div>
 
-          {/* Action CTAs */}
-          <div className="mt-16 flex flex-col items-center justify-center gap-6 sm:flex-row">
+          {/* Action CTAs - Placed outside the timeline line wrapper */}
+          <div className="relative z-10 mt-16 flex flex-col items-center justify-center gap-6 sm:flex-row">
             <Link
               href="/prenota"
               className="inline-flex items-center gap-3 rounded-full bg-gradient-warm px-8 py-4 text-base font-bold text-white shadow-gold transition duration-300 hover:scale-105 hover:brightness-110 focus:outline-none focus-visible:ring-4 focus-visible:ring-incan-gold"
