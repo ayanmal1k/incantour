@@ -19,8 +19,10 @@ import type {
 } from "@/lib/wordpress/types";
 
 const allowedTags = [
-  "a", "b", "blockquote", "br", "code", "em", "figcaption", "figure", "h2", "h3",
-  "h4", "img", "li", "ol", "p", "pre", "span", "strong", "ul",
+  "a", "b", "blockquote", "br", "code", "details", "div", "em", "figcaption", "figure",
+  "h1", "h2", "h3", "h4", "h5", "h6", "hr", "i", "img", "li", "ol", "p", "pre",
+  "small", "span", "strong", "sub", "summary", "sup", "table", "tbody", "td",
+  "th", "thead", "tr", "ul",
 ];
 
 /** Sanitize untrusted CMS HTML before passing it to a rich-text renderer. */
@@ -29,8 +31,9 @@ export function sanitizeWordPressHtml(html: string) {
     allowedTags,
     allowedAttributes: {
       a: ["href", "title", "target", "rel"],
-      img: ["src", "alt", "width", "height", "loading"],
-      "*": ["class"],
+      img: ["src", "alt", "width", "height", "loading", "srcset", "sizes"],
+      details: ["open"],
+      "*": ["class", "id"],
     },
     allowedSchemes: ["http", "https", "mailto"],
     transformTags: {

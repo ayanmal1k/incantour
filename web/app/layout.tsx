@@ -32,6 +32,39 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="it" className={poppins.variable}>
+      <head>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              (function() {
+                function isExtensionError(err) {
+                  if (!err) return false;
+                  var str = ((err && err.message) || '') + ' ' + ((err && err.stack) || '') + ' ' + String(err);
+                  str = str.toLowerCase();
+                  return str.indexOf('metamask') !== -1 ||
+                         str.indexOf('chrome-extension://') !== -1 ||
+                         str.indexOf('moz-extension://') !== -1 ||
+                         str.indexOf('inpage.js') !== -1;
+                }
+                window.addEventListener('error', function(e) {
+                  if (isExtensionError(e.error) || (e.filename && e.filename.indexOf('extension://') !== -1)) {
+                    e.preventDefault();
+                    e.stopImmediatePropagation();
+                    return true;
+                  }
+                }, true);
+                window.addEventListener('unhandledrejection', function(e) {
+                  if (isExtensionError(e.reason)) {
+                    e.preventDefault();
+                    e.stopImmediatePropagation();
+                    return true;
+                  }
+                }, true);
+              })();
+            `,
+          }}
+        />
+      </head>
       <body className="font-sans antialiased">
         <SiteHeader />
         <main>{children}</main>
@@ -40,3 +73,4 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
     </html>
   );
 }
+

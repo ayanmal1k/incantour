@@ -68,7 +68,7 @@ export function TourDetailContent({ tour }: TourDetailContentProps) {
 
         {tour.sanitizedContent ? (
           <div
-            className="prose prose-slate max-w-none text-base sm:text-lg leading-relaxed text-slate-700 prose-headings:text-[#1B5E5F] prose-headings:font-bold prose-headings:mt-8 prose-headings:mb-4 prose-p:mb-5 prose-a:text-[#E6A532] prose-strong:text-slate-900 prose-li:my-1.5"
+            className="tour-details-prose prose prose-slate max-w-none text-base sm:text-lg leading-relaxed text-slate-700 prose-headings:text-[#1B5E5F] prose-headings:font-bold prose-headings:mt-8 prose-headings:mb-4 prose-p:mb-5 prose-a:text-[#E6A532] prose-strong:text-slate-900 prose-li:my-1.5 [&_figure]:my-9 [&_figure]:block [&_img]:my-9 [&_img]:block [&_img]:rounded-2xl [&_p:has(img)]:my-9"
             dangerouslySetInnerHTML={{ __html: tour.sanitizedContent }}
           />
         ) : rawDesc ? (

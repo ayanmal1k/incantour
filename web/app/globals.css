@@ -60,3 +60,52 @@
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; scroll-behavior: auto !important; transition-duration: 0.01ms !important; }
 }
+
+/* Tour detail description image spacing (empty line space before and after every image) */
+.tour-details-prose img {
+  display: block;
+  margin-top: 2.25rem !important;
+  margin-bottom: 2.25rem !important;
+  border-radius: 1rem;
+  max-width: 100%;
+  height: auto;
+}
+
+.tour-details-prose figure,
+.tour-details-prose .wp-block-image {
+  display: block;
+  margin-top: 2.25rem !important;
+  margin-bottom: 2.25rem !important;
+}
+
+.tour-details-prose figure + figure {
+  margin-top: 2.25rem !important;
+}
+
+.tour-details-prose p:has(> img) {
+  margin-top: 2.25rem !important;
+  margin-bottom: 2.25rem !important;
+}
+
+.tour-details-prose .wp-block-gallery {
+  margin-top: 2.5rem !important;
+  margin-bottom: 2.5rem !important;
+}
+
+.tour-details-prose details {
+  margin-top: 1.25rem;
+  margin-bottom: 1.25rem;
+  padding: 1rem 1.25rem;
+  border: 1px solid #e2e8f0;
+  border-radius: 0.875rem;
+  background-color: #f8fafc;
+}
+
+.tour-details-prose summary {
+  font-weight: 700;
+  color: #1b5e5f;
+  cursor: pointer;
+  text-transform: capitalize;
+  user-select: none;
+}
+
