@@ -34,16 +34,16 @@ export function SiteHeader() {
   return (
     <header className="fixed top-0 left-0 right-0 z-50 w-full transition-all duration-300">
       <nav
-        className={`w-full px-6 py-4 transition-all duration-300 ${
+        className={`w-full px-6 sm:px-10 lg:px-12 py-4 transition-all duration-300 ${
           isScrolled
             ? "bg-gradient-to-r from-[rgba(230,165,50,0.98)] via-[rgba(212,148,26,0.98)] via-25% to-[rgba(27,94,95,0.98)] shadow-[0_2px_20px_rgba(230,165,50,0.25)] backdrop-blur-md"
             : "bg-transparent"
         }`}
         aria-label="Navigazione principale"
       >
-        <div className="mx-auto flex max-w-7xl items-center justify-between">
+        <div className="mx-auto flex max-w-screen-2xl items-center justify-between gap-8 lg:gap-14">
           {/* Logo with spinning spiral and text */}
-          <Link href="/" className="flex items-center space-x-3 group" aria-label={`${siteName}, home`}>
+          <Link href="/" className="flex items-center space-x-3.5 group shrink-0" aria-label={`${siteName}, home`}>
             <div className="relative h-11 w-11 shrink-0 animate-spin-slow motion-reduce:animate-none">
               <Image
                 src="/assets/images/icon.png"
@@ -67,17 +67,13 @@ export function SiteHeader() {
           </Link>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center space-x-7 lg:space-x-8">
+          <div className="hidden md:flex items-center space-x-6 lg:space-x-8 xl:space-x-9">
             {navigation.map((item) =>
               item.children ? (
                 <div key={item.label} className="relative group">
                   <button
                     type="button"
-                    className={`flex items-center gap-1.5 font-semibold text-[15px] lg:text-base tracking-wide transition-colors duration-300 py-2 cursor-pointer ${
-                      isScrolled
-                        ? "text-[#E6A532] hover:text-white"
-                        : "text-white hover:text-orange-300"
-                    }`}
+                    className="flex items-center gap-1.5 font-semibold text-[15px] lg:text-base tracking-wide text-white hover:text-[#E6A532] transition-colors duration-300 py-2 cursor-pointer"
                   >
                     <span>{item.label}</span>
                     <svg
@@ -115,11 +111,7 @@ export function SiteHeader() {
                   href={item.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className={`flex items-center gap-1 font-semibold text-[15px] lg:text-base tracking-wide transition-colors duration-300 py-2 ${
-                    isScrolled
-                      ? "text-[#E6A532] hover:text-white"
-                      : "text-white hover:text-orange-300"
-                  }`}
+                  className="flex items-center gap-1 font-semibold text-[15px] lg:text-base tracking-wide text-white hover:text-[#E6A532] transition-colors duration-300 py-2"
                 >
                   <span>{item.label}</span>
                   <svg
@@ -141,11 +133,9 @@ export function SiteHeader() {
                 <Link
                   key={item.href}
                   href={item.href}
-                  className={`font-semibold text-[15px] lg:text-base tracking-wide transition-colors duration-300 py-2 ${
-                    isScrolled
-                      ? "text-[#E6A532] hover:text-white"
-                      : "text-white hover:text-orange-300"
-                  } ${pathname === item.href ? "text-white underline decoration-2 underline-offset-4" : ""}`}
+                  className={`font-semibold text-[15px] lg:text-base tracking-wide text-white hover:text-[#E6A532] transition-colors duration-300 py-2 ${
+                    pathname === item.href ? "text-[#E6A532] underline decoration-2 underline-offset-4" : ""
+                  }`}
                 >
                   {item.label}
                 </Link>
