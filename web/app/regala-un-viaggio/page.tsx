@@ -95,7 +95,7 @@ export default function RegalaUnViaggioPage() {
             </h1>
 
             <p className="text-base sm:text-lg md:text-xl text-white/95 max-w-2xl mx-auto font-light leading-relaxed mb-8">
-              Dona un&apos;esperienza indimenticabile ai tuoi cari. Crea un voucher viaggio su misura in pochi istanti per compleanni, nozze o anniversari.
+              Dona un&apos;esperienza indimenticabile. Crea la tua GIFT CARD personalizzata in pochi istanti per compleanni, nozze o anniversari.
             </p>
 
             {/* Value badges */}
