@@ -273,6 +273,41 @@ const nextConfig: NextConfig = {
         destination: "/sostieni-incantour",
         permanent: true,
       },
+      {
+        source: "/src/novita-eventi.html",
+        destination: "/blog",
+        permanent: true,
+      },
+      {
+        source: "/novita-eventi.html",
+        destination: "/blog",
+        permanent: true,
+      },
+      {
+        source: "/src/racconti-viaggio.html",
+        destination: "/blog",
+        permanent: true,
+      },
+      {
+        source: "/racconti-viaggio.html",
+        destination: "/blog",
+        permanent: true,
+      },
+      {
+        source: "/src/login.html",
+        destination: "/contatti",
+        permanent: true,
+      },
+      {
+        source: "/login.html",
+        destination: "/contatti",
+        permanent: true,
+      },
+      {
+        source: "/login",
+        destination: "/contatti",
+        permanent: true,
+      },
     ];
   },
 };
