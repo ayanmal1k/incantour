@@ -22,11 +22,14 @@ export function SiteFooter() {
             <div className="space-y-4">
               <div>
                 <p className="font-bold text-white mb-1.5 text-base">Sede</p>
-                <p className="text-[15px] sm:text-base font-medium leading-relaxed text-gray-200">
+                <Link
+                  href="/contatti"
+                  className="text-[15px] sm:text-base font-medium leading-relaxed text-gray-200 hover:text-orange-400 transition-colors block"
+                >
                   Calata Trinita&apos; Maggiore, 53
                   <br />
                   80134 – Napoli
-                </p>
+                </Link>
               </div>
               <div className="space-y-2.5">
                 <p className="text-[15px] sm:text-base">
@@ -177,6 +180,11 @@ export function SiteFooter() {
               <li>
                 <Link href="/partner" className="hover:text-orange-400 transition-colors text-gray-200">
                   AREA AGENZIE/OPERATORI
+                </Link>
+              </li>
+              <li>
+                <Link href="/contatti" className="hover:text-orange-400 transition-colors text-gray-200">
+                  Dove Siamo &amp; Contatti
                 </Link>
               </li>
             </ul>

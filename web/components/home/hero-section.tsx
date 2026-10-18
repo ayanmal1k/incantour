@@ -132,7 +132,7 @@ export function HeroSection() {
         <div className="animate-floating motion-reduce:animate-none">
           <h1 className="font-display text-4xl font-extrabold tracking-tight sm:text-6xl md:text-7xl lg:text-8xl">
             Immergiti in atmosfere
-            <span className="mt-2 block bg-gradient-to-r from-incan-gold via-amber-300 to-incan-gold-dark bg-clip-text text-transparent drop-shadow-sm">
+            <span className="mt-2 block text-gradient-hero">
               incantevoli
             </span>
           </h1>

@@ -223,6 +223,31 @@ const nextConfig: NextConfig = {
         destination: "/faq",
         permanent: true,
       },
+      {
+        source: "/src/contatti.html",
+        destination: "/contatti",
+        permanent: true,
+      },
+      {
+        source: "/contatti.html",
+        destination: "/contatti",
+        permanent: true,
+      },
+      {
+        source: "/src/booking.html",
+        destination: "/prenota",
+        permanent: true,
+      },
+      {
+        source: "/booking.html",
+        destination: "/prenota",
+        permanent: true,
+      },
+      {
+        source: "/booking",
+        destination: "/prenota",
+        permanent: true,
+      },
     ];
   },
 };
