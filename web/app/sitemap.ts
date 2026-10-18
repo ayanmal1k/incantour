@@ -24,6 +24,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { path: "faq", priority: 0.7, changeFrequency: "monthly" as const },
     { path: "contatti", priority: 0.8, changeFrequency: "monthly" as const },
     { path: "prenota", priority: 0.9, changeFrequency: "daily" as const },
+    { path: "regala-un-viaggio", priority: 0.8, changeFrequency: "weekly" as const },
+    { path: "sostieni-incantour", priority: 0.8, changeFrequency: "monthly" as const },
   ];
 
   return routes.map((route) => ({

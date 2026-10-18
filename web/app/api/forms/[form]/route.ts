@@ -5,6 +5,7 @@ import { getCustomApiBase, getWordPressUrl } from "@/lib/wordpress/client";
 const formTargets = {
   booking: { base: "tourism", endpoint: "submit-booking" },
   "gift-voucher": { base: "tourism", endpoint: "submit-gift-voucher" },
+  donation: { base: "incantour", endpoint: "donation-request", fallback: "contact-request" },
   contact: { base: "incantour", endpoint: "contact-request", fallback: "wedding-request" },
   wedding: { base: "incantour", endpoint: "wedding-request" },
   "lista-nozze": { base: "incantour", endpoint: "lista-nozze-request", fallback: "wedding-request" },
@@ -157,6 +158,145 @@ export async function POST(
       });
     } catch {
       return NextResponse.json({ error: "Dati richiesta non validi." }, { status: 400 });
+    }
+  }
+
+  // Server-side validation & spam protection for gift-voucher form
+  if (form === "gift-voucher") {
+    try {
+      const data = JSON.parse(rawBody);
+
+      // Honeypot spam check (silently accept bot submissions)
+      if (data.website || data.hp_check || data.honeypot) {
+        return NextResponse.json(
+          { success: true, message: "Richiesta voucher ricevuta." },
+          { status: 200 }
+        );
+      }
+
+      const errors: Record<string, string> = {};
+      const value = parseInt(String(data.value), 10);
+      const firstName = typeof data.first_name === "string" ? data.first_name.trim() : "";
+      const lastName = typeof data.last_name === "string" ? data.last_name.trim() : "";
+      const dob = typeof data.dob === "string" ? data.dob.trim() : "";
+      const phone = typeof data.phone === "string" ? data.phone.trim() : "";
+      const email = typeof data.email === "string" ? data.email.trim() : "";
+      const occasion = typeof data.occasion === "string" ? data.occasion.trim() : "";
+      const message = typeof data.message === "string" ? data.message.trim() : "";
+
+      if (isNaN(value) || value < 50) {
+        errors.value = "L'importo minimo per un voucher regalo è di 50€.";
+      }
+      if (!firstName) {
+        errors.first_name = "Il nome del beneficiario è obbligatorio.";
+      }
+      if (!lastName) {
+        errors.last_name = "Il cognome del beneficiario è obbligatorio.";
+      }
+      if (!dob) {
+        errors.dob = "La data di nascita del beneficiario è obbligatoria.";
+      }
+      if (!phone) {
+        errors.phone = "Il recapito telefonico è obbligatorio.";
+      }
+      if (!email) {
+        errors.email = "L'indirizzo email del beneficiario è obbligatorio.";
+      } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+        errors.email = "Inserisci un indirizzo email valido.";
+      }
+      if (!occasion) {
+        errors.occasion = "Seleziona un'occasione per il regalo.";
+      }
+      if (!message) {
+        errors.message = "La dedica o messaggio personale è obbligatoria.";
+      } else if (message.length > 250) {
+        errors.message = "La dedica non può superare i 250 caratteri.";
+      }
+
+      if (Object.keys(errors).length > 0) {
+        return NextResponse.json(
+          {
+            error: "Alcuni campi obbligatori mancano o non sono validi.",
+            errors,
+          },
+          { status: 400 }
+        );
+      }
+
+      forwardBody = JSON.stringify({
+        value,
+        first_name: firstName,
+        last_name: lastName,
+        dob,
+        phone,
+        email,
+        occasion,
+        message,
+        payment_method_id: typeof data.payment_method_id === "string" ? data.payment_method_id : undefined,
+      });
+    } catch {
+      return NextResponse.json({ error: "Dati richiesta voucher non validi." }, { status: 400 });
+    }
+  }
+
+  // Server-side validation & spam protection for donation form
+  if (form === "donation") {
+    try {
+      const data = JSON.parse(rawBody);
+
+      // Honeypot spam check (silently accept bot submissions)
+      if (data.website || data.hp_check || data.honeypot) {
+        return NextResponse.json(
+          { success: true, message: "Donazione registrata con successo." },
+          { status: 200 }
+        );
+      }
+
+      const errors: Record<string, string> = {};
+      const name = typeof data.name === "string" ? data.name.trim() : "";
+      const email = typeof data.email === "string" ? data.email.trim() : "";
+      const phone = typeof data.phone === "string" ? data.phone.trim() : "";
+      const amount = parseFloat(String(data.amount));
+      const frequency =
+        data.frequency === "mensile" || data.frequency === "monthly" ? "mensile" : "una-tantum";
+      const cause = typeof data.cause === "string" ? data.cause.trim() : "Supporto Generale";
+      const message = typeof data.message === "string" ? data.message.trim() : "";
+
+      if (!name) {
+        errors.name = "Il nome completo o ragione sociale è obbligatorio.";
+      }
+      if (!email) {
+        errors.email = "L'indirizzo email per la ricevuta è obbligatorio.";
+      } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+        errors.email = "Inserisci un indirizzo email valido.";
+      }
+      if (isNaN(amount) || amount < 5) {
+        errors.amount = "L'importo minimo per una donazione è di 5€.";
+      }
+
+      if (Object.keys(errors).length > 0) {
+        return NextResponse.json(
+          {
+            error: "Alcuni campi obbligatori mancano o non sono validi.",
+            errors,
+          },
+          { status: 400 }
+        );
+      }
+
+      forwardBody = JSON.stringify({
+        name,
+        email,
+        phone,
+        amount,
+        frequency,
+        cause,
+        message,
+        service: "Donazione IncanTour",
+        details: `Donazione di €${amount.toFixed(2)} (${frequency === "mensile" ? "Mensile" : "Una tantum"}). Causa: ${cause}. Note: ${message || "Nessuna"}.`,
+      });
+    } catch {
+      return NextResponse.json({ error: "Dati donazione non validi." }, { status: 400 });
     }
   }
 

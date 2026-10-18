@@ -248,6 +248,31 @@ const nextConfig: NextConfig = {
         destination: "/prenota",
         permanent: true,
       },
+      {
+        source: "/src/regala-un-viaggio.html",
+        destination: "/regala-un-viaggio",
+        permanent: true,
+      },
+      {
+        source: "/regala-un-viaggio.html",
+        destination: "/regala-un-viaggio",
+        permanent: true,
+      },
+      {
+        source: "/src/donate.html",
+        destination: "/sostieni-incantour",
+        permanent: true,
+      },
+      {
+        source: "/donate.html",
+        destination: "/sostieni-incantour",
+        permanent: true,
+      },
+      {
+        source: "/donate",
+        destination: "/sostieni-incantour",
+        permanent: true,
+      },
     ];
   },
 };
