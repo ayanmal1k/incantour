@@ -3,7 +3,7 @@
 import React, { useId, useRef, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { CheckIcon, GiftIcon, HeartIcon, ShieldIcon } from "@/components/ui/icons";
+import { CheckIcon, GiftIcon, ShieldIcon } from "@/components/ui/icons";
 
 interface VoucherFormProps {
   initialValue?: number;
