@@ -866,6 +866,3 @@ export function CreditCardIcon({ className = "w-5 h-5", ...props }: IconProps) {
   );
 }
 
-
-
-

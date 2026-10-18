@@ -3,7 +3,7 @@
 import React, { useId, useRef, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { CheckIcon, GiftIcon, ShieldIcon } from "@/components/ui/icons";
+import { CheckIcon, GiftIcon, InfoIcon, ShieldIcon } from "@/components/ui/icons";
 
 interface VoucherFormProps {
   initialValue?: number;
@@ -732,26 +732,12 @@ export function VoucherForm({ initialValue = 100 }: VoucherFormProps) {
               </div>
             </div>
 
-            {/* Information Validity Card */}
-            <div className="bg-white rounded-2xl p-5 border border-gray-100 shadow-sm space-y-3 text-xs sm:text-sm text-gray-600">
-              <div className="flex items-start gap-3">
-                <CheckIcon className="w-4 h-4 text-emerald-600 shrink-0 mt-0.5" />
-                <p>
-                  <strong>Validità 12 Mesi:</strong> Utilizzabile per prenotare qualsiasi pacchetto turistico o soggiorno IncanTour dalla data di emissione.
-                </p>
-              </div>
-              <div className="flex items-start gap-3">
-                <CheckIcon className="w-4 h-4 text-emerald-600 shrink-0 mt-0.5" />
-                <p>
-                  <strong>Cumulabile &amp; Flessibile:</strong> Può essere unito ad altri voucher regalo o utilizzato come acconto per itinerari di valore superiore.
-                </p>
-              </div>
-              <div className="flex items-start gap-3">
-                <CheckIcon className="w-4 h-4 text-emerald-600 shrink-0 mt-0.5" />
-                <p>
-                  <strong>Assistenza Dedicata:</strong> Il beneficiario riceverà una consulenza di viaggio personalizzata per costruire l&apos;itinerario desiderato.
-                </p>
-              </div>
+            {/* Card Visual Design Notice */}
+            <div className="mt-4 bg-orange-50 border border-orange-100 rounded-2xl p-4 text-xs text-orange-800 flex items-start gap-3">
+              <InfoIcon className="w-5 h-5 text-orange-600 shrink-0 mt-0.5" />
+              <p className="leading-relaxed">
+                Questo voucher è spendibile per la prenotazione di qualsiasi pacchetto turistico Incantour. Ha validità di 12 mesi dalla data di emissione ed è cumulabile.
+              </p>
             </div>
           </div>
         </div>
