@@ -18,9 +18,9 @@ export function CategoryHero({ config }: { config: TravelCategoryConfig }) {
         className="object-cover object-center pointer-events-none"
       />
 
-      {/* Layered brand gradients for contrast and readability */}
-      <div className="absolute inset-0 bg-gradient-to-b from-black/75 via-black/55 to-black/85" />
-      <div className="absolute inset-0 bg-gradient-to-tr from-[#0F4142]/45 via-transparent to-[#E6A532]/25 pointer-events-none" />
+      {/* Legacy-matching subtle overlay to keep image bright and visible */}
+      <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-black/55 pointer-events-none" />
+      <div className="absolute inset-0 bg-gradient-to-tr from-[#0F4142]/20 via-transparent to-[#E6A532]/15 pointer-events-none" />
 
 
       {/* Main Content */}
