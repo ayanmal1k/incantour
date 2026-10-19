@@ -344,7 +344,7 @@ export function SiteFooter() {
                   className="hover:text-orange-400 transition"
                   style={{ color: "inherit" }}
                 >
-                  AREA AGENZIE/OPERATORI
+                  NETWORK PARTNER
                 </Link>
               </li>
             </ul>
@@ -379,10 +379,12 @@ export function SiteFooter() {
                 <strong>Licenza:</strong> n.5 del 14/01/2009
               </p>
               <p>
-                <strong>RC PROF.LE:</strong> Lloyd&apos;s Insurance n. DY504058-LB
+                <strong>RC PROF.LE:</strong> Lloyd&apos;s Insurance NR DY504058-LB
               </p>
               <p>
-                <strong>Fondo di Garanzia:</strong> Il Salvagente
+                <strong>Fondo di garanzia:</strong> TOP SECURE
+                <br />
+                certificato N.2026/0930/1/1418
                 <br />
                 <strong>Membro:</strong> AIAV
               </p>
