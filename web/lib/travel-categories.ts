@@ -111,7 +111,7 @@ export const travelCategoryConfigs: Record<
       featurePills: [
         { label: "Navi di Lusso & Yacht", icon: "ship" },
         { label: "Servizi All-Inclusive", icon: "cocktail" },
-        { label: "Destinazioni Mondiali", icon: "globe" },
+        { label: "Crociere Giro del Mondo", icon: "globe" },
       ],
     },
     search: {
@@ -292,7 +292,7 @@ export const travelCategoryConfigs: Record<
       ],
     },
     search: {
-      title: "Trova il tuo Percorso di Lingua Ideale",
+      title: "Trova il tuo percorso di lingua italiana ideale",
       subtitle: "Esplora i nostri programmi di immersione nella lingua e cultura italiana",
       placeholder: "Cerca per livello, location o tipologia di percorso...",
     },

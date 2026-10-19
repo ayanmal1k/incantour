@@ -84,7 +84,7 @@ Percorso Tailor-Made:
               Iscrizione &amp; Personalizzazione
             </span>
             <h2 className="text-3xl md:text-4xl font-extrabold text-gray-900 tracking-tight">
-              FORM DI PRENOTAZIONE
+              FORM DI ISCRIZIONE
             </h2>
             <p className="text-lg font-bold text-gradient-dark mt-1">
               Percorsi di Lingua e Cultura Italiana
@@ -271,7 +271,7 @@ Percorso Tailor-Made:
                     onChange={(e) => setFormData({ ...formData, cils_tutor: e.target.checked })}
                     className="mt-0.5 rounded text-amber-600 focus:ring-amber-500 w-4 h-4 cursor-pointer"
                   />
-                  <span>Desidero richiedere un tutor di affiancamento per la CERTIFICAZIONE CILS</span>
+                  <span>Desidero richiedere un tutor di affiancamento per la certificazione di lingua italiana CILS</span>
                 </label>
               </div>
             </div>
@@ -288,7 +288,7 @@ Percorso Tailor-Made:
                 ) : (
                   <PaperPlaneIcon className="w-5 h-5" />
                 )}
-                <span>INVIA PRENOTAZIONE PERCORSO</span>
+                <span>INVIA ISCRIZIONE PERCORSO</span>
               </button>
             </div>
           </form>

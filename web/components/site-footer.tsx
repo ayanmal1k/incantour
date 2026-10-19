@@ -2,7 +2,15 @@
 
 import Link from "next/link";
 import { useEffect, useRef, useState, useSyncExternalStore } from "react";
-import { GlobeIcon, HeartIcon, MailIcon, PhoneIcon, WhatsAppIcon } from "@/components/ui/icons";
+import {
+  GlobeIcon,
+  HeartIcon,
+  MailIcon,
+  PhoneIcon,
+  WhatsAppIcon,
+  FacebookIcon,
+  InstagramIcon,
+} from "@/components/ui/icons";
 
 declare global {
   interface Window {
@@ -192,6 +200,31 @@ export function SiteFooter() {
                     info@incantour.it
                   </a>
                 </p>
+              </div>
+              <div className="pt-2">
+                <p className="text-xs uppercase font-bold tracking-wider text-amber-400 mb-2">
+                  Seguici sui Social
+                </p>
+                <div className="flex items-center gap-3">
+                  <a
+                    href="https://www.facebook.com/incantour"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="w-8 h-8 rounded-full bg-white/10 hover:bg-[#E6A532] text-white flex items-center justify-center transition-all transform hover:scale-110"
+                    aria-label="Facebook IncanTour"
+                  >
+                    <FacebookIcon className="w-4 h-4" />
+                  </a>
+                  <a
+                    href="https://www.instagram.com/incantour"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="w-8 h-8 rounded-full bg-white/10 hover:bg-[#E6A532] text-white flex items-center justify-center transition-all transform hover:scale-110"
+                    aria-label="Instagram IncanTour"
+                  >
+                    <InstagramIcon className="w-4 h-4" />
+                  </a>
+                </div>
               </div>
             </div>
           </div>

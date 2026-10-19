@@ -198,32 +198,92 @@
 
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
                     <!-- Programma Button -->
-                    <a href="../assets/documents/Programma.pdf" download class="flex items-center justify-center space-x-3 bg-gradient-to-r from-amber-500 to-amber-600 text-white font-bold px-6 py-4 rounded-2xl shadow-lg hover:opacity-95 transform hover:scale-105 transition-all group">
+                    <button type="button" onclick="openDocLangModal('programma')" class="flex items-center justify-center space-x-3 bg-gradient-to-r from-amber-500 to-amber-600 text-white font-bold px-6 py-4 rounded-2xl shadow-lg hover:opacity-95 transform hover:scale-105 transition-all group cursor-pointer focus:outline-none">
                         <i class="fas fa-file-pdf text-2xl text-amber-200 group-hover:scale-110 transition-transform"></i>
-                        <span>Programma</span>
-                    </a>
+                        <span class="text-lg">Programma</span>
+                    </button>
 
-                    <!-- Laboratori Button (Connected to existing file) -->
-                    <a href="../assets/documents/Laboratori.pub" download class="flex items-center justify-center space-x-3 bg-gradient-to-r from-[#1B5E5F] to-[#0F4142] text-white font-bold px-6 py-4 rounded-2xl shadow-lg hover:opacity-95 transform hover:scale-105 transition-all group">
+                    <!-- Laboratori Button -->
+                    <button type="button" onclick="openDocLangModal('laboratori')" class="flex items-center justify-center space-x-3 bg-gradient-to-r from-[#1B5E5F] to-[#0F4142] text-white font-bold px-6 py-4 rounded-2xl shadow-lg hover:opacity-95 transform hover:scale-105 transition-all group cursor-pointer focus:outline-none">
                         <i class="fas fa-file-alt text-2xl text-teal-200 group-hover:scale-110 transition-transform"></i>
-                        <span>Laboratori</span>
-                    </a>
+                        <span class="text-lg">Laboratori</span>
+                    </button>
 
                     <!-- Seminari Button -->
-                    <a href="../assets/documents/Seminari.pdf" download class="flex items-center justify-center space-x-3 bg-gradient-to-r from-amber-500 to-amber-600 text-white font-bold px-6 py-4 rounded-2xl shadow-lg hover:opacity-95 transform hover:scale-105 transition-all group">
+                    <button type="button" onclick="openDocLangModal('seminari')" class="flex items-center justify-center space-x-3 bg-gradient-to-r from-amber-500 to-amber-600 text-white font-bold px-6 py-4 rounded-2xl shadow-lg hover:opacity-95 transform hover:scale-105 transition-all group cursor-pointer focus:outline-none">
                         <i class="fas fa-graduation-cap text-2xl text-amber-200 group-hover:scale-110 transition-transform"></i>
-                        <span>Seminari</span>
-                    </a>
+                        <span class="text-lg">Seminari</span>
+                    </button>
                 </div>
             </div>
         </section>
+
+        <!-- Document Language Modal -->
+        <div id="docLangModal" class="fixed inset-0 z-50 hidden flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm">
+            <div class="relative w-full max-w-md bg-white rounded-3xl shadow-2xl overflow-hidden p-6 sm:p-8 text-center animate-fade-in" onclick="event.stopPropagation()">
+                <!-- Close Button -->
+                <button type="button" onclick="closeDocLangModal()" class="absolute top-4 right-4 p-2 text-gray-400 hover:text-gray-700 rounded-full hover:bg-gray-100 transition-colors">
+                    <i class="fas fa-times text-lg"></i>
+                </button>
+
+                <!-- Icon -->
+                <div class="mx-auto w-16 h-16 rounded-2xl bg-amber-50 text-amber-600 flex items-center justify-center mb-4 shadow-inner">
+                    <i id="docModalIcon" class="fas fa-file-pdf text-3xl"></i>
+                </div>
+
+                <!-- Title & Subtitle -->
+                <h3 id="docModalTitle" class="text-2xl font-bold text-gray-900 mb-1">Scarica Documento</h3>
+                <p class="text-sm text-gray-500 mb-6">
+                    Scegli la lingua del documento per avviare il download
+                    <br>
+                    <span class="text-xs text-gray-400">Choose document language to start download</span>
+                </p>
+
+                <!-- Download Options -->
+                <div class="space-y-3">
+                    <!-- Italian -->
+                    <button type="button" onclick="triggerDocDownload('it')" class="w-full flex items-center justify-between p-4 rounded-2xl border-2 border-gray-200 hover:border-amber-500 bg-gray-50/50 hover:bg-amber-50/40 text-left transition-all group cursor-pointer">
+                        <div class="flex items-center space-x-3">
+                            <span class="text-3xl">🇮🇹</span>
+                            <div>
+                                <div class="font-bold text-gray-800 group-hover:text-amber-700">Versione Italiana</div>
+                                <div class="text-xs text-gray-500">Documento PDF in Italiano</div>
+                            </div>
+                        </div>
+                        <div class="w-9 h-9 rounded-xl bg-white border border-gray-200 group-hover:bg-amber-500 group-hover:text-white group-hover:border-amber-500 flex items-center justify-center text-gray-600 transition-colors">
+                            <i class="fas fa-download text-sm"></i>
+                        </div>
+                    </button>
+
+                    <!-- English -->
+                    <button type="button" onclick="triggerDocDownload('en')" class="w-full flex items-center justify-between p-4 rounded-2xl border-2 border-gray-200 hover:border-[#1B5E5F] bg-gray-50/50 hover:bg-teal-50/40 text-left transition-all group cursor-pointer">
+                        <div class="flex items-center space-x-3">
+                            <span class="text-3xl">🇬🇧</span>
+                            <div>
+                                <div class="font-bold text-gray-800 group-hover:text-[#1B5E5F]">English Version</div>
+                                <div class="text-xs text-gray-500">PDF Document in English</div>
+                            </div>
+                        </div>
+                        <div class="w-9 h-9 rounded-xl bg-white border border-gray-200 group-hover:bg-[#1B5E5F] group-hover:text-white group-hover:border-[#1B5E5F] flex items-center justify-center text-gray-600 transition-colors">
+                            <i class="fas fa-download text-sm"></i>
+                        </div>
+                    </button>
+                </div>
+
+                <div class="mt-6 pt-4 border-t border-gray-100 flex justify-center">
+                    <button type="button" onclick="closeDocLangModal()" class="text-xs text-gray-400 hover:text-gray-600 font-medium tracking-wide uppercase">
+                        Annulla / Cancel
+                    </button>
+                </div>
+            </div>
+        </div>
 
         <!-- Search Section -->
         <section class="py-16 bg-gray-50">
             <div class="container mx-auto px-6">
                 <div class="search-container slide-in-up">
                     <div class="text-center mb-6">
-                        <h2 class="text-2xl font-bold gradient-text mb-2">Trova il tuo Percorso di Lingua Ideale</h2>
+                        <h2 class="text-2xl font-bold gradient-text mb-2">Trova il tuo percorso di lingua italiana ideale</h2>
                         <p class="text-gray-600">Esplora i nostri programmi di immersione nella lingua e cultura italiana</p>
                     </div>
                     
@@ -279,7 +339,7 @@
                     <!-- Header -->
                     <div class="text-center mb-10">
                         <span class="inline-block px-4 py-1.5 rounded-full bg-amber-100 text-amber-800 font-bold text-xs uppercase tracking-widest mb-3">Iscrizione & Personalizzazione</span>
-                        <h2 class="text-3xl md:text-4xl font-extrabold text-gray-900">FORM DI PRENOTAZIONE</h2>
+                        <h2 class="text-3xl md:text-4xl font-extrabold text-gray-900">FORM DI ISCRIZIONE</h2>
                         <p class="text-lg font-bold gradient-text mt-1">Percorsi di Lingua e Cultura Italiana</p>
                         <p class="text-gray-500 text-sm mt-2 max-w-xl mx-auto">Compila il modulo per prenotare o progettare il tuo percorso su misura</p>
                     </div>
@@ -348,7 +408,7 @@
                             <div class="mt-6 pt-4 border-t border-amber-200/80">
                                 <label class="flex items-start gap-3 cursor-pointer text-sm font-semibold text-gray-800">
                                     <input type="checkbox" name="cils_tutor" id="l-cils" class="mt-1 rounded text-amber-600 focus:ring-amber-500 w-5 h-5 cursor-pointer">
-                                    <span>Desidero richiedere un tutor di affiancamento per la CERTIFICAZIONE CILS</span>
+                                    <span>Desidero richiedere un tutor di affiancamento per la certificazione di lingua italiana CILS</span>
                                 </label>
                             </div>
                         </div>
@@ -356,7 +416,7 @@
                         <!-- Submit Button -->
                         <div class="pt-2">
                             <button type="submit" id="l-submit-btn" class="w-full bg-gradient-to-r from-[#E6A532] to-[#D4941A] text-white font-extrabold py-5 rounded-2xl shadow-xl hover:opacity-95 transform hover:scale-[1.01] transition text-lg flex items-center justify-center gap-3">
-                                <i class="fas fa-paper-plane"></i> INVIA PRENOTAZIONE PERCORSO
+                                <i class="fas fa-paper-plane"></i> INVIA ISCRIZIONE PERCORSO
                             </button>
                         </div>
                     </form>
@@ -588,6 +648,69 @@
             fetchTours();
             loadRelatedNews();
         });
+
+        // Document language download modal logic
+        const DOC_CONFIGS = {
+            programma: {
+                title: "Programma",
+                icon: "fa-file-pdf",
+                files: {
+                    it: { url: "../assets/documents/programma-it.pdf", name: "Programma_Italiano.pdf" },
+                    en: { url: "../assets/documents/programma-en.pdf", name: "Program_English.pdf" }
+                }
+            },
+            laboratori: {
+                title: "Laboratori",
+                icon: "fa-file-alt",
+                files: {
+                    it: { url: "../assets/documents/laboratori-it.pdf", name: "Laboratori_Italiano.pdf" },
+                    en: { url: "../assets/documents/laboratori-en.pdf", name: "Laboratories_English.pdf" }
+                }
+            },
+            seminari: {
+                title: "Seminari",
+                icon: "fa-graduation-cap",
+                files: {
+                    it: { url: "../assets/documents/seminari-it.pdf", name: "Seminari_Italiano.pdf" },
+                    en: { url: "../assets/documents/seminari-en.pdf", name: "Seminars_English.pdf" }
+                }
+            }
+        };
+
+        let currentSelectedDoc = null;
+
+        function openDocLangModal(docId) {
+            currentSelectedDoc = DOC_CONFIGS[docId];
+            if (!currentSelectedDoc) return;
+
+            document.getElementById('docModalTitle').textContent = currentSelectedDoc.title;
+            const iconElem = document.getElementById('docModalIcon');
+            iconElem.className = `fas ${currentSelectedDoc.icon} text-3xl`;
+
+            const modal = document.getElementById('docLangModal');
+            modal.classList.remove('hidden');
+        }
+
+        function closeDocLangModal() {
+            const modal = document.getElementById('docLangModal');
+            modal.classList.add('hidden');
+            currentSelectedDoc = null;
+        }
+
+        function triggerDocDownload(lang) {
+            if (!currentSelectedDoc || !currentSelectedDoc.files[lang]) return;
+            const fileInfo = currentSelectedDoc.files[lang];
+            const a = document.createElement('a');
+            a.href = fileInfo.url;
+            a.download = fileInfo.name;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            closeDocLangModal();
+        }
+
+        // Close on background click
+        document.getElementById('docLangModal')?.addEventListener('click', closeDocLangModal);
     </script>
 </body>
 </html>

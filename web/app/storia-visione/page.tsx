@@ -77,8 +77,11 @@ export default function StoriaVisionePage() {
               <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold mb-6 text-gradient-dark">
                 La Nostra Storia
               </h2>
-              <p className="text-lg sm:text-xl text-gray-700 leading-relaxed mb-8 font-normal">
-                Incantour nasce nel 2009 come agenzia di viaggi &amp; turismo &amp; &ldquo;tour operator autore&rdquo; per l&apos;incoming turistico – culturale in Campania: il sogno realizzato di due imprenditori, Francesco ed Emanuela, esperti in marketing territoriale.
+              <p className="text-lg sm:text-xl text-gray-700 leading-relaxed mb-4 font-normal">
+                Incantour nasce nel 2009 come agenzia di viaggi &amp; turismo &amp; &ldquo;tour operator autore&rdquo; per l&apos;incoming turistico – culturale in Campania: il sogno realizzato di due imprenditori, Emanuela e Francesco, esperti in marketing territoriale.
+              </p>
+              <p className="text-base sm:text-lg text-gray-600 leading-relaxed mb-8 font-normal">
+                Sin dal 1990, hanno promosso l&apos;idea progetto TERRAMARE, una rassegna turistico -culturale ambientata in un luogo emblematico : il borgo marinaro 400esco della Marina Corricella, a Procida (edizioni 1991-1992-2000).
               </p>
 
               {/* Document Download CTA */}
@@ -124,7 +127,7 @@ export default function StoriaVisionePage() {
                 L&apos;Integrazione tra Terra e Mare
               </h3>
               <p className="text-gray-700 text-base sm:text-lg leading-relaxed mb-4">
-                In questi anni abbiamo disegnato offerte di soggiorno integrando i segni della cultura della terra e del mare, le aree interne ancora da svelare e le celebri aree costiere.
+                In questi anni abbiamo disegnato offerte di soggiorno integrando i segni della cultura della terra e del mare, le aree interne ancora da svelare e le celebri aree costiere da reinterpretare.
               </p>
               <p className="text-gray-700 text-base sm:text-lg leading-relaxed">
                 Si è così sviluppata la nostra passione di immaginare continui parallelismi tra i vari linguaggi culturali internazionali e le tradizioni autentiche dell&apos;Italia.

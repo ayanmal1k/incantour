@@ -179,6 +179,16 @@ const nextConfig: NextConfig = {
         permanent: true,
       },
       {
+        source: "/src/agency-services.html",
+        destination: "/agency-services",
+        permanent: true,
+      },
+      {
+        source: "/agency-services.html",
+        destination: "/agency-services",
+        permanent: true,
+      },
+      {
         source: "/storia-visione.html",
         destination: "/storia-visione",
         permanent: true,

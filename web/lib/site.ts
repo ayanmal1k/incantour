@@ -60,9 +60,8 @@ export const navigation: readonly NavigationItem[] = [
     ],
   },
   {
-    href: "https://culturedigitalisviluppo.com/vecchioincantour/agencyservices",
+    href: "/agency-services",
     label: "Agency Services",
-    isExternal: true,
   },
 ];
 
