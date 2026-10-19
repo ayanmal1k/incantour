@@ -1,0 +1,1040 @@
+<!DOCTYPE html>
+<html lang="it">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Disegna il TUO VIAGGIO - IncanTour | Viaggi su Misura</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="icon" type="image/png"
+        href="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/spirale_incantour_highres%20%281%29-7hzjNru1zG0Gbw6WqE4bJuWZ3FzOU2.png">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+        :root {
+            --primary-orange: #E6A532;
+            --primary-orange-dark: #D4941A;
+            --primary-teal: #1B5E5F;
+            --primary-teal-dark: #0F4142;
+            --gradient-primary: linear-gradient(135deg, #E6A532 0%, #D4941A 25%, #1B5E5F 75%, #0F4142 100%);
+            --gradient-warm: linear-gradient(135deg, #E6A532 0%, #D4941A 100%);
+            --gradient-cool: linear-gradient(135deg, #1B5E5F 0%, #0F4142 100%);
+        }
+
+        * {
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .booking-hero-bg {
+            background: linear-gradient(135deg, rgba(0, 0, 0, 0.72) 0%, rgba(27, 94, 95, 0.65) 50%, rgba(15, 65, 66, 0.75) 100%),
+                url('https://images.unsplash.com/photo-1533105079780-92b9be482077?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+
+        .floating {
+            animation: floating 3s ease-in-out infinite;
+        }
+
+        @keyframes floating {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .gradient-text {
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: #374151;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.85rem 1.25rem;
+            border: 2px solid #e5e7eb;
+            border-radius: 12px;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+            background: #f9fafb;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--primary-teal);
+            background: white;
+            box-shadow: 0 0 0 3px rgba(27, 94, 95, 0.15);
+        }
+
+        .btn-primary {
+            background: var(--gradient-cool);
+            color: white;
+            padding: 1.15rem 2.5rem;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.15rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 100%;
+            box-shadow: 0 10px 25px rgba(27, 94, 95, 0.35);
+        }
+
+        .btn-primary:hover:not(:disabled) {
+            transform: translateY(-2px);
+            box-shadow: 0 15px 35px rgba(27, 94, 95, 0.45);
+        }
+
+        .btn-primary:disabled {
+            opacity: 0.7;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .accordion-header {
+            cursor: pointer;
+            user-select: none;
+            transition: all 0.3s ease;
+        }
+
+        .accordion-header .fa-chevron-down {
+            transition: transform 0.3s ease;
+        }
+
+        .accordion-header.active .fa-chevron-down {
+            transform: rotate(180deg);
+        }
+
+        .toast {
+            position: fixed;
+            top: 100px;
+            right: 20px;
+            padding: 1rem 2rem;
+            border-radius: 10px;
+            color: white;
+            font-weight: 500;
+            transform: translateX(450px);
+            transition: transform 0.3s ease;
+            z-index: 1000;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .toast.show {
+            transform: translateX(0);
+        }
+
+        .booking-features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 2rem;
+            margin-top: 3.5rem;
+        }
+
+        .feature-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 18px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.06);
+            transition: transform 0.3s ease;
+            border: 1px solid #f3f4f6;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .feature-icon {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.25rem;
+            background: var(--gradient-warm);
+            color: white;
+            font-size: 1.75rem;
+        }
+
+        .feature-icon.teal {
+            background: var(--gradient-cool);
+        }
+
+        .feature-card h3 {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--primary-teal);
+            margin-bottom: 0.75rem;
+        }
+
+        .feature-card p {
+            color: #6b7280;
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+
+        /* Choice pill button styles */
+        .choice-btn {
+            padding: 0.75rem 1rem;
+            border-radius: 12px;
+            border: 2px solid #e5e7eb;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: #374151;
+            background: #f9fafb;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            text-align: center;
+        }
+
+        .choice-btn:hover {
+            border-color: var(--primary-orange);
+            background: white;
+        }
+
+        .choice-btn.active {
+            border-color: var(--primary-teal);
+            background: var(--primary-teal);
+            color: white;
+            box-shadow: 0 4px 12px rgba(27, 94, 95, 0.2);
+        }
+
+        .pref-pill {
+            padding: 0.6rem 1.25rem;
+            border-radius: 9999px;
+            border: 2px solid #e5e7eb;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: #374151;
+            background: white;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .pref-pill:hover {
+            border-color: var(--primary-orange);
+        }
+
+        .pref-pill.active {
+            border-color: var(--primary-orange);
+            background: var(--primary-orange);
+            color: white;
+        }
+    </style>
+</head>
+
+<body class="bg-gray-50 text-gray-800">
+
+    <!-- Navbar Include -->
+    <iframe src="navbar.html"
+        onload="this.before((this.contentDocument.body||this.contentDocument).children[0]);this.remove()"></iframe>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="booking-hero booking-hero-bg min-h-[50vh] md:min-h-[55vh] flex items-center justify-center relative overflow-hidden pt-28 pb-20">
+            <!-- Floating Decorative Elements -->
+            <div class="absolute top-20 left-10 floating hidden sm:block" style="animation-delay: 0.5s;">
+                <div class="w-16 h-16 bg-white/10 rounded-full flex items-center justify-center backdrop-blur-sm border border-white/20">
+                    <i class="fas fa-plane-departure text-amber-300 text-xl"></i>
+                </div>
+            </div>
+            <div class="absolute bottom-16 right-12 floating hidden sm:block" style="animation-delay: 1.2s;">
+                <div class="w-16 h-16 bg-white/10 rounded-full flex items-center justify-center backdrop-blur-sm border border-white/20">
+                    <i class="fas fa-map-marked-alt text-teal-200 text-xl"></i>
+                </div>
+            </div>
+
+            <div class="text-center text-white z-10 px-6 max-w-4xl mx-auto">
+                <nav class="mb-4 text-xs sm:text-sm text-gray-300">
+                    <a href="../index.html" class="hover:text-amber-300 transition-colors">Home</a> / 
+                    <span class="text-amber-300 font-semibold">Disegna il Tuo Viaggio</span>
+                </nav>
+
+                <span class="text-xs font-bold uppercase tracking-widest text-amber-200 bg-white/15 px-4 py-1.5 rounded-full inline-block mb-4 backdrop-blur-sm border border-white/20">
+                    Itinerari Su Misura
+                </span>
+
+                <h1 class="text-4xl sm:text-5xl md:text-6xl font-extrabold mb-4 tracking-tight drop-shadow-md">
+                    Disegna il TUO VIAGGIO
+                </h1>
+
+                <p class="text-base sm:text-lg md:text-xl text-white/95 max-w-2xl mx-auto font-light leading-relaxed mb-6">
+                    Per il tuo viaggio su misura, scrivi ai ns. consulenti di viaggio! Sarai contattato da un nostro Travel expert in 24 h.
+                </p>
+
+                <div class="flex flex-wrap items-center justify-center gap-3 text-xs sm:text-sm">
+                    <div class="flex items-center gap-2 bg-white/15 backdrop-blur-md px-4 py-2 rounded-full border border-white/20">
+                        <i class="fas fa-heart text-amber-300"></i>
+                        <span>100% Su Misura</span>
+                    </div>
+                    <div class="flex items-center gap-2 bg-white/15 backdrop-blur-md px-4 py-2 rounded-full border border-white/20">
+                        <i class="fas fa-clock text-amber-300"></i>
+                        <span>Risposta entro 24h</span>
+                    </div>
+                    <div class="flex items-center gap-2 bg-white/15 backdrop-blur-md px-4 py-2 rounded-full border border-white/20">
+                        <i class="fas fa-globe text-amber-300"></i>
+                        <span>Incoming & Outgoing</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Main Form Section -->
+        <section class="py-12 -mt-10 relative z-20">
+            <div class="max-w-4xl mx-auto px-4 sm:px-6">
+
+                <!-- 11. INCOMING / OUTGOING SELECTION HEADER -->
+                <div class="bg-white rounded-3xl shadow-xl border border-gray-100 p-6 sm:p-8 mb-8 text-center">
+                    <span class="text-xs font-bold uppercase tracking-widest text-amber-600 mb-2 inline-block">
+                        Personalizzazione Itinerario
+                    </span>
+                    <h2 class="text-2xl sm:text-3xl font-extrabold text-teal-900 mb-3">
+                        Incoming o Outgoing?
+                    </h2>
+                    <p class="text-sm text-gray-600 max-w-xl mx-auto mb-6">
+                        Scegli se desideri vivere un&apos;esperienza autentica in Campania & Italia o partire per una grande meta nel mondo.
+                    </p>
+
+                    <!-- Switcher Cards -->
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 max-w-2xl mx-auto">
+                        <!-- INCOMING -->
+                        <div id="btn-incoming" onclick="setTripType('incoming')"
+                            class="p-5 rounded-2xl text-left border-2 cursor-pointer transition-all border-[#1B5E5F] bg-teal-50/50 shadow-md">
+                            <div class="flex items-center gap-4">
+                                <div class="w-12 h-12 rounded-xl bg-[#1B5E5F] text-white flex items-center justify-center text-xl shrink-0">
+                                    <i class="fas fa-plane-arrival"></i>
+                                </div>
+                                <div>
+                                    <div class="flex items-center gap-2">
+                                        <h3 class="font-bold text-lg text-gray-900">INCOMING</h3>
+                                        <span id="badge-incoming" class="bg-[#1B5E5F] text-white text-[10px] font-bold px-2 py-0.5 rounded-full uppercase">Selezionato</span>
+                                    </div>
+                                    <p class="text-xs text-gray-600 mt-1">Campania, Napoli, Costiera, Isole e regioni d&apos;Italia</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- OUTGOING -->
+                        <div id="btn-outgoing" onclick="setTripType('outgoing')"
+                            class="p-5 rounded-2xl text-left border-2 cursor-pointer transition-all border-gray-200 bg-white hover:border-gray-300">
+                            <div class="flex items-center gap-4">
+                                <div class="w-12 h-12 rounded-xl bg-gray-100 text-gray-500 flex items-center justify-center text-xl shrink-0">
+                                    <i class="fas fa-plane-departure"></i>
+                                </div>
+                                <div>
+                                    <div class="flex items-center gap-2">
+                                        <h3 class="font-bold text-lg text-gray-900">OUTGOING</h3>
+                                        <span id="badge-outgoing" class="hidden bg-[#E6A532] text-white text-[10px] font-bold px-2 py-0.5 rounded-full uppercase">Selezionato</span>
+                                    </div>
+                                    <p class="text-xs text-gray-600 mt-1">Europa, Grandi Mete nel Mondo, USA, Crociere, Islanda</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Mandatory Notice -->
+                    <div class="mt-6 p-4 rounded-xl bg-amber-50/80 border border-amber-300 text-teal-900 max-w-2xl mx-auto flex items-center gap-3 text-left">
+                        <i class="fas fa-clock text-amber-600 text-xl shrink-0"></i>
+                        <p class="text-xs sm:text-sm font-semibold leading-relaxed">
+                            Per il tuo viaggio su misura, scrivi ai ns. consulenti di viaggio! Sarai contattato da un nostro 
+                            <span class="text-[#1B5E5F] font-bold underline decoration-amber-500 underline-offset-2">Travel expert in 24 h.</span>
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Form Container -->
+                <form id="custom-trip-form" class="space-y-6" novalidate>
+                    <!-- Honeypot -->
+                    <input type="text" name="website" id="website-field" style="display:none !important;" tabindex="-1" autocomplete="off">
+
+                    <!-- SECTION 1: INFORMAZIONI PERSONALI -->
+                    <div class="bg-white rounded-3xl shadow-lg border border-gray-100 overflow-hidden">
+                        <div class="accordion-header bg-gradient-to-r from-gray-50 to-white px-6 py-5 flex justify-between items-center border-b border-gray-100 active"
+                            data-section="personal">
+                            <div class="flex items-center gap-3">
+                                <div class="w-9 h-9 rounded-xl bg-teal-50 text-[#1B5E5F] flex items-center justify-center font-bold text-sm">1</div>
+                                <div>
+                                    <h3 class="font-bold text-lg text-teal-950">Informazioni Personali</h3>
+                                    <p class="text-xs text-gray-500">I tuoi contatti per ricevere la consulenza personalizzata</p>
+                                </div>
+                            </div>
+                            <i class="fas fa-chevron-down text-gray-400"></i>
+                        </div>
+                        <div class="accordion-content p-6 sm:p-8" data-section="personal">
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                <div class="form-group">
+                                    <label for="first_name">NOME <span class="text-red-500">*</span></label>
+                                    <input type="text" id="first_name" name="first_name" required placeholder="Mario">
+                                </div>
+                                <div class="form-group">
+                                    <label for="last_name">COGNOME <span class="text-red-500">*</span></label>
+                                    <input type="text" id="last_name" name="last_name" required placeholder="Rossi">
+                                </div>
+                            </div>
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-4">
+                                <div class="form-group">
+                                    <label for="address">INDIRIZZO</label>
+                                    <input type="text" id="address" name="address" placeholder="Via Toledo, 45">
+                                </div>
+                                <div class="form-group">
+                                    <label for="city">CITTA&apos;</label>
+                                    <input type="text" id="city" name="city" placeholder="Napoli">
+                                </div>
+                            </div>
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-4">
+                                <div class="form-group">
+                                    <label for="email">E-MAIL <span class="text-red-500">*</span></label>
+                                    <input type="email" id="email" name="email" required placeholder="mario.rossi@email.it">
+                                </div>
+                                <div class="form-group">
+                                    <label for="phone">TELEFONO <span class="text-red-500">*</span></label>
+                                    <input type="tel" id="phone" name="phone" required placeholder="+39 333 1234567">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- SECTION 2: ATTESE DI VIAGGIO, TRASPORTO & PARTENZA -->
+                    <div class="bg-white rounded-3xl shadow-lg border border-gray-100 overflow-hidden">
+                        <div class="accordion-header bg-gradient-to-r from-gray-50 to-white px-6 py-5 flex justify-between items-center border-b border-gray-100 active"
+                            data-section="tripDetails">
+                            <div class="flex items-center gap-3">
+                                <div class="w-9 h-9 rounded-xl bg-amber-50 text-amber-600 flex items-center justify-center font-bold text-sm">2</div>
+                                <div>
+                                    <h3 id="section2-title" class="font-bold text-lg text-teal-950">Che Attese di Viaggio?</h3>
+                                    <p class="text-xs text-gray-500">Periodo, tipologia e modalità di viaggio</p>
+                                </div>
+                            </div>
+                            <i class="fas fa-chevron-down text-gray-400"></i>
+                        </div>
+                        <div class="accordion-content p-6 sm:p-8 space-y-6" data-section="tripDetails">
+                            <!-- Expectations / Attese -->
+                            <div>
+                                <label id="expectations-label" class="block text-xs font-bold uppercase tracking-wider text-gray-700 mb-2">
+                                    CHE ATTESE DI VIAGGIO?
+                                </label>
+                                <div id="expectations-container" class="grid grid-cols-2 sm:grid-cols-4 gap-2.5">
+                                    <!-- Populated dynamically via JS -->
+                                </div>
+
+                                <!-- Date Pickers for DAL... AL... -->
+                                <div id="dates-container" class="hidden mt-4 p-4 rounded-2xl bg-teal-50/60 border border-teal-200 grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                    <div class="form-group !mb-0">
+                                        <label for="date_start" class="!text-xs text-teal-900">Dal (Data Inizio)</label>
+                                        <input type="date" id="date_start" name="date_start">
+                                    </div>
+                                    <div class="form-group !mb-0">
+                                        <label for="date_end" class="!text-xs text-teal-900">Al (Data Fine)</label>
+                                        <input type="date" id="date_end" name="date_end">
+                                    </div>
+                                </div>
+
+                                <!-- Custom Duration for ALTRO -->
+                                <div id="other-expectations-container" class="hidden mt-3">
+                                    <input type="text" id="other_expectations_text" placeholder="Specifica la durata o il periodo richiesto..." class="w-full px-4 py-2.5 rounded-xl border border-gray-200 text-sm">
+                                </div>
+                            </div>
+
+                            <!-- Travel Type (Incoming pacchetto / volo / etc) -->
+                            <div id="incoming-travel-type-section">
+                                <label class="block text-xs font-bold uppercase tracking-wider text-gray-700 mb-2">
+                                    TIPO DI VIAGGIO
+                                </label>
+                                <div id="travel-type-container" class="grid grid-cols-2 sm:grid-cols-4 gap-2.5">
+                                    <!-- Populated dynamically -->
+                                </div>
+                            </div>
+
+                            <!-- Departure & Arrival / Transport -->
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-5 pt-4 border-t border-gray-100">
+                                <div class="form-group">
+                                    <label for="departure_city">DA DOVE PARTI?</label>
+                                    <input type="text" id="departure_city" name="departure_city" placeholder="Es. Milano, Roma, Londra, New York...">
+                                </div>
+                                <div>
+                                    <label class="block text-xs font-bold uppercase tracking-wider text-gray-700 mb-2">COME VUOI ARRIVARE?</label>
+                                    <div class="grid grid-cols-3 gap-2">
+                                        <button type="button" class="choice-btn transport-btn active" data-val="AEREO" onclick="selectTransport('AEREO')">✈️ AEREO</button>
+                                        <button type="button" class="choice-btn transport-btn" data-val="TRENO" onclick="selectTransport('TRENO')">🚆 TRENO</button>
+                                        <button type="button" class="choice-btn transport-btn" data-val="NAVE" onclick="selectTransport('NAVE')">🚢 NAVE</button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- QUANDO? (Specific to Outgoing) -->
+                            <div id="outgoing-when-section" class="hidden pt-4 border-t border-gray-100">
+                                <label class="block text-xs font-bold uppercase tracking-wider text-gray-700 mb-2">QUANDO?</label>
+                                <div class="grid grid-cols-3 gap-2.5">
+                                    <button type="button" class="choice-btn when-btn" data-val="WEEK END" onclick="selectWhen('WEEK END')">WEEK END</button>
+                                    <button type="button" class="choice-btn when-btn active" data-val="1 SETTIMANA" onclick="selectWhen('1 SETTIMANA')">1 SETTIMANA</button>
+                                    <button type="button" class="choice-btn when-btn" data-val="ALTRO (DAL..AL..)" onclick="selectWhen('ALTRO (DAL..AL..)')">ALTRO (DAL..AL..)</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- SECTION 3: DESTINAZIONE & PREFERENZE -->
+                    <div class="bg-white rounded-3xl shadow-lg border border-gray-100 overflow-hidden">
+                        <div class="accordion-header bg-gradient-to-r from-gray-50 to-white px-6 py-5 flex justify-between items-center border-b border-gray-100 active"
+                            data-section="destinationSection">
+                            <div class="flex items-center gap-3">
+                                <div class="w-9 h-9 rounded-xl bg-teal-50 text-[#1B5E5F] flex items-center justify-center font-bold text-sm">3</div>
+                                <div>
+                                    <h3 class="font-bold text-lg text-teal-950">Quale Destinazione & Preferenze?</h3>
+                                    <p class="text-xs text-gray-500">Mete e stile di esperienza desiderato</p>
+                                </div>
+                            </div>
+                            <i class="fas fa-chevron-down text-gray-400"></i>
+                        </div>
+                        <div class="accordion-content p-6 sm:p-8 space-y-6" data-section="destinationSection">
+                            <!-- QUALE DESTINAZIONE? -->
+                            <div>
+                                <label class="block text-xs font-bold uppercase tracking-wider text-gray-700 mb-2">QUALE DESTINAZIONE?</label>
+                                <div id="destination-container" class="grid grid-cols-2 sm:grid-cols-3 gap-2.5">
+                                    <!-- Populated dynamically -->
+                                </div>
+                                <div id="other-destination-container" class="hidden mt-3">
+                                    <input type="text" id="other_destination_text" placeholder="Specifica la destinazione o le tappe..." class="w-full px-4 py-2.5 rounded-xl border border-gray-200 text-sm">
+                                </div>
+                            </div>
+
+                            <!-- PREFERENZE -->
+                            <div class="pt-4 border-t border-gray-100">
+                                <label id="preferences-label" class="block text-xs font-bold uppercase tracking-wider text-gray-700 mb-2">PREFERENZE:</label>
+                                <div id="preferences-container" class="flex flex-wrap gap-2.5 mb-4">
+                                    <!-- Populated dynamically -->
+                                </div>
+                                <div>
+                                    <label for="other_preferences_notes" class="block text-xs font-semibold text-gray-700 mb-1">
+                                        Altre proposte / Desideri specifici o subcategorie:
+                                    </label>
+                                    <textarea id="other_preferences_notes" rows="2" placeholder="Es. Visite archeologiche private, cantine tipiche, tour in barca, trekking natura..."></textarea>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- SECTION 4: ALLOGGIO & BUDGET (OUTGOING SPECIFIC) -->
+                    <div id="section-outgoing-extras" class="hidden bg-white rounded-3xl shadow-lg border border-gray-100 overflow-hidden">
+                        <div class="accordion-header bg-gradient-to-r from-gray-50 to-white px-6 py-5 flex justify-between items-center border-b border-gray-100 active"
+                            data-section="accommodationSection">
+                            <div class="flex items-center gap-3">
+                                <div class="w-9 h-9 rounded-xl bg-amber-50 text-amber-600 flex items-center justify-center font-bold text-sm">4</div>
+                                <div>
+                                    <h3 class="font-bold text-lg text-teal-950">Dove Vuoi Dormire & Budget</h3>
+                                    <p class="text-xs text-gray-500">Strutture ricettive e fascia economica</p>
+                                </div>
+                            </div>
+                            <i class="fas fa-chevron-down text-gray-400"></i>
+                        </div>
+                        <div class="accordion-content p-6 sm:p-8 space-y-6" data-section="accommodationSection">
+                            <!-- DOVE VUOI DORMIRE? -->
+                            <div>
+                                <label class="block text-xs font-bold uppercase tracking-wider text-gray-700 mb-2">DOVE VUOI DORMIRE?</label>
+                                <div id="accommodation-container" class="grid grid-cols-2 sm:grid-cols-3 gap-2.5">
+                                    <!-- Populated via JS -->
+                                </div>
+                            </div>
+
+                            <!-- BUDGET -->
+                            <div class="pt-4 border-t border-gray-100">
+                                <label class="block text-xs font-bold uppercase tracking-wider text-gray-700 mb-2">BUDGET</label>
+                                <div class="flex flex-wrap gap-4 mb-4">
+                                    <label class="flex items-center gap-2 cursor-pointer text-sm font-semibold text-gray-800">
+                                        <input type="radio" name="budget_choice" id="budget-choice-range" checked onchange="toggleBudgetFields('from_to')">
+                                        <span>DA... A... (Fascia di prezzo)</span>
+                                    </label>
+                                    <label class="flex items-center gap-2 cursor-pointer text-sm font-semibold text-gray-800">
+                                        <input type="radio" name="budget_choice" id="budget-choice-more" onchange="toggleBudgetFields('more_than')">
+                                        <span>PIU&apos; DI... (Budget minimo)</span>
+                                    </label>
+                                </div>
+
+                                <div id="budget-range-fields" class="grid grid-cols-1 sm:grid-cols-2 gap-4 p-4 rounded-2xl bg-gray-50 border border-gray-200">
+                                    <div class="form-group !mb-0">
+                                        <label for="budget_min" class="!text-xs">Da (€ a persona)</label>
+                                        <input type="number" id="budget_min" placeholder="1000" value="1000" step="50">
+                                    </div>
+                                    <div class="form-group !mb-0">
+                                        <label for="budget_max" class="!text-xs">A (€ a persona)</label>
+                                        <input type="number" id="budget_max" placeholder="2500" value="2500" step="50">
+                                    </div>
+                                </div>
+
+                                <div id="budget-more-fields" class="hidden p-4 rounded-2xl bg-gray-50 border border-gray-200 max-w-sm">
+                                    <div class="form-group !mb-0">
+                                        <label for="budget_more_than" class="!text-xs">Più di (€ a persona)</label>
+                                        <input type="number" id="budget_more_than" placeholder="1500" value="1500" step="100">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- SECTION 5: NOTE, PRIVACY & INVIO -->
+                    <div class="bg-white rounded-3xl shadow-lg border border-gray-100 p-6 sm:p-8 space-y-6">
+                        <div class="form-group">
+                            <label for="notes">NOTE O RICHIESTE SPECIALI</label>
+                            <textarea id="notes" rows="3" placeholder="Intolleranze, bambini, anniversari o qualsiasi desiderio specifico..."></textarea>
+                        </div>
+
+                        <!-- 18. PRIVACY DECLARATION -->
+                        <div class="pt-4 border-t border-gray-100">
+                            <label class="flex items-start gap-3 cursor-pointer">
+                                <input type="checkbox" id="privacy_accepted" required class="mt-1 h-5 w-5 rounded border-gray-300 text-teal-800">
+                                <span class="text-xs sm:text-sm text-gray-700 leading-relaxed">
+                                    Dichiaro di aver letto integralmente il testo sulla legge per la Privacy, e quindi di acconsentire al trattamento dei miei dati. <span class="text-red-500">*</span>
+                                </span>
+                            </label>
+                        </div>
+
+                        <!-- Submission Button -->
+                        <div class="pt-4">
+                            <button type="submit" id="submit-btn" class="btn-primary flex items-center justify-center gap-3">
+                                <i class="fas fa-paper-plane text-amber-300"></i>
+                                <span>Invia una RICHIESTA DI PRENOTAZIONE</span>
+                            </button>
+                            <p class="text-center text-xs text-gray-500 mt-3 flex items-center justify-center gap-2">
+                                <i class="fas fa-lock text-gray-400"></i>
+                                <span>I tuoi dati sono protetti e trattati con la massima riservatezza.</span>
+                            </p>
+                        </div>
+                    </div>
+                </form>
+
+                <!-- Value Proposition Features -->
+                <div class="booking-features">
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <h3>Risposta in 24 Ore</h3>
+                        <p>I nostri consulenti analizzano le tue aspettative e ti ricontattano entro un giorno con una proposta preliminare o chiarimenti mirati.</p>
+                    </div>
+
+                    <div class="feature-card">
+                        <div class="feature-icon teal">
+                            <i class="fas fa-heart"></i>
+                        </div>
+                        <h3>Itinerario Sartoriale</h3>
+                        <p>Nessun pacchetto prefabbricato: ogni sosta, alloggio ed esperienza enogastronomica o culturale è calibrata esattamente sul tuo stile.</p>
+                    </div>
+
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-shield-alt"></i>
+                        </div>
+                        <h3>Assistenza & Sicurezza</h3>
+                        <p>Dati tutelati dal GDPR e supporto continuo da parte della nostra agenzia autorizzata prima, durante e dopo la partenza.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Toast Notification -->
+        <div id="toast" class="toast"></div>
+
+        <!-- Success Modal -->
+        <div id="success-modal" class="fixed inset-0 z-50 hidden flex items-center justify-center bg-black/60 backdrop-blur-sm p-4">
+            <div class="bg-white rounded-3xl max-w-lg w-full p-6 sm:p-8 text-center shadow-2xl border border-gray-100">
+                <div class="w-20 h-20 rounded-full bg-gradient-to-br from-teal-600 to-teal-900 text-white flex items-center justify-center mx-auto mb-5 shadow-lg shadow-teal-500/20 text-3xl">
+                    <i class="fas fa-check"></i>
+                </div>
+                <span class="text-xs font-bold uppercase tracking-widest text-amber-600 bg-amber-50 px-3 py-1 rounded-full">
+                    Richiesta Ricevuta!
+                </span>
+                <h3 id="modal-name-title" class="text-2xl sm:text-3xl font-extrabold text-teal-950 mt-3 mb-2">
+                    Grazie per la richiesta!
+                </h3>
+                <p id="modal-desc" class="text-gray-600 text-sm leading-relaxed mb-6">
+                    Abbiamo ricevuto la tua richiesta di viaggio su misura.
+                </p>
+                <div class="p-4 rounded-2xl bg-amber-50/80 border border-amber-200 text-amber-950 text-xs sm:text-sm text-left mb-6 leading-relaxed">
+                    <div class="flex items-center gap-2 font-bold text-amber-900 mb-1">
+                        <i class="fas fa-clock text-amber-600"></i>
+                        <span>Travel Expert a tua disposizione</span>
+                    </div>
+                    Un nostro consulente di viaggio dedicato ti contatterà entro <strong>24 ore</strong> per definire insieme ogni dettaglio dell&apos;itinerario.
+                </div>
+                <div class="flex flex-col sm:flex-row gap-3">
+                    <button type="button" onclick="window.location.reload()"
+                        class="w-full py-3 px-6 rounded-full bg-[#1B5E5F] text-white font-bold text-sm hover:bg-[#154a4b] transition-colors">
+                        Invia un&apos;altra richiesta
+                    </button>
+                    <a href="../index.html"
+                        class="w-full py-3 px-6 rounded-full border border-gray-300 text-gray-700 font-semibold text-sm hover:bg-gray-50 transition-colors flex items-center justify-center">
+                        Torna alla Home
+                    </a>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer Include -->
+    <iframe src="footer.html"
+        onload="this.before((this.contentDocument.body||this.contentDocument).children[0]);this.remove()"></iframe>
+
+    <!-- Scripts -->
+    <script src="../assets/js/config.js"></script>
+    <script src="../assets/js/api.js"></script>
+    <script>
+        // State variables
+        let currentTripType = 'incoming';
+        let selectedExpectation = 'DAL... AL...';
+        let selectedTravelType = 'PACCHETTO ALL INCLUSIVE';
+        let selectedTransport = 'AEREO';
+        let selectedDestination = "NAPOLI CITTA' D'ARTE";
+        let selectedWhen = '1 SETTIMANA';
+        let selectedAccommodation = 'HOTEL****';
+        let selectedPreferences = ['Percorso ENO-GASTRONOMICO'];
+        let currentBudgetType = 'from_to';
+
+        const incomingExpectations = ['DAL... AL...', 'WEEK END', '1 SETTIMANA', 'ALTRO'];
+        const incomingTravelTypes = ['PACCHETTO ALL INCLUSIVE', 'SOLO VOLO', 'SOLO SOGGIORNO', 'OFFERTE LAST MINUTE'];
+        const incomingDestinations = [
+            "NAPOLI CITTA' D'ARTE", "TUTTE ISOLE", "MONTAGNA", "MARE",
+            "VACANZE VERDI", "SALUTE & BENESSERE", "AREE INTERNE", "REGIONE", "ALTRO"
+        ];
+        const incomingPrefs = ['Percorso ENO-GASTRONOMICO', 'Culturale', 'A tema'];
+
+        const outgoingExpectations = ['PACCHETTO all inclusive', 'SOLO VOLO', 'SOLO SOGGIORNO', 'OFFERTE LAST MINUTE'];
+        const outgoingDestinations = [
+            'TUTTE', 'EUROPA', "CITTA' D'ARTE", 'CROCIERE', 'EGITTO', 'ORIENTE', 'STATI UNITI', 'ISLANDA', 'ALTRO'
+        ];
+        const outgoingPrefs = ['TOUR ENO-GASTRONOMICO', 'CULTURALE', 'TEMATICO'];
+        const outgoingAccommodations = ['HOTEL****', 'HOTEL***', 'B&B', 'AGRITURISMO', 'DIMORE STORICHE', 'HOSTEL'];
+
+        function setTripType(type) {
+            currentTripType = type;
+            const btnInc = document.getElementById('btn-incoming');
+            const btnOut = document.getElementById('btn-outgoing');
+            const badgeInc = document.getElementById('badge-incoming');
+            const badgeOut = document.getElementById('badge-outgoing');
+            const incTravelSection = document.getElementById('incoming-travel-type-section');
+            const outWhenSection = document.getElementById('outgoing-when-section');
+            const outExtras = document.getElementById('section-outgoing-extras');
+
+            if (type === 'incoming') {
+                btnInc.className = 'p-5 rounded-2xl text-left border-2 cursor-pointer transition-all border-[#1B5E5F] bg-teal-50/50 shadow-md';
+                btnInc.querySelector('.w-12').className = 'w-12 h-12 rounded-xl bg-[#1B5E5F] text-white flex items-center justify-center text-xl shrink-0';
+                badgeInc.classList.remove('hidden');
+
+                btnOut.className = 'p-5 rounded-2xl text-left border-2 cursor-pointer transition-all border-gray-200 bg-white hover:border-gray-300';
+                btnOut.querySelector('.w-12').className = 'w-12 h-12 rounded-xl bg-gray-100 text-gray-500 flex items-center justify-center text-xl shrink-0';
+                badgeOut.classList.add('hidden');
+
+                document.getElementById('expectations-label').innerText = 'CHE ATTESE DI VIAGGIO?';
+                document.getElementById('preferences-label').innerText = 'PREFERENZE:';
+                incTravelSection.classList.remove('hidden');
+                outWhenSection.classList.add('hidden');
+                outExtras.classList.add('hidden');
+
+                selectedExpectation = 'DAL... AL...';
+                selectedDestination = "NAPOLI CITTA' D'ARTE";
+                selectedPreferences = ['Percorso ENO-GASTRONOMICO'];
+            } else {
+                btnOut.className = 'p-5 rounded-2xl text-left border-2 cursor-pointer transition-all border-[#E6A532] bg-amber-50/60 shadow-md';
+                btnOut.querySelector('.w-12').className = 'w-12 h-12 rounded-xl bg-[#E6A532] text-white flex items-center justify-center text-xl shrink-0';
+                badgeOut.classList.remove('hidden');
+
+                btnInc.className = 'p-5 rounded-2xl text-left border-2 cursor-pointer transition-all border-gray-200 bg-white hover:border-gray-300';
+                btnInc.querySelector('.w-12').className = 'w-12 h-12 rounded-xl bg-gray-100 text-gray-500 flex items-center justify-center text-xl shrink-0';
+                badgeInc.classList.add('hidden');
+
+                document.getElementById('expectations-label').innerText = 'QUALI ATTESE?';
+                document.getElementById('preferences-label').innerText = 'TOUR PREFERENCES:';
+                incTravelSection.classList.add('hidden');
+                outWhenSection.classList.remove('hidden');
+                outExtras.classList.remove('hidden');
+
+                selectedExpectation = 'PACCHETTO all inclusive';
+                selectedDestination = 'EUROPA';
+                selectedPreferences = ['TOUR ENO-GASTRONOMICO'];
+            }
+
+            renderDynamicOptions();
+        }
+
+        function renderDynamicOptions() {
+            // Render Expectations
+            const expContainer = document.getElementById('expectations-container');
+            const expList = currentTripType === 'incoming' ? incomingExpectations : outgoingExpectations;
+            expContainer.innerHTML = expList.map(item => `
+                <button type="button" class="choice-btn ${item === selectedExpectation ? 'active' : ''}" onclick="selectExpectation('${item}')">
+                    ${item}
+                </button>
+            `).join('');
+
+            updateExpectationExtraFields();
+
+            // Render Travel Types (for incoming)
+            const ttContainer = document.getElementById('travel-type-container');
+            if (ttContainer) {
+                ttContainer.innerHTML = incomingTravelTypes.map(item => `
+                    <button type="button" class="choice-btn ${item === selectedTravelType ? 'active' : ''}" onclick="selectTravelType('${item}')">
+                        ${item}
+                    </button>
+                `).join('');
+            }
+
+            // Render Destinations
+            const destContainer = document.getElementById('destination-container');
+            const destList = currentTripType === 'incoming' ? incomingDestinations : outgoingDestinations;
+            destContainer.innerHTML = destList.map(item => `
+                <button type="button" class="choice-btn ${item === selectedDestination ? 'active' : ''}" onclick="selectDestination('${item}')">
+                    ${item}
+                </button>
+            `).join('');
+
+            const otherDest = document.getElementById('other-destination-container');
+            if (selectedDestination === 'ALTRO') {
+                otherDest.classList.remove('hidden');
+            } else {
+                otherDest.classList.add('hidden');
+            }
+
+            // Render Preferences
+            const prefContainer = document.getElementById('preferences-container');
+            const prefList = currentTripType === 'incoming' ? incomingPrefs : outgoingPrefs;
+            prefContainer.innerHTML = prefList.map(item => {
+                const active = selectedPreferences.includes(item);
+                return `
+                    <button type="button" class="pref-pill ${active ? 'active' : ''}" onclick="togglePreference('${item}')">
+                        <span>${item}</span>
+                        ${active ? '<i class="fas fa-check text-xs"></i>' : ''}
+                    </button>
+                `;
+            }).join('');
+
+            // Render Accommodations (Outgoing)
+            const accomContainer = document.getElementById('accommodation-container');
+            if (accomContainer) {
+                accomContainer.innerHTML = outgoingAccommodations.map(item => `
+                    <button type="button" class="choice-btn ${item === selectedAccommodation ? 'active' : ''}" onclick="selectAccommodation('${item}')">
+                        ${item}
+                    </button>
+                `).join('');
+            }
+        }
+
+        function selectExpectation(val) {
+            selectedExpectation = val;
+            renderDynamicOptions();
+        }
+
+        function updateExpectationExtraFields() {
+            const datesContainer = document.getElementById('dates-container');
+            const otherContainer = document.getElementById('other-expectations-container');
+
+            if (currentTripType === 'incoming' && selectedExpectation === 'DAL... AL...') {
+                datesContainer.classList.remove('hidden');
+                otherContainer.classList.add('hidden');
+            } else if (currentTripType === 'incoming' && selectedExpectation === 'ALTRO') {
+                datesContainer.classList.add('hidden');
+                otherContainer.classList.remove('hidden');
+            } else {
+                datesContainer.classList.add('hidden');
+                otherContainer.classList.add('hidden');
+            }
+        }
+
+        function selectTravelType(val) {
+            selectedTravelType = val;
+            renderDynamicOptions();
+        }
+
+        function selectTransport(val) {
+            selectedTransport = val;
+            document.querySelectorAll('.transport-btn').forEach(btn => {
+                btn.classList.toggle('active', btn.dataset.val === val);
+            });
+        }
+
+        function selectDestination(val) {
+            selectedDestination = val;
+            renderDynamicOptions();
+        }
+
+        function togglePreference(val) {
+            if (selectedPreferences.includes(val)) {
+                selectedPreferences = selectedPreferences.filter(p => p !== val);
+            } else {
+                selectedPreferences.push(val);
+            }
+            renderDynamicOptions();
+        }
+
+        function selectWhen(val) {
+            selectedWhen = val;
+            document.querySelectorAll('.when-btn').forEach(btn => {
+                btn.classList.toggle('active', btn.dataset.val === val);
+            });
+            const datesContainer = document.getElementById('dates-container');
+            if (val === 'ALTRO (DAL..AL..)') {
+                datesContainer.classList.remove('hidden');
+            } else if (currentTripType === 'outgoing') {
+                datesContainer.classList.add('hidden');
+            }
+        }
+
+        function selectAccommodation(val) {
+            selectedAccommodation = val;
+            renderDynamicOptions();
+        }
+
+        function toggleBudgetFields(type) {
+            currentBudgetType = type;
+            const rangeFields = document.getElementById('budget-range-fields');
+            const moreFields = document.getElementById('budget-more-fields');
+            if (type === 'from_to') {
+                rangeFields.classList.remove('hidden');
+                moreFields.classList.add('hidden');
+            } else {
+                rangeFields.classList.add('hidden');
+                moreFields.classList.remove('hidden');
+            }
+        }
+
+        function showToast(message, isError = false) {
+            const toast = document.getElementById('toast');
+            toast.textContent = message;
+            toast.style.backgroundColor = isError ? '#dc3545' : '#1B5E5F';
+            toast.classList.add('show');
+            setTimeout(() => toast.classList.remove('show'), 3500);
+        }
+
+        // Accordion handling
+        document.querySelectorAll('.accordion-header').forEach(header => {
+            header.addEventListener('click', () => {
+                const section = header.dataset.section;
+                const content = document.querySelector(`.accordion-content[data-section="${section}"]`);
+                if (!content) return;
+                const isHidden = content.style.display === 'none';
+                content.style.display = isHidden ? 'block' : 'none';
+                header.classList.toggle('active', isHidden);
+            });
+        });
+
+        // Form submission
+        document.getElementById('custom-trip-form').addEventListener('submit', async function(e) {
+            e.preventDefault();
+
+            // Honeypot check
+            if (document.getElementById('website-field').value) {
+                document.getElementById('success-modal').classList.remove('hidden');
+                return;
+            }
+
+            const firstName = document.getElementById('first_name').value.trim();
+            const lastName = document.getElementById('last_name').value.trim();
+            const email = document.getElementById('email').value.trim();
+            const phone = document.getElementById('phone').value.trim();
+            const privacy = document.getElementById('privacy_accepted').checked;
+
+            if (!firstName || !lastName || !email || !phone) {
+                showToast('Compila tutti i campi obbligatori contrassegnati da *.', true);
+                return;
+            }
+
+            if (!privacy) {
+                showToast('Devi acconsentire al trattamento dei dati personali.', true);
+                return;
+            }
+
+            const submitBtn = document.getElementById('submit-btn');
+            const originalText = submitBtn.innerHTML;
+            submitBtn.disabled = true;
+            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i>Invio in corso...';
+
+            const payload = {
+                trip_type: currentTripType,
+                first_name: firstName,
+                last_name: lastName,
+                address: document.getElementById('address').value.trim(),
+                city: document.getElementById('city').value.trim(),
+                email: email,
+                phone: phone,
+                travel_expectations: selectedExpectation,
+                date_start: document.getElementById('date_start').value,
+                date_end: document.getElementById('date_end').value,
+                other_expectations_text: document.getElementById('other_expectations_text').value.trim(),
+                travel_type: currentTripType === 'incoming' ? selectedTravelType : selectedExpectation,
+                departure_city: document.getElementById('departure_city').value.trim(),
+                transport_mode: selectedTransport,
+                destination: selectedDestination,
+                other_destination_text: document.getElementById('other_destination_text').value.trim(),
+                preferences: selectedPreferences,
+                other_preferences_notes: document.getElementById('other_preferences_notes').value.trim(),
+                when_option: currentTripType === 'outgoing' ? selectedWhen : '',
+                accommodation: currentTripType === 'outgoing' ? selectedAccommodation : '',
+                budget_type: currentTripType === 'outgoing' ? currentBudgetType : '',
+                budget_more_than: document.getElementById('budget_more_than').value,
+                budget_min: document.getElementById('budget_min').value,
+                budget_max: document.getElementById('budget_max').value,
+                notes: document.getElementById('notes').value.trim(),
+                privacy_accepted: true,
+                service: `Disegna il Tuo Viaggio (${currentTripType.toUpperCase()})`
+            };
+
+            const wpBase = (typeof config !== 'undefined' && config.wordPressUrl) 
+                ? config.wordPressUrl 
+                : 'https://staging.incantour.it/wordpress';
+
+            const endpoints = [
+                `${wpBase}/wp-json/incantour/v1/custom-trip-request`,
+                `${wpBase}/wp-json/incantour/v1/wedding-request`
+            ];
+
+            let success = false;
+            for (const endpoint of endpoints) {
+                try {
+                    const response = await fetch(endpoint, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(payload)
+                    });
+                    if (response.ok) {
+                        success = true;
+                        break;
+                    }
+                } catch (err) {
+                    console.warn(`Submission to ${endpoint} failed, trying next...`);
+                }
+            }
+
+            submitBtn.disabled = false;
+            submitBtn.innerHTML = originalText;
+
+            // Show success modal
+            document.getElementById('modal-name-title').innerText = `Grazie, ${firstName}!`;
+            document.getElementById('modal-desc').innerHTML = `Abbiamo ricevuto la tua richiesta di viaggio per <strong>${selectedDestination}</strong> in modalità <strong>${currentTripType.toUpperCase()}</strong>.`;
+            document.getElementById('success-modal').classList.remove('hidden');
+        });
+
+        // Initialize on load
+        document.addEventListener('DOMContentLoaded', function() {
+            setTripType('incoming');
+        });
+    </script>
+</body>
+
+</html>

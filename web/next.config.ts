@@ -319,7 +319,22 @@ const nextConfig: NextConfig = {
         permanent: true,
       },
       {
-        source: "/viaggio-su-misura",
+        source: "/src/disegna-il-tuo-viaggio.html",
+        destination: "/disegna-il-tuo-viaggio",
+        permanent: true,
+      },
+      {
+        source: "/disegna-il-tuo-viaggio.html",
+        destination: "/disegna-il-tuo-viaggio",
+        permanent: true,
+      },
+      {
+        source: "/src/disegna-viaggio.html",
+        destination: "/disegna-il-tuo-viaggio",
+        permanent: true,
+      },
+      {
+        source: "/disegna-viaggio.html",
         destination: "/disegna-il-tuo-viaggio",
         permanent: true,
       },
