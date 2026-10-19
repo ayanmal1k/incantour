@@ -19,6 +19,7 @@ export const navigation: readonly NavigationItem[] = [
       { href: "/destination-wedding", label: "Destination Wedding" },
       { href: "/wedding-planner", label: "Wedding Planner & Travel Coordinator" },
       { href: "/gruppi-a-tema", label: "Gruppi a tema" },
+      { href: "/disegna-il-tuo-viaggio", label: "Disegna il Tuo Viaggio (Incoming)" },
     ],
   },
   {
@@ -28,6 +29,7 @@ export const navigation: readonly NavigationItem[] = [
       { href: "/viaggi-atipici", label: "Viaggi atipici" },
       { href: "/crociere", label: "Crociere" },
       { href: "/viaggi-di-nozze", label: "Viaggi di nozze" },
+      { href: "/disegna-il-tuo-viaggio", label: "Disegna il Tuo Viaggio (Outgoing)" },
     ],
   },
   {

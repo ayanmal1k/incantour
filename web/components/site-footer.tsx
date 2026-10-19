@@ -305,6 +305,14 @@ export function SiteFooter() {
               </li>
               <li>
                 <Link
+                  href="/disegna-il-tuo-viaggio"
+                  className="hover:text-orange-400 transition font-semibold text-amber-300"
+                >
+                  DISEGNA IL TUO VIAGGIO
+                </Link>
+              </li>
+              <li>
+                <Link
                   href="/faq"
                   className="hover:text-orange-400 transition"
                   style={{ color: "inherit" }}

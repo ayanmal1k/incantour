@@ -127,11 +127,12 @@ export default async function PrenotaPage({ searchParams }: PrenotaPageProps) {
               </div>
               <div className="flex items-center gap-2 bg-white/15 backdrop-blur-md px-4 py-2 rounded-full border border-white/20">
                 <PhoneIcon className="w-4 h-4 text-amber-300" />
-                <span>Supporto Dedicato</span>
+                <span>H/24 Viaggi in Sicurezza
+                </span>
               </div>
               <div className="flex items-center gap-2 bg-white/15 backdrop-blur-md px-4 py-2 rounded-full border border-white/20">
                 <ClockIcon className="w-4 h-4 text-amber-300" />
-                <span>Cancellazione Flessibile</span>
+                <span>Senza Impegno</span>
               </div>
             </div>
           </div>

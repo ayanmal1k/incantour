@@ -100,7 +100,7 @@ export function JourneyTimelineSection() {
           {/* Action CTAs - Placed outside the timeline line wrapper */}
           <div className="relative z-10 mt-16 flex flex-col items-center justify-center gap-6 sm:flex-row">
             <Link
-              href="/prenota"
+              href="/disegna-il-tuo-viaggio"
               className="inline-flex items-center gap-3 rounded-full bg-gradient-warm px-8 py-4 text-base font-bold text-white shadow-gold transition duration-300 hover:scale-105 hover:brightness-110 focus:outline-none focus-visible:ring-4 focus-visible:ring-incan-gold"
             >
               <span>Disegna il TUO VIAGGIO</span>

@@ -308,6 +308,21 @@ const nextConfig: NextConfig = {
         destination: "/contatti",
         permanent: true,
       },
+      {
+        source: "/disegna-viaggio",
+        destination: "/disegna-il-tuo-viaggio",
+        permanent: true,
+      },
+      {
+        source: "/custom-trip",
+        destination: "/disegna-il-tuo-viaggio",
+        permanent: true,
+      },
+      {
+        source: "/viaggio-su-misura",
+        destination: "/disegna-il-tuo-viaggio",
+        permanent: true,
+      },
     ];
   },
 };

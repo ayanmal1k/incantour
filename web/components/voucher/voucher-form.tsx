@@ -736,7 +736,7 @@ export function VoucherForm({ initialValue = 100 }: VoucherFormProps) {
             <div className="mt-4 bg-orange-50 border border-orange-100 rounded-2xl p-4 text-xs text-orange-800 flex items-start gap-3">
               <InfoIcon className="w-5 h-5 text-orange-600 shrink-0 mt-0.5" />
               <p className="leading-relaxed">
-                Questo voucher è spendibile per la prenotazione di qualsiasi pacchetto turistico Incantour. Ha validità di 12 mesi dalla data di emissione ed è cumulabile.
+                Questo voucher è spendibile su tutti i viaggi INCANTOUR. Ha validità 18 mesi dalla data di emissione e non è cumulabile con altre offerte.
               </p>
             </div>
           </div>

@@ -11,6 +11,7 @@ const formTargets = {
   "lista-nozze": { base: "incantour", endpoint: "lista-nozze-request", fallback: "wedding-request" },
   group: { base: "incantour", endpoint: "group-request", fallback: "wedding-request" },
   roots: { base: "incantour", endpoint: "roots-request", fallback: "wedding-request" },
+  "custom-trip": { base: "incantour", endpoint: "custom-trip-request", fallback: "wedding-request" },
 } as const;
 
 type FormName = keyof typeof formTargets;
@@ -297,6 +298,101 @@ export async function POST(
       });
     } catch {
       return NextResponse.json({ error: "Dati donazione non validi." }, { status: 400 });
+    }
+  }
+
+  // Server-side validation & spam protection for custom-trip (Disegna il Tuo Viaggio) form
+  if (form === "custom-trip") {
+    try {
+      const data = JSON.parse(rawBody);
+
+      // Honeypot spam check (silently accept bot submissions)
+      if (data.website || data.hp_check || data.honeypot) {
+        return NextResponse.json(
+          { success: true, message: "Richiesta ricevuta con successo." },
+          { status: 200 }
+        );
+      }
+
+      const errors: Record<string, string> = {};
+      const tripType = data.trip_type === "outgoing" ? "outgoing" : "incoming";
+      const firstName = typeof data.first_name === "string" ? data.first_name.trim() : (typeof data.name === "string" ? data.name.trim() : "");
+      const lastName = typeof data.last_name === "string" ? data.last_name.trim() : "";
+      const address = typeof data.address === "string" ? data.address.trim() : "";
+      const city = typeof data.city === "string" ? data.city.trim() : "";
+      const email = typeof data.email === "string" ? data.email.trim() : "";
+      const phone = typeof data.phone === "string" ? data.phone.trim() : "";
+
+      if (!firstName) {
+        errors.first_name = "Il nome è obbligatorio.";
+      }
+      if (!lastName) {
+        errors.last_name = "Il cognome è obbligatorio.";
+      }
+      if (!email) {
+        errors.email = "L'indirizzo email è obbligatorio.";
+      } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+        errors.email = "Inserisci un indirizzo email valido.";
+      }
+      if (!phone) {
+        errors.phone = "Il recapito telefonico è obbligatorio.";
+      }
+      if (!data.privacy_accepted && !data.privacy) {
+        errors.privacy = "È necessario confermare il consenso al trattamento dei dati personali.";
+      }
+
+      if (Object.keys(errors).length > 0) {
+        return NextResponse.json(
+          {
+            error: "Alcuni campi obbligatori mancano o non sono validi.",
+            errors,
+          },
+          { status: 400 }
+        );
+      }
+
+      const detailsLines = [
+        `Tipo Richiesta: ${tripType.toUpperCase()}`,
+        `Richiedente: ${firstName} ${lastName}`,
+        `Indirizzo: ${address || "Non specificato"}, Città: ${city || "Non specificata"}`,
+        `Contatti: Email: ${email} | Telefono: ${phone}`,
+        `Attese di viaggio: ${data.travel_expectations || "Non specificato"}${data.date_start ? ` (Dal ${data.date_start} al ${data.date_end || "..."})` : ""}`,
+        `Tipologia viaggio: ${data.travel_type || "Non specificato"}`,
+        `Partenza da: ${data.departure_city || "Non specificata"} | Con: ${data.transport_mode || "Non specificato"}`,
+        `Destinazione: ${data.destination || "Non specificata"}${data.other_destination_text ? ` (${data.other_destination_text})` : ""}`,
+        `Preferenze: ${Array.isArray(data.preferences) ? data.preferences.join(", ") : (data.preferences || "Nessuna")}`,
+      ];
+
+      if (tripType === "outgoing") {
+        if (data.when_option) detailsLines.push(`Quando: ${data.when_option}`);
+        if (data.accommodation) detailsLines.push(`Alloggio desiderato: ${data.accommodation}`);
+        if (data.budget_type) {
+          detailsLines.push(
+            `Budget: ${data.budget_type === "more_than" ? `Più di €${data.budget_more_than || 0}` : `Da €${data.budget_min || 0} a €${data.budget_max || 0}`}`
+          );
+        }
+      }
+
+      if (data.notes) {
+        detailsLines.push(`Note/Richieste aggiuntive: ${data.notes}`);
+      }
+
+      forwardBody = JSON.stringify({
+        ...data,
+        trip_type: tripType,
+        name: `${firstName} ${lastName}`.trim(),
+        first_name: firstName,
+        last_name: lastName,
+        address,
+        city,
+        email,
+        phone,
+        privacy_accepted: true,
+        service: `Disegna il Tuo Viaggio (${tripType.toUpperCase()})`,
+        details: detailsLines.join("\n"),
+      });
+    } catch {
+      return NextResponse.json({ error: "Dati richiesta viaggio su misura non validi." }, { status: 400 });
     }
   }
 

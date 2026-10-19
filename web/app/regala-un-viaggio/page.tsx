@@ -10,7 +10,7 @@ export const revalidate = 86400;
 export const metadata: Metadata = {
   title: "Regala un Viaggio - Buono Regalo Esperienziale | IncanTour",
   description:
-    "Dona un'esperienza indimenticabile con i voucher regalo IncanTour. Buoni viaggio personalizzati spendibili per tour in Campania e nel mondo, validi 12 mesi.",
+    "Dona un'esperienza indimenticabile con i voucher regalo IncanTour. Buoni viaggio personalizzati spendibili su tutti i viaggi INCANTOUR, validi 18 mesi.",
   alternates: { canonical: "/regala-un-viaggio" },
   openGraph: {
     type: "website",
@@ -106,7 +106,7 @@ export default function RegalaUnViaggioPage() {
               </div>
               <div className="flex items-center gap-2 bg-white/15 backdrop-blur-md px-4 py-2 rounded-full border border-white/20">
                 <ClockIcon className="w-4 h-4 text-amber-300" />
-                <span>Validità 12 Mesi</span>
+                <span>Validità 18 Mesi</span>
               </div>
               <div className="flex items-center gap-2 bg-white/15 backdrop-blur-md px-4 py-2 rounded-full border border-white/20">
                 <ShieldIcon className="w-4 h-4 text-amber-300" />
