@@ -110,10 +110,10 @@ export function WeddingPlannerClientContent({
               Esperienze Incantour
             </span>
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-gradient-dark mb-4">
-              <span className="inline-block pb-2">Pacchetti Matrimonio &amp; Tour</span>
+              <span className="inline-block pb-2">Matrimonio &amp; Tour</span>
             </h2>
             <p className="text-base sm:text-lg text-gray-600 max-w-2xl mx-auto">
-              Esplora i nostri pacchetti e itinerari dedicati al matrimonio e alle lune di miele in Campania
+              le nostre proposte di luna di miele in Campania tra terra e mare
             </p>
           </div>
 

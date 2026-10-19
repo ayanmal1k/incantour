@@ -117,7 +117,7 @@ export function WeddingPlannerServices() {
                   DESTINATION E VENUE
                 </h3>
                 <p className="text-gray-600 text-sm sm:text-base leading-relaxed">
-                  Ricerca e selezione delle migliori location in Costiera Amalfitana, Sorrentina, isole (Capri, Ischia, Procida), borghi storici e castelli incantati per la vostra cerimonia ed i vostri festeggiamenti.
+                  Le aree costiere ed interne della Campania un incontro con la bellezza tra arte, storia, musicalità, di terra e di mare. Ricerca e selezione delle migliori location in borghi storici, castelli incantati, chiostri, vigneti, cerimonie in spiaggia, in eleganti ville d&apos;epoca &amp; dimore di charme.
                 </p>
               </div>
             </div>
@@ -184,22 +184,34 @@ export function WeddingPlannerServices() {
               <p className="text-gray-200 text-base sm:text-lg leading-relaxed mb-8">
                 Scegliamo per voi solo le dimore più affascinanti: ville panoramiche a picco sul mare, dimore de charme ricche di storia, maestosi castelli medievali, lussuose imbarcazioni ed esclusivi luxury hotel a 5 stelle.
               </p>
-              <div className="flex flex-wrap gap-3">
-                <span className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-md px-4 py-2 rounded-xl text-sm border border-white/20">
+              <div className="flex flex-wrap gap-2.5 sm:gap-3">
+                <span className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-md px-3.5 py-2 rounded-xl text-xs sm:text-sm border border-white/20">
                   <GlobeIcon className="w-4 h-4 text-amber-300" />
                   <span>Ville storiche</span>
                 </span>
-                <span className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-md px-4 py-2 rounded-xl text-sm border border-white/20">
-                  <MapPinIcon className="w-4 h-4 text-amber-300" />
-                  <span>Castelli ed isole</span>
+                <span className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-md px-3.5 py-2 rounded-xl text-xs sm:text-sm border border-white/20">
+                  <SparklesIcon className="w-4 h-4 text-amber-300" />
+                  <span>Castelli &amp; RELAIS</span>
                 </span>
-                <span className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-md px-4 py-2 rounded-xl text-sm border border-white/20">
-                  <ShipIcon className="w-4 h-4 text-amber-300" />
-                  <span>Barche di lusso</span>
-                </span>
-                <span className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-md px-4 py-2 rounded-xl text-sm border border-white/20">
+                <span className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-md px-3.5 py-2 rounded-xl text-xs sm:text-sm border border-white/20">
                   <StarIcon className="w-4 h-4 text-amber-300" />
-                  <span>Luxury Hotel</span>
+                  <span>Luxury hotel</span>
+                </span>
+                <span className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-md px-3.5 py-2 rounded-xl text-xs sm:text-sm border border-white/20">
+                  <ShipIcon className="w-4 h-4 text-amber-300" />
+                  <span>Yacht</span>
+                </span>
+                <span className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-md px-3.5 py-2 rounded-xl text-xs sm:text-sm border border-white/20">
+                  <MapPinIcon className="w-4 h-4 text-amber-300" />
+                  <span>Masserie</span>
+                </span>
+                <span className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-md px-3.5 py-2 rounded-xl text-xs sm:text-sm border border-white/20">
+                  <GlobeIcon className="w-4 h-4 text-amber-300" />
+                  <span>Borghi</span>
+                </span>
+                <span className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-md px-3.5 py-2 rounded-xl text-xs sm:text-sm border border-white/20">
+                  <SparklesIcon className="w-4 h-4 text-amber-300" />
+                  <span>Spiagge</span>
                 </span>
               </div>
             </div>
