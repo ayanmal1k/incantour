@@ -341,6 +341,29 @@
             </div>
         </section>
 
+        <!-- Related News Section -->
+        <section class="related-news-section py-20 bg-gray-50 border-t border-gray-100">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-16">
+                    <span class="text-amber-500 font-bold uppercase tracking-widest text-xs sm:text-sm block mb-1">Blog &amp; Storie</span>
+                    <h2 class="text-3xl md:text-4xl font-bold gradient-text mb-4">Notizie e Approfondimenti</h2>
+                    <p class="text-lg text-gray-600 max-w-2xl mx-auto">Resta aggiornato con le ultime novità, racconti ed eventi sul nostro blog</p>
+                </div>
+
+                <div class="flex justify-center" id="news-loading">
+                    <div class="animate-spin rounded-full h-10 w-10 border-b-2 border-[#1B5E5F]"></div>
+                </div>
+
+                <div id="news-container" class="grid grid-cols-1 md:grid-cols-3 gap-8 hidden">
+                    <!-- News cards will be dynamically loaded here -->
+                </div>
+
+                <div id="no-news" class="text-center text-gray-500 py-10 hidden">
+                    <p>Nessun articolo correlato trovato in questa sezione.</p>
+                </div>
+            </div>
+        </section>
+
         <!-- CTA Section / Tailor Made Button -->
         <section class="py-20 bg-gradient-to-br from-amber-500 via-amber-600 to-teal-800 text-white relative overflow-hidden">
             <div class="container mx-auto px-6 text-center relative z-10">
@@ -556,6 +579,48 @@
                 }
             } catch (err) {
                 console.error(err);
+            }
+
+            // Load Related News Box
+            try {
+                const posts = await TourAPI.getRelatedPosts('#wedding', 3);
+                const newsLoading = document.getElementById('news-loading');
+                const newsContainer = document.getElementById('news-container');
+                const noNews = document.getElementById('no-news');
+
+                if (newsLoading) newsLoading.style.display = 'none';
+
+                if (!posts || posts.length === 0) {
+                    if (noNews) noNews.classList.remove('hidden');
+                } else if (newsContainer) {
+                    newsContainer.innerHTML = posts.map(post => `
+                        <div class="bg-white rounded-2xl overflow-hidden shadow-lg border border-gray-100 hover:shadow-2xl transition-all duration-300">
+                            <div class="h-48 w-full overflow-hidden relative">
+                                <img src="${post.featured_image_url || '../assets/images/default-blog.jpg'}" 
+                                     alt="${post.title?.rendered || ''}" 
+                                     class="w-full h-full object-cover transition-transform duration-500 hover:scale-105">
+                            </div>
+                            <div class="p-6">
+                                <span class="text-xs font-bold text-orange-500 tracking-wider uppercase mb-2 block">Blog</span>
+                                <h3 class="text-lg font-bold text-gray-800 mb-2 line-clamp-2">${post.title?.rendered || ''}</h3>
+                                <div class="text-gray-600 text-sm mb-4 line-clamp-3">${post.excerpt?.rendered || ''}</div>
+                                <div class="flex justify-between items-center pt-4 border-t border-gray-100 text-xs text-gray-400">
+                                    <span><i class="far fa-calendar-alt mr-1"></i>${new Date(post.date).toLocaleDateString()}</span>
+                                    <a href="blog-post.html?id=${post.id}" class="text-[#1B5E5F] font-bold hover:underline flex items-center gap-1">
+                                        Leggi di più <i class="fas fa-arrow-right text-[10px]"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    `).join('');
+                    newsContainer.classList.remove('hidden');
+                }
+            } catch (newsErr) {
+                console.error('Error loading wedding news:', newsErr);
+                const newsLoading = document.getElementById('news-loading');
+                const noNews = document.getElementById('no-news');
+                if (newsLoading) newsLoading.style.display = 'none';
+                if (noNews) noNews.classList.remove('hidden');
             }
         });
     </script>

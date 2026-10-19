@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { WeddingPlannerClientContent } from "@/components/wedding/wedding-planner-client-content";
 import { getSiteUrl, siteName } from "@/lib/site";
-import { getTours } from "@/lib/wordpress/client";
+import { getRelatedPosts, getTours } from "@/lib/wordpress/client";
 
 export const revalidate = 300;
 
@@ -29,10 +29,16 @@ export const metadata: Metadata = {
 };
 
 export default async function WeddingPlannerPage() {
-  const tours = await getTours(50).catch((err) => {
-    console.error("Error fetching tours for wedding-planner:", err);
-    return [];
-  });
+  const [tours, relatedNews] = await Promise.all([
+    getTours(50).catch((err) => {
+      console.error("Error fetching tours for wedding-planner:", err);
+      return [];
+    }),
+    getRelatedPosts(["#wedding", "wedding"], 3).catch(() => ({
+      posts: [],
+      hasExactMatch: false,
+    })),
+  ]);
 
   const jsonLd = {
     "@context": "https://schema.org",
@@ -55,7 +61,7 @@ export default async function WeddingPlannerPage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
       <article className="min-h-screen bg-white">
-        <WeddingPlannerClientContent tours={tours} />
+        <WeddingPlannerClientContent tours={tours} relatedPosts={relatedNews.posts} />
       </article>
     </>
   );

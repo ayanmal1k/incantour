@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { getSiteUrl, siteName } from "@/lib/site";
 import { GroupTourClientContent } from "@/components/group-tour/group-tour-client-content";
+import { CategoryRelatedNews } from "@/components/travel-category/category-related-news";
+import { getRelatedPosts } from "@/lib/wordpress/client";
 
 export const revalidate = 300;
 
@@ -27,7 +29,12 @@ export const metadata: Metadata = {
   },
 };
 
-export default function GruppiATemaPage() {
+export default async function GruppiATemaPage() {
+  const relatedNews = await getRelatedPosts(["#gruppi", "gruppi"], 3).catch(() => ({
+    posts: [],
+    hasExactMatch: false,
+  }));
+
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "Service",
@@ -50,6 +57,11 @@ export default function GruppiATemaPage() {
       />
       <article className="min-h-screen bg-white">
         <GroupTourClientContent />
+        <CategoryRelatedNews
+          posts={relatedNews.posts}
+          title="Notizie e Approfondimenti per Gruppi"
+          subtitle="Idee, consigli e racconti per viaggi e tour tematici di gruppo"
+        />
       </article>
     </>
   );

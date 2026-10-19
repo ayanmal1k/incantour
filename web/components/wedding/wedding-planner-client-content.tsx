@@ -7,10 +7,17 @@ import { TourCard } from "@/components/tour-card";
 import { WeddingPlannerServices } from "./wedding-planner-services";
 import { WeddingTailorMadeCTA } from "./wedding-tailor-made-cta";
 import { WeddingTailorMadeModal } from "./wedding-tailor-made-modal";
+import { CategoryRelatedNews } from "@/components/travel-category/category-related-news";
 import { SparklesIcon, ArrowDownIcon, HeartIcon } from "@/components/ui/icons";
-import type { Tour } from "@/lib/wordpress/types";
+import type { Tour, Post } from "@/lib/wordpress/types";
 
-export function WeddingPlannerClientContent({ tours }: { tours: Tour[] }) {
+export function WeddingPlannerClientContent({
+  tours,
+  relatedPosts = [],
+}: {
+  tours: Tour[];
+  relatedPosts?: Post[];
+}) {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   // Filter for Destination Wedding tours to showcase
@@ -145,6 +152,13 @@ export function WeddingPlannerClientContent({ tours }: { tours: Tour[] }) {
           )}
         </div>
       </section>
+
+      {/* News Box underneath the list of relevant packages */}
+      <CategoryRelatedNews
+        posts={relatedPosts}
+        title="Notizie e Approfondimenti Wedding"
+        subtitle="Ispirazioni, tendenze e consigli per organizzare il tuo matrimonio da sogno in Campania"
+      />
 
       {/* Tailor Made Big CTA Banner */}
       <WeddingTailorMadeCTA onOpenModal={() => setIsModalOpen(true)} />
