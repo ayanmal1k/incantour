@@ -40,8 +40,9 @@ export function TourDetailHero({ tour }: TourDetailHeroProps) {
         className="object-cover"
       />
 
-      {/* Dual Gradient Overlay matching legacy */}
-      <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/40 to-black/25" />
+      {/* Legacy-matching subtle overlay to keep image bright and visible */}
+      <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-black/15 pointer-events-none" />
+      <div className="absolute inset-0 bg-gradient-to-tr from-[#1B5E5F]/30 via-transparent to-[#E6A532]/20 pointer-events-none" />
 
       {/* Content Container */}
       <div className="container relative z-10 mx-auto flex h-full flex-col justify-between px-6 pb-12 pt-28">
