@@ -333,7 +333,7 @@ export function SiteFooter() {
                   className="hover:text-orange-400 transition"
                   style={{ color: "inherit" }}
                 >
-                  CODICE ETICO INCANTOUR
+                  CODICE ETICO
                 </a>
               </li>
               <li>

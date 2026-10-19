@@ -16,7 +16,6 @@ const OCCASIONS = [
   { value: "Battesimo", label: "Battesimo" },
   { value: "Cresima", label: "Cresima" },
   { value: "Matrimonio", label: "Matrimonio" },
-  { value: "Fidanzamento", label: "Fidanzamento" },
   { value: "Anniversario", label: "Anniversario" },
   { value: "Pensione", label: "Pensione" },
   { value: "Laurea", label: "Laurea" },
