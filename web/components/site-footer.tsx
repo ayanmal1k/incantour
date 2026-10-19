@@ -485,9 +485,8 @@ export function SiteFooter() {
               <button
                 type="button"
                 onClick={() => handleSelectLanguage("it")}
-                className={`w-full px-4 py-2.5 text-left text-sm hover:bg-amber-50 hover:text-amber-700 flex items-center justify-between transition-colors cursor-pointer ${
-                  selectedLang === "it" ? "bg-amber-50 text-amber-700 font-bold" : "text-gray-700"
-                }`}
+                className={`w-full px-4 py-2.5 text-left text-sm hover:bg-amber-50 hover:text-amber-700 flex items-center justify-between transition-colors cursor-pointer ${selectedLang === "it" ? "bg-amber-50 text-amber-700 font-bold" : "text-gray-700"
+                  }`}
               >
                 <span className="flex items-center gap-2 font-medium">
                   <span className="text-base">🇮🇹</span> Italiano
@@ -497,9 +496,8 @@ export function SiteFooter() {
               <button
                 type="button"
                 onClick={() => handleSelectLanguage("en")}
-                className={`w-full px-4 py-2.5 text-left text-sm hover:bg-amber-50 hover:text-amber-700 flex items-center justify-between transition-colors cursor-pointer ${
-                  selectedLang === "en" ? "bg-amber-50 text-amber-700 font-bold" : "text-gray-700"
-                }`}
+                className={`w-full px-4 py-2.5 text-left text-sm hover:bg-amber-50 hover:text-amber-700 flex items-center justify-between transition-colors cursor-pointer ${selectedLang === "en" ? "bg-amber-50 text-amber-700 font-bold" : "text-gray-700"
+                  }`}
               >
                 <span className="flex items-center gap-2 font-medium">
                   <span className="text-base">🇬🇧</span> English
@@ -509,9 +507,8 @@ export function SiteFooter() {
               <button
                 type="button"
                 onClick={() => handleSelectLanguage("es")}
-                className={`w-full px-4 py-2.5 text-left text-sm hover:bg-amber-50 hover:text-amber-700 flex items-center justify-between transition-colors cursor-pointer ${
-                  selectedLang === "es" ? "bg-amber-50 text-amber-700 font-bold" : "text-gray-700"
-                }`}
+                className={`w-full px-4 py-2.5 text-left text-sm hover:bg-amber-50 hover:text-amber-700 flex items-center justify-between transition-colors cursor-pointer ${selectedLang === "es" ? "bg-amber-50 text-amber-700 font-bold" : "text-gray-700"
+                  }`}
               >
                 <span className="flex items-center gap-2 font-medium">
                   <span className="text-base">🇪🇸</span> Español
