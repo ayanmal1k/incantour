@@ -5,6 +5,8 @@ import Script from "next/script";
 import { ExtensionErrorSuppressor } from "@/components/extension-error-suppressor";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
+import { SmoothScrollProvider } from "@/components/smooth-scroll-provider";
+import "lenis/dist/lenis.css";
 import "@/app/globals.css";
 import { getSiteUrl, siteDescription, siteName } from "@/lib/site";
 
@@ -146,10 +148,12 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
         />
       </head>
       <body className="font-sans antialiased">
-        <ExtensionErrorSuppressor />
-        <SiteHeader />
-        <main>{children}</main>
-        <SiteFooter />
+        <SmoothScrollProvider>
+          <ExtensionErrorSuppressor />
+          <SiteHeader />
+          <main>{children}</main>
+          <SiteFooter />
+        </SmoothScrollProvider>
       </body>
     </html>
   );

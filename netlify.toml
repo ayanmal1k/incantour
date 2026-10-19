@@ -1,0 +1,13 @@
+# Netlify configuration for Incantour Next.js site
+# Directs Netlify to only build and deploy the new Next.js site in /web (ignoring /legacy)
+
+[build]
+  base = "web"
+  command = "npm run build"
+  publish = ".next"
+
+[build.environment]
+  NODE_VERSION = "20"
+
+[[plugins]]
+  package = "@netlify/plugin-nextjs"
