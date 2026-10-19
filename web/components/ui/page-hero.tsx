@@ -15,7 +15,8 @@ export function PageHero({ title, eyebrow, description, image, children }: PageH
   return (
     <section className="relative isolate flex min-h-[34rem] items-end overflow-hidden bg-incan-teal py-20 text-white">
       <Image src={image} alt="" fill priority sizes="100vw" className="-z-20 object-cover" />
-      <div className="absolute inset-0 -z-10 bg-gradient-to-t from-incan-ink/90 via-incan-teal/45 to-incan-ink/15" />
+      <div className="absolute inset-0 -z-10 bg-gradient-to-t from-black/70 via-black/35 to-black/15" />
+      <div className="absolute inset-0 -z-10 bg-gradient-to-tr from-[#1B5E5F]/25 via-transparent to-[#E6A532]/15" />
       <Container>
         <div className="max-w-3xl animate-rise">
           {eyebrow ? <p className="mb-4 text-sm font-bold uppercase tracking-[0.22em] text-incan-cream">{eyebrow}</p> : null}

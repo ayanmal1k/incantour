@@ -33,9 +33,9 @@ export function CompanyHero({
         className="object-cover object-center pointer-events-none"
       />
 
-      {/* Brand Dual Gradient Overlay for contrast and readability */}
-      <div className="absolute inset-0 bg-gradient-to-b from-black/80 via-black/60 to-black/85" />
-      <div className="absolute inset-0 bg-gradient-to-tr from-[#0F4142]/50 via-transparent to-[#E6A532]/30 pointer-events-none" />
+      {/* Legacy-matching subtle overlay to keep image bright and visible */}
+      <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-black/55 pointer-events-none" />
+      <div className="absolute inset-0 bg-gradient-to-tr from-[#0F4142]/20 via-transparent to-[#E6A532]/15 pointer-events-none" />
 
       {/* Hero Content */}
       <div className="relative z-10 container mx-auto px-6 max-w-4xl text-center">
