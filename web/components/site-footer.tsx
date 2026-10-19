@@ -206,12 +206,12 @@ export function SiteFooter() {
             </h3>
             <ul className="space-y-3">
               <li>
+                {/* Link assicurazione convenzionata agenzia (in arrivo a breve) */}
                 <a
-                  href="https://webins.it"
-                  target="_blank"
-                  rel="noopener noreferrer"
+                  href="#"
                   className="hover:text-orange-400 transition"
                   style={{ color: "inherit" }}
+                  title="Assicurazioni viaggio convenzionate agenzia (in arrivo a breve)"
                 >
                   ASSICURAZIONI
                 </a>
@@ -251,13 +251,13 @@ export function SiteFooter() {
               </li>
               <li>
                 <a
-                  href="https://businessmobility.travel"
+                  href="https://www.enac.gov.it/passeggeri/eu-air-safety-list/compagnie-aeree-soggette-divieto-operativo-nella-ue/"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="hover:text-orange-400 transition"
                   style={{ color: "inherit" }}
                 >
-                  BLACK LIST
+                  BLACK LIST VETTORI
                 </a>
               </li>
               <li>
@@ -266,7 +266,7 @@ export function SiteFooter() {
                   className="hover:text-orange-400 transition"
                   style={{ color: "inherit" }}
                 >
-                  Viaggio a rate con Compass HEYLIGHT
+                  Viaggia a rate
                 </a>
               </li>
             </ul>
