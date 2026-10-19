@@ -58,7 +58,7 @@ export function WeddingPlannerClientContent({
               Destination Wedding
             </Link>
             <span className="mx-2 text-gray-400">/</span>
-            <span className="text-amber-300 font-medium">Wedding Planner &amp; Travel Coordinator</span>
+            <span className="text-amber-300 font-medium">Wedding Travel coordinator</span>
           </nav>
 
           <span className="inline-block text-xs font-bold uppercase tracking-widest text-amber-300 bg-white/15 px-4 py-1.5 rounded-full mb-4 backdrop-blur-sm border border-white/20 shadow-sm">
@@ -74,7 +74,7 @@ export function WeddingPlannerClientContent({
           {/* Narrative Card */}
           <div className="text-sm sm:text-base md:text-lg mb-8 leading-relaxed max-w-3xl mx-auto bg-black/40 p-6 sm:p-8 rounded-3xl backdrop-blur-md border border-white/20 text-gray-100 shadow-2xl">
             <p className="leading-relaxed">
-              La Destinazione Campania come plus per i matrimoni dall&apos;estero: costiere, borghi, castelli ed isole scelti come scenario suggestivo per celebrare le unioni tra profumi di limoni, spiagge, lussureggianti boschi, mormorii di torrenti e imperdibili panorami che rendono ancor più ameni i nostri territori dalle mille sfumature.
+              Un’accoglienza dedicata agli sposi stranieri, innanzitutto turisti e viaggiatori, che scelgono l’Italia per trasformare il sogno del matrimonio in un’esperienza autentica, unica e indimenticabile.
             </p>
           </div>
 

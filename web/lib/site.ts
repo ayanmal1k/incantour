@@ -17,7 +17,7 @@ export const navigation: readonly NavigationItem[] = [
     children: [
       { href: "/terra-mare-tour", label: "TerraMare Tours" },
       { href: "/destination-wedding", label: "Destination Wedding" },
-      { href: "/wedding-planner", label: "Wedding Planner & Travel Coordinator" },
+      { href: "/wedding-planner", label: "Wedding Travel coordinator" },
       { href: "/gruppi-a-tema", label: "Gruppi a tema" },
       { href: "/disegna-il-tuo-viaggio", label: "Disegna il Tuo Viaggio (Incoming)" },
     ],

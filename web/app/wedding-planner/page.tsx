@@ -16,7 +16,7 @@ export const metadata: Metadata = {
     siteName,
     title: "Wedding Planner & Travel Coordinator in Campania | IncanTour",
     description:
-      "La Destinazione Campania come plus per i matrimoni dall'estero: location da sogno, coordinamento fornitore per fornitore e wedding tailor made.",
+      "Un’accoglienza dedicata agli sposi stranieri, innanzitutto turisti e viaggiatori, che scelgono l’Italia per trasformare il sogno del matrimonio in un’esperienza autentica, unica e indimenticabile.",
     url: `${getSiteUrl().origin}/wedding-planner`,
     images: [{ url: "/assets/images/plan-wedding.png", alt: "Wedding Planner IncanTour" }],
   },

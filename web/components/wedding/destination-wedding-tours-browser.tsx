@@ -214,10 +214,10 @@ export function DestinationWeddingToursBrowser({
               Proposte Esclusive
             </span>
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-gradient-dark mb-4">
-              <span className="inline-block pb-2">Wedding Packages</span>
+              <span className="inline-block pb-2">Pacchetti Matrimonio</span>
             </h2>
             <p className="text-base sm:text-lg text-gray-600 max-w-2xl mx-auto">
-              Choose from our selection of carefully curated wedding packages in stunning locations
+              Scegli tra la nostra selezione di pacchetti matrimonio curati nei minimi dettagli in location da sogno
             </p>
           </div>
 

@@ -20,7 +20,7 @@ export const metadata: Metadata = {
     siteName,
     title: "Destination Wedding in Campania & Amalfi Coast | IncanTour",
     description:
-      "La tua proposta di matrimonio e unione civile in Campania: location da sogno, wedding tour e cura di ogni dettaglio con IncanTour.",
+      "La Destinazione Campania come plus per i matrimoni dall'estero: aree costiere, castelli, masserie e panorami imperdibili con IncanTour.",
     url: `${getSiteUrl().origin}/destination-wedding`,
     images: [{ url: "/assets/images/wedding.jpg", alt: "Destination Wedding IncanTour" }],
   },
@@ -49,7 +49,7 @@ export default async function DestinationWeddingPage() {
     "@type": "CollectionPage",
     name: "Destination Wedding in Campania - IncanTour",
     description:
-      "La tua proposta di matrimonio, la tua Unione Civile con IncanTour: organizzazione dell'evento e accoglienza in Italia.",
+      "La Destinazione Campania come plus per i matrimoni dall'estero: aree costiere, borghi, castelli medievali e location suggestive.",
     url: `${getSiteUrl().origin}/destination-wedding`,
   };
 
@@ -101,7 +101,7 @@ export default async function DestinationWeddingPage() {
             {/* Narrative Card */}
             <div className="text-sm sm:text-base md:text-lg mb-8 leading-relaxed max-w-3xl mx-auto bg-black/40 p-6 sm:p-8 rounded-3xl backdrop-blur-md border border-white/20 text-gray-100 shadow-2xl">
               <p className="leading-relaxed">
-                La tua proposta di matrimonio, la tua Unione Civile, con Incantour azzeriamo le distanze: dal disbrigo delle pratiche burocratiche, all&apos;organizzazione dell&apos;intero evento, all&apos;accoglienza in Italia dei vostri ospiti. Uno staff di supporto agli sposi e agli ospiti, discreto e professionale, per rendere l&apos;evento un ricordo indelebile.
+                La Destinazione Campania come plus per i matrimoni dall&apos;estero: aree costiere, piccole ed antiche chiese in centri storici e borghi, castelli medievali, masserie, ville e dimore storiche, spiagge, aree montane e laghi scelti come scenario suggestivo per celebrare le unioni tra profumi e musicalità, lussureggianti boschi, mormorii di torrenti e imperdibili panorami .
               </p>
             </div>
 
