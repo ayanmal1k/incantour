@@ -355,11 +355,20 @@ export function SiteFooter() {
               </li>
               <li>
                 <Link
-                  href="/blog"
+                  href="/privacy-policy"
                   className="hover:text-orange-400 transition"
                   style={{ color: "inherit" }}
                 >
-                  PRIVACY &amp; COOKIE POLICY
+                  PRIVACY POLICY
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/cookie-policy"
+                  className="hover:text-orange-400 transition"
+                  style={{ color: "inherit" }}
+                >
+                  COOKIE POLICY
                 </Link>
               </li>
               <li>

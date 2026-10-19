@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="it" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cookie Policy - IncanTour</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="icon" type="image/png" href="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/spirale_incantour_highres%20%281%29-7hzjNru1zG0Gbw6WqE4bJuWZ3FzOU2.png">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+        
+        :root {
+            --primary-orange: #E6A532;
+            --primary-orange-dark: #D4941A;
+            --primary-teal: #1B5E5F;
+            --primary-teal-dark: #0F4142;
+            --gradient-primary: linear-gradient(135deg, #E6A532 0%, #D4941A 25%, #1B5E5F 75%, #0F4142 100%);
+            --gradient-warm: linear-gradient(135deg, #E6A532 0%, #D4941A 100%);
+            --gradient-cool: linear-gradient(135deg, #1B5E5F 0%, #0F4142 100%);
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        * {
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .policy-card {
+            transition: all 0.3s ease;
+        }
+
+        .policy-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.08);
+        }
+
+        .navbar.scrolled {
+            background: linear-gradient(135deg, rgba(230, 165, 50, 0.98) 0%, rgba(212, 148, 26, 0.98) 25%, rgba(27, 94, 95, 0.98) 75%, rgba(15, 65, 66, 0.98) 100%);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 20px rgba(230, 165, 50, 0.2);
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800">
+    <iframe src="navbar.html" onload="this.before((this.contentDocument.body||this.contentDocument).children[0]);this.remove()"></iframe>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="relative min-h-[50vh] flex items-center justify-center overflow-hidden pt-28 pb-16 text-white bg-slate-900">
+            <div class="absolute inset-0">
+                <img src="../assets/images/storia e visione.png" alt="Cookie Policy IncanTour" class="w-full h-full object-cover">
+                <div class="absolute inset-0 bg-gradient-to-b from-black/85 via-black/70 to-black/90"></div>
+                <div class="absolute inset-0 opacity-40" style="background: var(--gradient-primary);"></div>
+            </div>
+            <div class="relative z-10 container mx-auto px-6 max-w-4xl text-center">
+                <span class="inline-block text-xs font-bold uppercase tracking-widest text-amber-200 bg-white/20 px-4 py-1.5 rounded-full mb-4 backdrop-blur-sm border border-white/25">
+                    Trasparenza & Esperienza Web
+                </span>
+                <h1 class="text-4xl md:text-5xl font-extrabold mb-4 drop-shadow-md">Cookie Policy</h1>
+                <p class="text-base md:text-lg opacity-90 max-w-2xl mx-auto leading-relaxed">
+                    Informativa sull'utilizzo di cookie e strumenti di tracciamento sul sito web di Incantour S.r.l.
+                </p>
+                <div class="mt-4 text-xs text-amber-300 font-medium">Ultimo aggiornamento: 1 ottobre 2026</div>
+            </div>
+        </section>
+
+        <!-- Main Content -->
+        <section class="py-16 bg-slate-50">
+            <div class="container mx-auto px-6 max-w-5xl">
+                <!-- Quick Notice Banner -->
+                <div class="bg-white rounded-3xl p-8 shadow-xl border border-gray-100 mb-12 flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
+                    <div class="flex items-start space-x-4">
+                        <div class="w-14 h-14 rounded-2xl bg-amber-50 text-amber-600 flex items-center justify-center shrink-0 shadow-inner">
+                            <i class="fas fa-cookie-bite text-2xl"></i>
+                        </div>
+                        <div>
+                            <h2 class="text-xl font-extrabold text-gray-900">Navigazione sicura e trasparente</h2>
+                            <p class="text-sm text-gray-500 mt-1">Scopri come gestiamo i cookie e come puoi personalizzare le tue preferenze.</p>
+                        </div>
+                    </div>
+                    <a href="privacy-policy.html" class="inline-flex items-center space-x-2 text-xs font-bold uppercase tracking-wider bg-gradient-to-r from-amber-500 to-amber-600 text-white px-5 py-3 rounded-xl hover:opacity-95 transform hover:scale-105 transition-all shadow-md shrink-0">
+                        <span>Vedi Privacy Policy</span>
+                        <i class="fas fa-chevron-right text-xs"></i>
+                    </a>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+                    <!-- Sidebar Table of Contents -->
+                    <aside class="lg:col-span-4 hidden lg:block">
+                        <div class="sticky top-28 bg-white p-6 rounded-3xl shadow-lg border border-gray-100">
+                            <div class="flex items-center gap-2 pb-3 mb-3 border-b border-gray-100 text-xs font-bold uppercase tracking-wider text-[#1B5E5F]">
+                                <i class="fas fa-list text-amber-500"></i>
+                                <span>Indice Cookie Policy</span>
+                            </div>
+                            <nav class="space-y-1.5 text-xs">
+                                <a href="#titolare" class="block px-3 py-2 rounded-xl text-gray-600 hover:text-amber-600 hover:bg-amber-50/60 transition-colors font-medium">1. Titolare del trattamento</a>
+                                <a href="#cosa-sono" class="block px-3 py-2 rounded-xl text-gray-600 hover:text-amber-600 hover:bg-amber-50/60 transition-colors font-medium">2. Cosa sono i cookie</a>
+                                <a href="#tipologie" class="block px-3 py-2 rounded-xl text-gray-600 hover:text-amber-600 hover:bg-amber-50/60 transition-colors font-medium">3. Tipologie di cookie</a>
+                                <a href="#terze-parti" class="block px-3 py-2 rounded-xl text-gray-600 hover:text-amber-600 hover:bg-amber-50/60 transition-colors font-medium">4. Cookie di terze parti</a>
+                                <a href="#consenso" class="block px-3 py-2 rounded-xl text-gray-600 hover:text-amber-600 hover:bg-amber-50/60 transition-colors font-medium">5. Gestione del consenso</a>
+                                <a href="#durata" class="block px-3 py-2 rounded-xl text-gray-600 hover:text-amber-600 hover:bg-amber-50/60 transition-colors font-medium">6. Durata dei cookie</a>
+                                <a href="#browser" class="block px-3 py-2 rounded-xl text-gray-600 hover:text-amber-600 hover:bg-amber-50/60 transition-colors font-medium">7. Gestione dal browser</a>
+                                <a href="#contatti" class="block px-3 py-2 rounded-xl text-gray-600 hover:text-amber-600 hover:bg-amber-50/60 transition-colors font-medium">8. Contatti</a>
+                            </nav>
+                        </div>
+                    </aside>
+
+                    <!-- Main Sections -->
+                    <div class="lg:col-span-8 space-y-8">
+                        <!-- 1. Titolare -->
+                        <div id="titolare" class="policy-card bg-white p-8 rounded-3xl shadow-md border border-gray-100 scroll-mt-28">
+                            <div class="flex items-center gap-3 mb-5 pb-3 border-b border-gray-100">
+                                <span class="w-8 h-8 rounded-full bg-gradient-to-r from-amber-500 to-amber-600 text-white font-extrabold text-sm flex items-center justify-center shrink-0">1</span>
+                                <h3 class="text-xl font-bold text-gray-900">Titolare del trattamento</h3>
+                            </div>
+                            <p class="text-sm text-gray-600 mb-4">Il Titolare del trattamento dei dati è:</p>
+                            <div class="bg-gradient-to-br from-amber-50/70 to-teal-50/50 p-6 rounded-2xl border border-amber-200/50 text-sm">
+                                <p class="font-bold text-[#1B5E5F] text-base mb-2">Incantour S.r.l.</p>
+                                <ul class="space-y-1.5 text-gray-700">
+                                    <li><strong>P. IVA:</strong> IT10071441215</li>
+                                    <li><strong>Sede legale:</strong> Calata Trinità Maggiore, 53 – 80134 Napoli (NA), Italia</li>
+                                    <li><strong>Telefono:</strong> <a href="tel:+390810607948" class="text-[#1B5E5F] hover:underline font-semibold">+39 081 0607948</a></li>
+                                    <li><strong>WhatsApp:</strong> <a href="https://wa.me/393384357143" class="text-emerald-700 hover:underline font-semibold">+39 338 4357143</a></li>
+                                    <li><strong>E-mail:</strong> <a href="mailto:info@incantour.it" class="text-[#E6A532] hover:underline font-semibold">info@incantour.it</a></li>
+                                    <li><strong>PEC:</strong> <a href="mailto:incantoursrl@legalmail.it" class="text-gray-800 hover:underline font-semibold">incantoursrl@legalmail.it</a></li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <!-- 2. Cosa sono -->
+                        <div id="cosa-sono" class="policy-card bg-white p-8 rounded-3xl shadow-md border border-gray-100 scroll-mt-28">
+                            <div class="flex items-center gap-3 mb-5 pb-3 border-b border-gray-100">
+                                <span class="w-8 h-8 rounded-full bg-gradient-to-r from-amber-500 to-amber-600 text-white font-extrabold text-sm flex items-center justify-center shrink-0">2</span>
+                                <h3 class="text-xl font-bold text-gray-900">Cosa sono i cookie</h3>
+                            </div>
+                            <p class="text-sm text-gray-600 leading-relaxed">
+                                I cookie sono brevi file di testo scambiati tra il server del sito e il dispositivo dell'utente. Permettono il corretto funzionamento delle sessioni, la memorizzazione delle preferenze scelte e statistiche anonime di consultazione.
+                            </p>
+                        </div>
+
+                        <!-- 3. Tipologie -->
+                        <div id="tipologie" class="policy-card bg-white p-8 rounded-3xl shadow-md border border-gray-100 scroll-mt-28">
+                            <div class="flex items-center gap-3 mb-5 pb-3 border-b border-gray-100">
+                                <span class="w-8 h-8 rounded-full bg-gradient-to-r from-amber-500 to-amber-600 text-white font-extrabold text-sm flex items-center justify-center shrink-0">3</span>
+                                <h3 class="text-xl font-bold text-gray-900">Tipologie di cookie</h3>
+                            </div>
+                            <div class="space-y-4 text-sm text-gray-600">
+                                <div class="p-4 bg-gray-50 rounded-2xl">
+                                    <div class="flex items-center justify-between mb-1">
+                                        <h4 class="font-bold text-gray-900">3.1 Cookie tecnici o necessari</h4>
+                                        <span class="text-[10px] font-bold px-2 py-0.5 bg-emerald-100 text-emerald-800 rounded-full">Sempre Attivi</span>
+                                    </div>
+                                    <p>Essenziali per navigare, mantenere il carrello/prenotazione e garantire la sicurezza informatica. Non richiedono consenso preventivo.</p>
+                                </div>
+                                <div class="p-4 bg-gray-50 rounded-2xl">
+                                    <div class="flex items-center justify-between mb-1">
+                                        <h4 class="font-bold text-gray-900">3.2 Cookie di funzionalità</h4>
+                                        <span class="text-[10px] font-bold px-2 py-0.5 bg-teal-100 text-teal-800 rounded-full">Funzionali</span>
+                                    </div>
+                                    <p>Ricordano impostazioni e preferenze di navigazione (es. lingua selezionata).</p>
+                                </div>
+                                <div class="p-4 bg-gray-50 rounded-2xl">
+                                    <div class="flex items-center justify-between mb-1">
+                                        <h4 class="font-bold text-gray-900">3.3 Cookie analitici e statistici</h4>
+                                        <span class="text-[10px] font-bold px-2 py-0.5 bg-amber-100 text-amber-800 rounded-full">Statistici</span>
+                                    </div>
+                                    <p>Misurano l'utilizzo complessivo del portale per ottimizzare le prestazioni in forma aggregata.</p>
+                                </div>
+                                <div class="p-4 bg-gray-50 rounded-2xl">
+                                    <div class="flex items-center justify-between mb-1">
+                                        <h4 class="font-bold text-gray-900">3.4 Cookie di profilazione e marketing</h4>
+                                        <span class="text-[10px] font-bold px-2 py-0.5 bg-indigo-100 text-indigo-800 rounded-full">Previo Consenso</span>
+                                    </div>
+                                    <p>Attivati unicamente previo tuo consenso esplicito per comunicazioni su misura.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 4. Terze parti -->
+                        <div id="terze-parti" class="policy-card bg-white p-8 rounded-3xl shadow-md border border-gray-100 scroll-mt-28">
+                            <div class="flex items-center gap-3 mb-5 pb-3 border-b border-gray-100">
+                                <span class="w-8 h-8 rounded-full bg-gradient-to-r from-amber-500 to-amber-600 text-white font-extrabold text-sm flex items-center justify-center shrink-0">4</span>
+                                <h3 class="text-xl font-bold text-gray-900">Cookie di terze parti</h3>
+                            </div>
+                            <p class="text-sm text-gray-600 leading-relaxed">
+                                Strumenti esterni integrati (es. pagamenti online, mappe o widget social) possono impostare cookie propri disciplinati dalle rispettive informative di settore.
+                            </p>
+                        </div>
+
+                        <!-- 5. Gestione Consenso -->
+                        <div id="consenso" class="policy-card bg-white p-8 rounded-3xl shadow-md border border-gray-100 scroll-mt-28">
+                            <div class="flex items-center gap-3 mb-5 pb-3 border-b border-gray-100">
+                                <span class="w-8 h-8 rounded-full bg-gradient-to-r from-amber-500 to-amber-600 text-white font-extrabold text-sm flex items-center justify-center shrink-0">5</span>
+                                <h3 class="text-xl font-bold text-gray-900">Gestione del consenso</h3>
+                            </div>
+                            <p class="text-sm text-gray-600 leading-relaxed">
+                                Puoi liberamente accettare, rifiutare o revocare il consenso in qualsiasi momento. La revoca non pregiudica la normale navigazione o la possibilità di richiedere preventivi.
+                            </p>
+                        </div>
+
+                        <!-- 6. Durata -->
+                        <div id="durata" class="policy-card bg-white p-8 rounded-3xl shadow-md border border-gray-100 scroll-mt-28">
+                            <div class="flex items-center gap-3 mb-5 pb-3 border-b border-gray-100">
+                                <span class="w-8 h-8 rounded-full bg-gradient-to-r from-amber-500 to-amber-600 text-white font-extrabold text-sm flex items-center justify-center shrink-0">6</span>
+                                <h3 class="text-xl font-bold text-gray-900">Durata dei cookie</h3>
+                            </div>
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs text-gray-600">
+                                <div class="p-3 bg-gray-50 rounded-xl">
+                                    <strong class="text-[#1B5E5F] block mb-1">Cookie di Sessione</strong>
+                                    Si cancellano automaticamente con la chiusura del browser.
+                                </div>
+                                <div class="p-3 bg-gray-50 rounded-xl">
+                                    <strong class="text-[#E6A532] block mb-1">Cookie Persistenti</strong>
+                                    Restano attivi fino alla data stabilita o alla cancellazione manuale.
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 7. Gestione dal browser -->
+                        <div id="browser" class="policy-card bg-white p-8 rounded-3xl shadow-md border border-gray-100 scroll-mt-28">
+                            <div class="flex items-center gap-3 mb-5 pb-3 border-b border-gray-100">
+                                <span class="w-8 h-8 rounded-full bg-gradient-to-r from-amber-500 to-amber-600 text-white font-extrabold text-sm flex items-center justify-center shrink-0">7</span>
+                                <h3 class="text-xl font-bold text-gray-900">Gestione dei cookie attraverso il browser</h3>
+                            </div>
+                            <p class="text-sm text-gray-600 leading-relaxed mb-3">
+                                Puoi bloccare o rimuovere i cookie attraverso le impostazioni del tuo browser (Chrome, Safari, Firefox, Edge).
+                            </p>
+                            <p class="text-xs text-gray-500">
+                                Attenzione: disattivare i cookie tecnici necessari potrebbe compromettere alcune funzionalità essenziali del sito o della prenotazione online.
+                            </p>
+                        </div>
+
+                        <!-- 8. Contatti -->
+                        <div id="contatti" class="policy-card bg-white p-8 rounded-3xl shadow-md border border-gray-100 scroll-mt-28">
+                            <div class="flex items-center gap-3 mb-5 pb-3 border-b border-gray-100">
+                                <span class="w-8 h-8 rounded-full bg-gradient-to-r from-amber-500 to-amber-600 text-white font-extrabold text-sm flex items-center justify-center shrink-0">8</span>
+                                <h3 class="text-xl font-bold text-gray-900">Contatti</h3>
+                            </div>
+                            <p class="text-sm text-gray-600 mb-2">
+                                Per informazioni sull'uso dei cookie o sul trattamento dei dati personali:
+                            </p>
+                            <p class="text-sm font-semibold text-[#1B5E5F]">
+                                E-mail: <a href="mailto:info@incantour.it" class="text-[#E6A532] hover:underline">info@incantour.it</a> | Telefono: +39 081 0607948
+                            </p>
+                        </div>
+
+                        <!-- Assistance CTA -->
+                        <div class="p-8 rounded-3xl bg-gradient-to-br from-[#1B5E5F] to-[#0F4142] text-white shadow-xl flex flex-col sm:flex-row items-center justify-between gap-6">
+                            <div>
+                                <h4 class="text-xl font-bold mb-1">Desideri maggiori informazioni?</h4>
+                                <p class="text-sm text-teal-100/90">Consulta anche la nostra Privacy Policy completa.</p>
+                            </div>
+                            <a href="mailto:info@incantour.it" class="inline-flex items-center gap-2 bg-[#E6A532] hover:bg-[#d4941a] text-white font-bold px-6 py-3.5 rounded-2xl shadow-lg transition-all transform hover:scale-105 shrink-0 text-sm">
+                                <i class="fas fa-envelope"></i>
+                                <span>Contattaci</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <iframe src="footer.html" onload="this.before((this.contentDocument.body||this.contentDocument).children[0]);this.remove()"></iframe>
+</body>
+</html>
