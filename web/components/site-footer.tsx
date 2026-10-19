@@ -428,7 +428,7 @@ export function SiteFooter() {
                 <br />
                 certificato N.2026/0930/1/1418
                 <br />
-                <strong>Membro:</strong> AIAV
+                <strong>ASSOCIATO ADVunite</strong>
               </p>
             </div>
           </div>
